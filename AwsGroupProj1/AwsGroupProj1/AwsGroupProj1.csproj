@@ -9,10 +9,12 @@
     <PackageReference Include="AWSSDK.EC2" Version="3.3.19" />
     <PackageReference Include="AWSSDK.S3" Version="3.3.9" />
     <PackageReference Include="AWSSDK.SimpleDB" Version="3.3.0.20" />
+    <PackageReference Include="Grpc" Version="1.9.0" />
+    <PackageReference Include="Grpc.Tools" Version="1.9.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="System.Configuration"/>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
 
 </Project>
