@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package sufs;
+
+service FileManagement {
+	rpc CreateFile (CreateRequest) returns (CreateReply){}
+}
+
+message CreateRequest {
+	int32 numBlocks = 1;
+	string dir = 2;
+	string fileName = 3;
+}
+
+message CreateReply {
+	reserved 1;
+	reserved "blockIDList";
+
+	int32 blockID = 2;
+	int32 repFactor = 3;
+	repeated string DNid = 4;
+}
