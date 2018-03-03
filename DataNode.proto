@@ -1,4 +1,4 @@
-syntax = "proto3"
+syntax = "proto3";
 
 package sufs;
 
@@ -20,7 +20,7 @@ service DataNodeHealthCenter {
 	rpc HealthCheck(HealthRequest) returns (HealthResponse) {}
 }
 
-message HealthCheck {
+message HealthRequest {
 	int32 blockID = 1;
 	float blockSize = 2;
 	bool instruction = 3;
@@ -34,7 +34,7 @@ service Pipelining {
 	rpc ReplicateBlock(ReplicateRequest) returns (ReplicateResponse) {}
 }
 
-message ReplicateBlock {
+message ReplicateRequest {
 	int32 blockID = 1;
 	float blockSize = 2;
 	repeated string dataNodeID = 3;
