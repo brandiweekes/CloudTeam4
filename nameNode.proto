@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package sufs;
+
+service FileManagement {
+	rpc CreateFile (CreateRequest) returns (CreateResponse){}
+}
+
+message CreateRequest {
+	int32 numBlocks = 1;
+	string dir = 2;
+	string fileName = 3;
+}
+
+message CreateResponse {
+	reserved 1;
+	reserved "blockIDList";
+
+	int32 blockID = 2;
+	int32 repFactor = 3;
+	repeated string DNid = 4;
+}
+
+service BlockManagement {
+  rpc BlockReport (ReportRequest) returns (ReportResponse){}
+}
+
+message Pair {
+  string key = 1;
+  int32 value = 2;
+}
+
+message ReportRequest {
+  string DNid = 1;
+  repeated Pair blockIDList = 2;
+}
+
+message ReportResponse{
+  bool acknowledged = 1;
+}
+
+service Heartbeat {
+  rpc HeartbeatCheck (HBrequest) returns (HBresponse){}
+}
+
+message HBrequest{
+  string DNid = 1;
+}
+
+message HBresponse{
+  bool acknowledged = 1;
+}
