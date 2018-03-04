@@ -3,7 +3,7 @@ syntax = "proto3";
 package sufs;
 
 service FileManagement {
-	rpc CreateFile (CreateRequest) returns (CreateResponse){}
+	rpc CreateFile (CreateRequest) returns (stream CreateResponse){}
 }
 
 message CreateRequest {
@@ -25,22 +25,22 @@ service BlockManagement {
   rpc BlockReport (ReportRequest) returns (ReportResponse){}
 }
 
-message Pair {
-  string key = 1;
-  int32 value = 2;
+message BlockID_Size {
+  int32 blockID = 1;
+  float blockSize = 2;
 }
 
 message ReportRequest {
   string DNid = 1;
-  repeated Pair blockIDList = 2;
+  repeated BlockID_Size blockList = 2;
 }
 
 message ReportResponse{
   bool acknowledged = 1;
 }
 
-service Heartbeat {
-  rpc HeartbeatCheck (HBrequest) returns (HBresponse){}
+service HeartbeatCheck {
+  rpc Heartbeat (HBrequest) returns (HBresponse){}
 }
 
 message HBrequest{
