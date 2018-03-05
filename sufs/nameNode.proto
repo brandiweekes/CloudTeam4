@@ -2,8 +2,10 @@ syntax = "proto3";
 
 package sufs;
 
-service FileManagement {
+service NameNode {
 	rpc CreateFile (CreateRequest) returns (stream CreateResponse){}
+	rpc Heartbeat (HBrequest) returns (HBresponse){}
+	rpc BlockReport (ReportRequest) returns (ReportResponse){}
 }
 
 message CreateRequest {
@@ -21,10 +23,6 @@ message CreateResponse {
 	repeated string DNid = 4;
 }
 
-service BlockManagement {
-  rpc BlockReport (ReportRequest) returns (ReportResponse){}
-}
-
 message BlockID_Size {
   int32 blockID = 1;
   float blockSize = 2;
@@ -37,10 +35,6 @@ message ReportRequest {
 
 message ReportResponse{
   bool acknowledged = 1;
-}
-
-service HeartbeatCheck {
-  rpc Heartbeat (HBrequest) returns (HBresponse){}
 }
 
 message HBrequest{

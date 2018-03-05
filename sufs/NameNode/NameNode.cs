@@ -25,24 +25,24 @@ namespace Sufs {
             "Cg5uYW1lTm9kZS5wcm90bxIEc3VmcyJBCg1DcmVhdGVSZXF1ZXN0EhEKCW51",
             "bUJsb2NrcxgBIAEoBRILCgNkaXIYAiABKAkSEAoIZmlsZU5hbWUYAyABKAki",
             "VQoOQ3JlYXRlUmVzcG9uc2USDwoHYmxvY2tJRBgCIAEoBRIRCglyZXBGYWN0",
-            "b3IYAyABKAUSDAoERE5pZBgEIAMoCUoECAEQAlILYmxvY2tJRExpc3QiIgoE",
-            "UGFpchILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAUiPgoNUmVwb3J0UmVx",
-            "dWVzdBIMCgRETmlkGAEgASgJEh8KC2Jsb2NrSURMaXN0GAIgAygLMgouc3Vm",
-            "cy5QYWlyIiYKDlJlcG9ydFJlc3BvbnNlEhQKDGFja25vd2xlZGdlZBgBIAEo",
-            "CCIZCglIQnJlcXVlc3QSDAoERE5pZBgBIAEoCSIiCgpIQnJlc3BvbnNlEhQK",
-            "DGFja25vd2xlZGdlZBgBIAEoCDJLCg5GaWxlTWFuYWdlbWVudBI5CgpDcmVh",
-            "dGVGaWxlEhMuc3Vmcy5DcmVhdGVSZXF1ZXN0GhQuc3Vmcy5DcmVhdGVSZXNw",
-            "b25zZSIAMk0KD0Jsb2NrTWFuYWdlbWVudBI6CgtCbG9ja1JlcG9ydBITLnN1",
-            "ZnMuUmVwb3J0UmVxdWVzdBoULnN1ZnMuUmVwb3J0UmVzcG9uc2UiADJCCglI",
-            "ZWFydGJlYXQSNQoOSGVhcnRiZWF0Q2hlY2sSDy5zdWZzLkhCcmVxdWVzdBoQ",
-            "LnN1ZnMuSEJyZXNwb25zZSIAYgZwcm90bzM="));
+            "b3IYAyABKAUSDAoERE5pZBgEIAMoCUoECAEQAlILYmxvY2tJRExpc3QiMgoM",
+            "QmxvY2tJRF9TaXplEg8KB2Jsb2NrSUQYASABKAUSEQoJYmxvY2tTaXplGAIg",
+            "ASgCIkQKDVJlcG9ydFJlcXVlc3QSDAoERE5pZBgBIAEoCRIlCglibG9ja0xp",
+            "c3QYAiADKAsyEi5zdWZzLkJsb2NrSURfU2l6ZSImCg5SZXBvcnRSZXNwb25z",
+            "ZRIUCgxhY2tub3dsZWRnZWQYASABKAgiGQoJSEJyZXF1ZXN0EgwKBEROaWQY",
+            "ASABKAkiIgoKSEJyZXNwb25zZRIUCgxhY2tub3dsZWRnZWQYASABKAgytQEK",
+            "CE5hbWVOb2RlEjsKCkNyZWF0ZUZpbGUSEy5zdWZzLkNyZWF0ZVJlcXVlc3Qa",
+            "FC5zdWZzLkNyZWF0ZVJlc3BvbnNlIgAwARIwCglIZWFydGJlYXQSDy5zdWZz",
+            "LkhCcmVxdWVzdBoQLnN1ZnMuSEJyZXNwb25zZSIAEjoKC0Jsb2NrUmVwb3J0",
+            "EhMuc3Vmcy5SZXBvcnRSZXF1ZXN0GhQuc3Vmcy5SZXBvcnRSZXNwb25zZSIA",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.CreateRequest), global::Sufs.CreateRequest.Parser, new[]{ "NumBlocks", "Dir", "FileName" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.CreateResponse), global::Sufs.CreateResponse.Parser, new[]{ "BlockID", "RepFactor", "DNid" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.Pair), global::Sufs.Pair.Parser, new[]{ "Key", "Value" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReportRequest), global::Sufs.ReportRequest.Parser, new[]{ "DNid", "BlockIDList" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.BlockID_Size), global::Sufs.BlockID_Size.Parser, new[]{ "BlockID", "BlockSize" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReportRequest), global::Sufs.ReportRequest.Parser, new[]{ "DNid", "BlockList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReportResponse), global::Sufs.ReportResponse.Parser, new[]{ "Acknowledged" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HBrequest), global::Sufs.HBrequest.Parser, new[]{ "DNid" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HBresponse), global::Sufs.HBresponse.Parser, new[]{ "Acknowledged" }, null, null, null)
@@ -390,10 +390,10 @@ namespace Sufs {
 
   }
 
-  public sealed partial class Pair : pb::IMessage<Pair> {
-    private static readonly pb::MessageParser<Pair> _parser = new pb::MessageParser<Pair>(() => new Pair());
+  public sealed partial class BlockID_Size : pb::IMessage<BlockID_Size> {
+    private static readonly pb::MessageParser<BlockID_Size> _parser = new pb::MessageParser<BlockID_Size>(() => new BlockID_Size());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<Pair> Parser { get { return _parser; } }
+    public static pb::MessageParser<BlockID_Size> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -406,68 +406,68 @@ namespace Sufs {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Pair() {
+    public BlockID_Size() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Pair(Pair other) : this() {
-      key_ = other.key_;
-      value_ = other.value_;
+    public BlockID_Size(BlockID_Size other) : this() {
+      blockID_ = other.blockID_;
+      blockSize_ = other.blockSize_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Pair Clone() {
-      return new Pair(this);
+    public BlockID_Size Clone() {
+      return new BlockID_Size(this);
     }
 
-    /// <summary>Field number for the "key" field.</summary>
-    public const int KeyFieldNumber = 1;
-    private string key_ = "";
+    /// <summary>Field number for the "blockID" field.</summary>
+    public const int BlockIDFieldNumber = 1;
+    private int blockID_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Key {
-      get { return key_; }
+    public int BlockID {
+      get { return blockID_; }
       set {
-        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        blockID_ = value;
       }
     }
 
-    /// <summary>Field number for the "value" field.</summary>
-    public const int ValueFieldNumber = 2;
-    private int value_;
+    /// <summary>Field number for the "blockSize" field.</summary>
+    public const int BlockSizeFieldNumber = 2;
+    private float blockSize_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Value {
-      get { return value_; }
+    public float BlockSize {
+      get { return blockSize_; }
       set {
-        value_ = value;
+        blockSize_ = value;
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as Pair);
+      return Equals(other as BlockID_Size);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Pair other) {
+    public bool Equals(BlockID_Size other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Key != other.Key) return false;
-      if (Value != other.Value) return false;
+      if (BlockID != other.BlockID) return false;
+      if (BlockSize != other.BlockSize) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Key.Length != 0) hash ^= Key.GetHashCode();
-      if (Value != 0) hash ^= Value.GetHashCode();
+      if (BlockID != 0) hash ^= BlockID.GetHashCode();
+      if (BlockSize != 0F) hash ^= BlockSize.GetHashCode();
       return hash;
     }
 
@@ -478,38 +478,38 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Key.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Key);
+      if (BlockID != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(BlockID);
       }
-      if (Value != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Value);
+      if (BlockSize != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(BlockSize);
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Key.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
+      if (BlockID != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BlockID);
       }
-      if (Value != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Value);
+      if (BlockSize != 0F) {
+        size += 1 + 4;
       }
       return size;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Pair other) {
+    public void MergeFrom(BlockID_Size other) {
       if (other == null) {
         return;
       }
-      if (other.Key.Length != 0) {
-        Key = other.Key;
+      if (other.BlockID != 0) {
+        BlockID = other.BlockID;
       }
-      if (other.Value != 0) {
-        Value = other.Value;
+      if (other.BlockSize != 0F) {
+        BlockSize = other.BlockSize;
       }
     }
 
@@ -521,12 +521,12 @@ namespace Sufs {
           default:
             input.SkipLastField();
             break;
-          case 10: {
-            Key = input.ReadString();
+          case 8: {
+            BlockID = input.ReadInt32();
             break;
           }
-          case 16: {
-            Value = input.ReadInt32();
+          case 21: {
+            BlockSize = input.ReadFloat();
             break;
           }
         }
@@ -560,7 +560,7 @@ namespace Sufs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ReportRequest(ReportRequest other) : this() {
       dNid_ = other.dNid_;
-      blockIDList_ = other.blockIDList_.Clone();
+      blockList_ = other.blockList_.Clone();
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -579,14 +579,14 @@ namespace Sufs {
       }
     }
 
-    /// <summary>Field number for the "blockIDList" field.</summary>
-    public const int BlockIDListFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::Sufs.Pair> _repeated_blockIDList_codec
-        = pb::FieldCodec.ForMessage(18, global::Sufs.Pair.Parser);
-    private readonly pbc::RepeatedField<global::Sufs.Pair> blockIDList_ = new pbc::RepeatedField<global::Sufs.Pair>();
+    /// <summary>Field number for the "blockList" field.</summary>
+    public const int BlockListFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::Sufs.BlockID_Size> _repeated_blockList_codec
+        = pb::FieldCodec.ForMessage(18, global::Sufs.BlockID_Size.Parser);
+    private readonly pbc::RepeatedField<global::Sufs.BlockID_Size> blockList_ = new pbc::RepeatedField<global::Sufs.BlockID_Size>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Sufs.Pair> BlockIDList {
-      get { return blockIDList_; }
+    public pbc::RepeatedField<global::Sufs.BlockID_Size> BlockList {
+      get { return blockList_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -603,7 +603,7 @@ namespace Sufs {
         return true;
       }
       if (DNid != other.DNid) return false;
-      if(!blockIDList_.Equals(other.blockIDList_)) return false;
+      if(!blockList_.Equals(other.blockList_)) return false;
       return true;
     }
 
@@ -611,7 +611,7 @@ namespace Sufs {
     public override int GetHashCode() {
       int hash = 1;
       if (DNid.Length != 0) hash ^= DNid.GetHashCode();
-      hash ^= blockIDList_.GetHashCode();
+      hash ^= blockList_.GetHashCode();
       return hash;
     }
 
@@ -626,7 +626,7 @@ namespace Sufs {
         output.WriteRawTag(10);
         output.WriteString(DNid);
       }
-      blockIDList_.WriteTo(output, _repeated_blockIDList_codec);
+      blockList_.WriteTo(output, _repeated_blockList_codec);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -635,7 +635,7 @@ namespace Sufs {
       if (DNid.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(DNid);
       }
-      size += blockIDList_.CalculateSize(_repeated_blockIDList_codec);
+      size += blockList_.CalculateSize(_repeated_blockList_codec);
       return size;
     }
 
@@ -647,7 +647,7 @@ namespace Sufs {
       if (other.DNid.Length != 0) {
         DNid = other.DNid;
       }
-      blockIDList_.Add(other.blockIDList_);
+      blockList_.Add(other.blockList_);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -663,7 +663,7 @@ namespace Sufs {
             break;
           }
           case 18: {
-            blockIDList_.AddEntriesFrom(input, _repeated_blockIDList_codec);
+            blockList_.AddEntriesFrom(input, _repeated_blockList_codec);
             break;
           }
         }
