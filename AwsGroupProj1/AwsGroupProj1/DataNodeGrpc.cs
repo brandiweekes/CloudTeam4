@@ -104,7 +104,7 @@ namespace Sufs {
     static readonly grpc::Marshaller<global::Sufs.HealthResponse> __Marshaller_HealthResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.HealthResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::Sufs.HealthRequest, global::Sufs.HealthResponse> __Method_HealthCheck = new grpc::Method<global::Sufs.HealthRequest, global::Sufs.HealthResponse>(
-        grpc::MethodType.Unary,
+        grpc::MethodType.ClientStreaming,
         __ServiceName,
         "HealthCheck",
         __Marshaller_HealthRequest,
@@ -119,7 +119,7 @@ namespace Sufs {
     /// <summary>Base class for server-side implementations of DataNodeHealthCenter</summary>
     public abstract partial class DataNodeHealthCenterBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::Sufs.HealthResponse> HealthCheck(global::Sufs.HealthRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Sufs.HealthResponse> HealthCheck(grpc::IAsyncStreamReader<global::Sufs.HealthRequest> requestStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -149,21 +149,13 @@ namespace Sufs {
       {
       }
 
-      public virtual global::Sufs.HealthResponse HealthCheck(global::Sufs.HealthRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncClientStreamingCall<global::Sufs.HealthRequest, global::Sufs.HealthResponse> HealthCheck(grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
-        return HealthCheck(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return HealthCheck(new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Sufs.HealthResponse HealthCheck(global::Sufs.HealthRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncClientStreamingCall<global::Sufs.HealthRequest, global::Sufs.HealthResponse> HealthCheck(grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_HealthCheck, null, options, request);
-      }
-      public virtual grpc::AsyncUnaryCall<global::Sufs.HealthResponse> HealthCheckAsync(global::Sufs.HealthRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
-      {
-        return HealthCheckAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual grpc::AsyncUnaryCall<global::Sufs.HealthResponse> HealthCheckAsync(global::Sufs.HealthRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_HealthCheck, null, options, request);
+        return CallInvoker.AsyncClientStreamingCall(__Method_HealthCheck, null, options);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override DataNodeHealthCenterClient NewInstance(ClientBaseConfiguration configuration)
