@@ -4,6 +4,8 @@ package sufs;
 
 service FileHandling {
 	rpc WriteFile (WriteRequest) returns (WriteResponse) {}
+	rpc HealthCheck(stream HealthRequest) returns (HealthResponse) {}
+	rpc ReplicateBlock(ReplicateRequest) returns (ReplicateResponse) {}
 }
 
 message BlockDetails {
@@ -20,10 +22,6 @@ message WriteResponse {
 	bool response = 1;
 }
 
-service DataNodeHealthCenter {
-	rpc HealthCheck(stream HealthRequest) returns (HealthResponse) {}
-}
-
 message HealthRequest {
 	repeated BlockDetails block = 1;
 	repeated string dataNodeID = 2;
@@ -32,10 +30,6 @@ message HealthRequest {
 
 message HealthResponse {
 	bool response = 1;
-}
-
-service Pipelining {
-	rpc ReplicateBlock(ReplicateRequest) returns (ReplicateResponse) {}
 }
 
 message ReplicateRequest {
