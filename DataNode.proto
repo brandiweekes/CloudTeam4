@@ -6,10 +6,14 @@ service FileHandling {
 	rpc WriteFile (WriteRequest) returns (WriteResponse) {}
 }
 
-message WriteRequest {
+message BlockDetails {
 	int32 blockID = 1;
 	float blockSize = 2;
-	repeated string dataNodeID = 3;
+}
+
+message WriteRequest {
+	BlockDetails block = 1;
+	repeated string dataNodeID = 2;
 }
 
 message WriteResponse {
@@ -17,12 +21,12 @@ message WriteResponse {
 }
 
 service DataNodeHealthCenter {
-	rpc HealthCheck(HealthRequest) returns (HealthResponse) {}
+	rpc HealthCheck(stream HealthRequest) returns (HealthResponse) {}
 }
 
 message HealthRequest {
-	int32 blockID = 1;
-	float blockSize = 2;
+	repeated BlockDetails block = 1;
+	repeated string dataNodeID = 2;
 	bool instruction = 3;
 }
 
@@ -35,9 +39,8 @@ service Pipelining {
 }
 
 message ReplicateRequest {
-	int32 blockID = 1;
-	float blockSize = 2;
-	repeated string dataNodeID = 3;
+	BlockDetails block = 1;
+	repeated string dataNodeID = 2;
 }
 
 message ReplicateResponse {
