@@ -3,4 +3,6 @@ Project #1 SU File System: In this project, team will develop the Seattle Univer
 
 # Go to Wiki for more information!
 Contents include:
-1) Git Flow (git commands for setup and checking out feature branches)
+1) Git Flow (git commands for setup and checking out feature branches)   
+2) gRPC: Architecture and Design for .proto
+3) gRPC: compile .proto on Windows
