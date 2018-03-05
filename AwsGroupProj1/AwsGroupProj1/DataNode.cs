@@ -31,12 +31,12 @@ namespace Sufs {
             "ASgIIiIKDkhlYWx0aFJlc3BvbnNlEhAKCHJlc3BvbnNlGAEgASgIIkkKEFJl",
             "cGxpY2F0ZVJlcXVlc3QSIQoFYmxvY2sYASABKAsyEi5zdWZzLkJsb2NrRGV0",
             "YWlscxISCgpkYXRhTm9kZUlEGAIgAygJIiUKEVJlcGxpY2F0ZVJlc3BvbnNl",
-            "EhAKCHJlc3BvbnNlGAEgASgIMkYKDEZpbGVIYW5kbGluZxI2CglXcml0ZUZp",
-            "bGUSEi5zdWZzLldyaXRlUmVxdWVzdBoTLnN1ZnMuV3JpdGVSZXNwb25zZSIA",
-            "MlQKFERhdGFOb2RlSGVhbHRoQ2VudGVyEjwKC0hlYWx0aENoZWNrEhMuc3Vm",
-            "cy5IZWFsdGhSZXF1ZXN0GhQuc3Vmcy5IZWFsdGhSZXNwb25zZSIAKAEyUQoK",
-            "UGlwZWxpbmluZxJDCg5SZXBsaWNhdGVCbG9jaxIWLnN1ZnMuUmVwbGljYXRl",
-            "UmVxdWVzdBoXLnN1ZnMuUmVwbGljYXRlUmVzcG9uc2UiAGIGcHJvdG8z"));
+            "EhAKCHJlc3BvbnNlGAEgASgIMskBCgxGaWxlSGFuZGxpbmcSNgoJV3JpdGVG",
+            "aWxlEhIuc3Vmcy5Xcml0ZVJlcXVlc3QaEy5zdWZzLldyaXRlUmVzcG9uc2Ui",
+            "ABI8CgtIZWFsdGhDaGVjaxITLnN1ZnMuSGVhbHRoUmVxdWVzdBoULnN1ZnMu",
+            "SGVhbHRoUmVzcG9uc2UiACgBEkMKDlJlcGxpY2F0ZUJsb2NrEhYuc3Vmcy5S",
+            "ZXBsaWNhdGVSZXF1ZXN0Ghcuc3Vmcy5SZXBsaWNhdGVSZXNwb25zZSIAYgZw",
+            "cm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
