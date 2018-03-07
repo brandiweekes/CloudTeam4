@@ -23,7 +23,7 @@ namespace Sufs {
     static readonly grpc::Marshaller<global::Sufs.ReplicateResponse> __Marshaller_ReplicateResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReplicateResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::Sufs.WriteRequest, global::Sufs.WriteResponse> __Method_WriteFile = new grpc::Method<global::Sufs.WriteRequest, global::Sufs.WriteResponse>(
-        grpc::MethodType.Unary,
+        grpc::MethodType.ClientStreaming,
         __ServiceName,
         "WriteFile",
         __Marshaller_WriteRequest,
@@ -37,7 +37,7 @@ namespace Sufs {
         __Marshaller_HealthResponse);
 
     static readonly grpc::Method<global::Sufs.ReplicateRequest, global::Sufs.ReplicateResponse> __Method_ReplicateBlock = new grpc::Method<global::Sufs.ReplicateRequest, global::Sufs.ReplicateResponse>(
-        grpc::MethodType.Unary,
+        grpc::MethodType.ClientStreaming,
         __ServiceName,
         "ReplicateBlock",
         __Marshaller_ReplicateRequest,
@@ -52,7 +52,7 @@ namespace Sufs {
     /// <summary>Base class for server-side implementations of FileHandling</summary>
     public abstract partial class FileHandlingBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::Sufs.WriteResponse> WriteFile(global::Sufs.WriteRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Sufs.WriteResponse> WriteFile(grpc::IAsyncStreamReader<global::Sufs.WriteRequest> requestStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -62,7 +62,7 @@ namespace Sufs {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::Sufs.ReplicateResponse> ReplicateBlock(global::Sufs.ReplicateRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Sufs.ReplicateResponse> ReplicateBlock(grpc::IAsyncStreamReader<global::Sufs.ReplicateRequest> requestStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -92,21 +92,13 @@ namespace Sufs {
       {
       }
 
-      public virtual global::Sufs.WriteResponse WriteFile(global::Sufs.WriteRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncClientStreamingCall<global::Sufs.WriteRequest, global::Sufs.WriteResponse> WriteFile(grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
-        return WriteFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return WriteFile(new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Sufs.WriteResponse WriteFile(global::Sufs.WriteRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncClientStreamingCall<global::Sufs.WriteRequest, global::Sufs.WriteResponse> WriteFile(grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_WriteFile, null, options, request);
-      }
-      public virtual grpc::AsyncUnaryCall<global::Sufs.WriteResponse> WriteFileAsync(global::Sufs.WriteRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
-      {
-        return WriteFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual grpc::AsyncUnaryCall<global::Sufs.WriteResponse> WriteFileAsync(global::Sufs.WriteRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_WriteFile, null, options, request);
+        return CallInvoker.AsyncClientStreamingCall(__Method_WriteFile, null, options);
       }
       public virtual grpc::AsyncClientStreamingCall<global::Sufs.HealthRequest, global::Sufs.HealthResponse> HealthCheck(grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
@@ -116,21 +108,13 @@ namespace Sufs {
       {
         return CallInvoker.AsyncClientStreamingCall(__Method_HealthCheck, null, options);
       }
-      public virtual global::Sufs.ReplicateResponse ReplicateBlock(global::Sufs.ReplicateRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncClientStreamingCall<global::Sufs.ReplicateRequest, global::Sufs.ReplicateResponse> ReplicateBlock(grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
-        return ReplicateBlock(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return ReplicateBlock(new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Sufs.ReplicateResponse ReplicateBlock(global::Sufs.ReplicateRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncClientStreamingCall<global::Sufs.ReplicateRequest, global::Sufs.ReplicateResponse> ReplicateBlock(grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_ReplicateBlock, null, options, request);
-      }
-      public virtual grpc::AsyncUnaryCall<global::Sufs.ReplicateResponse> ReplicateBlockAsync(global::Sufs.ReplicateRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
-      {
-        return ReplicateBlockAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual grpc::AsyncUnaryCall<global::Sufs.ReplicateResponse> ReplicateBlockAsync(global::Sufs.ReplicateRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_ReplicateBlock, null, options, request);
+        return CallInvoker.AsyncClientStreamingCall(__Method_ReplicateBlock, null, options);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override FileHandlingClient NewInstance(ClientBaseConfiguration configuration)
