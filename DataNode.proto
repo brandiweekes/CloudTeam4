@@ -3,9 +3,9 @@ syntax = "proto3";
 package sufs;
 
 service FileHandling {
-	rpc WriteFile (WriteRequest) returns (WriteResponse) {}
+	rpc WriteFile (stream WriteRequest) returns (WriteResponse) {}
 	rpc HealthCheck(stream HealthRequest) returns (HealthResponse) {}
-	rpc ReplicateBlock(ReplicateRequest) returns (ReplicateResponse) {}
+	rpc ReplicateBlock(stream ReplicateRequest) returns (ReplicateResponse) {}
 }
 
 message BlockDetails {
