@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sufs; //Project -> Add Reference -> Project -> select project
 
-using Grpc.Core;
-using Grpc.Core.Utils;
-
-namespace AwsGroupProj1
+namespace NameNodeServer
 {
-    class Namenode
+    class NameNodeImpl : NameNode.NameNodeBase
     {
         NS_File_Info file_info;
         Dictionary<string, NS_File_Info> NN_namespace;
@@ -24,7 +21,7 @@ namespace AwsGroupProj1
             public int Replication_Factor { get; }
 
             private List<int> block_ids;
-            
+
 
             public NS_File_Info(string fn)
             {
@@ -33,9 +30,9 @@ namespace AwsGroupProj1
                 this.block_ids = new List<int>();
             }
 
-            public void Add_BlockIDs (List<int> ids)
+            public void Add_BlockIDs(List<int> ids)
             {
-                foreach(var i in ids)
+                foreach (var i in ids)
                 {
                     this.block_ids.Add(i);
                 }
@@ -46,8 +43,8 @@ namespace AwsGroupProj1
                 var fi = obj as NS_File_Info;
                 if (object.ReferenceEquals(fi, null))
                     return false;
-                return Filename == fi.Filename && 
-                    Replication_Factor == fi.Replication_Factor && 
+                return Filename == fi.Filename &&
+                    Replication_Factor == fi.Replication_Factor &&
                     block_ids == fi.block_ids;
             }
 
@@ -56,7 +53,7 @@ namespace AwsGroupProj1
                 var hc = 0;
                 var sum = 0;
 
-                foreach(var b in this.block_ids)
+                foreach (var b in this.block_ids)
                 {
                     sum += b;
                 }
@@ -71,13 +68,13 @@ namespace AwsGroupProj1
             public override string ToString()
             {
                 string bIDs = "";
-                foreach(var b in block_ids)
+                foreach (var b in block_ids)
                 {
                     bIDs += b.ToString() + " ";
                 }
 
-                return string.Format("{{ Filename = {0}, " + 
-                                        "Replication = {1}, " + 
+                return string.Format("{{ Filename = {0}, " +
+                                        "Replication = {1}, " +
                                         "Block IDs = {2} }}",
                                         Filename, Replication_Factor, bIDs);
             }
