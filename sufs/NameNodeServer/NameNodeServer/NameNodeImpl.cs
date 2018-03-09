@@ -66,32 +66,29 @@ namespace NameNodeServer
             {
                 recordList.Add(curHR);
             }
-            
-            curHR.AlertInt.Start();
-            curHR.AlertInt.Elapsed += HealthCheck;
-
             return Task.FromResult(hbr);
         }
-
-        private static void HealthCheck(Object source, ElapsedEventArgs e)
-        {
-            Console.WriteLine("Do HealthCheck");
-        }
-    
         
         class HealthRecords
         {
             public string DNid { get; set; }
             public int BlockId { get; set; }
-            public Timer AlertInt = new Timer(3000);
+            public Timer AlertTimer = new Timer(3000);
             public bool IsAlive { get; set; }
 
             public HealthRecords (string DN)
             {
                 DNid = DN;
-                AlertInt.Interval = 3000;
+                AlertTimer.AutoReset = true;
+                AlertTimer.Enabled = true;
                 IsAlive = true;
             }
+        }
+
+        private static void HealthCheck(Object source, ElapsedEventArgs e)
+        {
+            
+            Console.WriteLine("Do HealthCheck");
         }
 
         class NS_File_Info
