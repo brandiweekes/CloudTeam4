@@ -21,6 +21,7 @@ namespace NameNodeServer
         Dictionary<string, NS_Dir_Info> NN_namespace_dir;
         Dictionary<String, List<int>> FileBlocks; // For client use cases
         Dictionary<int, List<string>> BlockMap;   // For DN use cases
+        private List<HealthRecords> recordList = new List<HealthRecords>();
         
         public static void Main()
         {
