@@ -6,6 +6,9 @@ service NameNode {
 	rpc CreateFile (CreateRequest) returns (stream CreateResponse){}
 	rpc Heartbeat (HBrequest) returns (HBresponse){}
 	rpc BlockReport (ReportRequest) returns (ReportResponse){}
+	rpc ListDirectory(PathRequest) returns (ListPathResponse){}
+	rpc AddDirectory(PathRequest) returns (PathResponse){}
+	rpc DeleteDirectory(PathRequest) returns (PathResponse){}
 }
 
 message CreateRequest {
@@ -43,4 +46,16 @@ message HBrequest{
 
 message HBresponse{
   bool acknowledged = 1;
+}
+
+message PathRequest{
+	string dir_path = 1;
+}
+
+message ListPathResponse{
+	repeated string dir_pathContents = 1;
+}
+
+message PathResponse{
+	bool req_ack = 1;
 }

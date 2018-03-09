@@ -21,6 +21,9 @@ namespace Sufs {
     static readonly grpc::Marshaller<global::Sufs.HBresponse> __Marshaller_HBresponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.HBresponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Sufs.ReportRequest> __Marshaller_ReportRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReportRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Sufs.ReportResponse> __Marshaller_ReportResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReportResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Sufs.PathRequest> __Marshaller_PathRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.PathRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Sufs.ListPathResponse> __Marshaller_ListPathResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ListPathResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Sufs.PathResponse> __Marshaller_PathResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.PathResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::Sufs.CreateRequest, global::Sufs.CreateResponse> __Method_CreateFile = new grpc::Method<global::Sufs.CreateRequest, global::Sufs.CreateResponse>(
         grpc::MethodType.ServerStreaming,
@@ -43,6 +46,27 @@ namespace Sufs {
         __Marshaller_ReportRequest,
         __Marshaller_ReportResponse);
 
+    static readonly grpc::Method<global::Sufs.PathRequest, global::Sufs.ListPathResponse> __Method_ListDirectory = new grpc::Method<global::Sufs.PathRequest, global::Sufs.ListPathResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ListDirectory",
+        __Marshaller_PathRequest,
+        __Marshaller_ListPathResponse);
+
+    static readonly grpc::Method<global::Sufs.PathRequest, global::Sufs.PathResponse> __Method_AddDirectory = new grpc::Method<global::Sufs.PathRequest, global::Sufs.PathResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AddDirectory",
+        __Marshaller_PathRequest,
+        __Marshaller_PathResponse);
+
+    static readonly grpc::Method<global::Sufs.PathRequest, global::Sufs.PathResponse> __Method_DeleteDirectory = new grpc::Method<global::Sufs.PathRequest, global::Sufs.PathResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteDirectory",
+        __Marshaller_PathRequest,
+        __Marshaller_PathResponse);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -63,6 +87,21 @@ namespace Sufs {
       }
 
       public virtual global::System.Threading.Tasks.Task<global::Sufs.ReportResponse> BlockReport(global::Sufs.ReportRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Sufs.ListPathResponse> ListDirectory(global::Sufs.PathRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Sufs.PathResponse> AddDirectory(global::Sufs.PathRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Sufs.PathResponse> DeleteDirectory(global::Sufs.PathRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -132,6 +171,54 @@ namespace Sufs {
       {
         return CallInvoker.AsyncUnaryCall(__Method_BlockReport, null, options, request);
       }
+      public virtual global::Sufs.ListPathResponse ListDirectory(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return ListDirectory(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Sufs.ListPathResponse ListDirectory(global::Sufs.PathRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ListDirectory, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Sufs.ListPathResponse> ListDirectoryAsync(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return ListDirectoryAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Sufs.ListPathResponse> ListDirectoryAsync(global::Sufs.PathRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ListDirectory, null, options, request);
+      }
+      public virtual global::Sufs.PathResponse AddDirectory(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return AddDirectory(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Sufs.PathResponse AddDirectory(global::Sufs.PathRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AddDirectory, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Sufs.PathResponse> AddDirectoryAsync(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return AddDirectoryAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Sufs.PathResponse> AddDirectoryAsync(global::Sufs.PathRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AddDirectory, null, options, request);
+      }
+      public virtual global::Sufs.PathResponse DeleteDirectory(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DeleteDirectory(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Sufs.PathResponse DeleteDirectory(global::Sufs.PathRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DeleteDirectory, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Sufs.PathResponse> DeleteDirectoryAsync(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DeleteDirectoryAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Sufs.PathResponse> DeleteDirectoryAsync(global::Sufs.PathRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DeleteDirectory, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override NameNodeClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -146,7 +233,10 @@ namespace Sufs {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_CreateFile, serviceImpl.CreateFile)
           .AddMethod(__Method_Heartbeat, serviceImpl.Heartbeat)
-          .AddMethod(__Method_BlockReport, serviceImpl.BlockReport).Build();
+          .AddMethod(__Method_BlockReport, serviceImpl.BlockReport)
+          .AddMethod(__Method_ListDirectory, serviceImpl.ListDirectory)
+          .AddMethod(__Method_AddDirectory, serviceImpl.AddDirectory)
+          .AddMethod(__Method_DeleteDirectory, serviceImpl.DeleteDirectory).Build();
     }
 
   }
