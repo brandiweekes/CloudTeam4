@@ -133,6 +133,12 @@ namespace Sufs {
           .AddMethod(__Method_ReplicateBlock, serviceImpl.ReplicateBlock).Build();
     }
 
+        public partial class HeartBeatClient : grpc::Clientbase<HeartBeatClient>
+        {
+            Channel channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
+
+        }
+
   }
 }
 #endregion
