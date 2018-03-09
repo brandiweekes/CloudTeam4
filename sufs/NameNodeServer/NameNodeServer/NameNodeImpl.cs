@@ -19,9 +19,8 @@ namespace NameNodeServer
         NS_File_Info file_info;
         Dictionary<string, NS_File_Info> NN_namespace_file;
         Dictionary<string, NS_Dir_Info> NN_namespace_dir;
-        Dictionary<string, List<string>> NN_namespace_blockMap;
-
-        List<HealthRecords> recordList = new List<HealthRecords>();
+        Dictionary<String, List<int>> FileBlocks; // For client use cases
+        Dictionary<int, List<string>> BlockMap;   // For DN use cases
         
         public static void Main()
         {
