@@ -57,3 +57,6 @@ artifacts/
 *.ilk
 *.meta
 *.obj
+/AwsGroupProj1/AwsGroupProj1/Block.cs
+/AwsGroupProj1/AwsGroupProj1/BlockReport.cs
+/AwsGroupProj1/AwsGroupProj1/DataNode1.cs
