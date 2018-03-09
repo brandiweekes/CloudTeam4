@@ -19,9 +19,9 @@ namespace NameNodeServer
         NS_File_Info file_info;
         Dictionary<string, NS_File_Info> NN_namespace_file;
         Dictionary<string, NS_Dir_Info> NN_namespace_dir;
-        Dictionary<string, List<string>> NN_namespace_blockMap;
-
-        List<HealthRecords> recordList = new List<HealthRecords>();
+        Dictionary<String, List<int>> FileBlocks; // For client use cases
+        Dictionary<int, List<string>> BlockMap;   // For DN use cases
+        private List<HealthRecords> recordList = new List<HealthRecords>();
         
         public static void Main()
         {
@@ -56,9 +56,10 @@ namespace NameNodeServer
             {
                 foreach(HealthRecords hr in recordList)
                 {
-                    if (hr.DNid == request.DNid)
+                    if (hr.DNid == request.DNid && hr.IsAlive == true)
                     {
                         curHR = hr;
+                        curHR.AlertTimer.Interval = 5000;
                     }
                 }
             }
@@ -66,35 +67,31 @@ namespace NameNodeServer
             {
                 recordList.Add(curHR);
             }
-            
-            curHR.AlertInt.Start();
-            curHR.AlertInt.Elapsed += HealthCheck;
 
             return Task.FromResult(hbr);
         }
-
-        private static void HealthCheck(Object source, ElapsedEventArgs e)
-        {
             
-            Console.WriteLine("Do HealthCheck");
-        }
-    
-        
         class HealthRecords
         {
             public string DNid { get; set; }
             public int BlockId { get; set; }
-            public Timer AlertInt = new Timer(3000);
+            public Timer AlertTimer = new Timer(5000);
             public bool IsAlive { get; set; }
 
             public HealthRecords (string DN)
             {
                 DNid = DN;
-                AlertInt.Interval = 3000;
+                AlertTimer.Enabled = true;
+                AlertTimer.Elapsed += Dead;
                 IsAlive = true;
             }
-        }
 
+            private void Dead(Object source, ElapsedEventArgs e)
+            {
+                IsAlive = false;
+            }
+        }
+        
         class NS_File_Info
         {
             public string Filename { get; set; }
