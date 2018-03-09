@@ -56,9 +56,10 @@ namespace NameNodeServer
             {
                 foreach(HealthRecords hr in recordList)
                 {
-                    if (hr.DNid == request.DNid)
+                    if (hr.DNid == request.DNid && hr.IsAlive == true)
                     {
                         curHR = hr;
+                        curHR.AlertTimer.Interval = 5000;
                     }
                 }
             }
@@ -66,6 +67,7 @@ namespace NameNodeServer
             {
                 recordList.Add(curHR);
             }
+
             return Task.FromResult(hbr);
         }
         
@@ -73,24 +75,23 @@ namespace NameNodeServer
         {
             public string DNid { get; set; }
             public int BlockId { get; set; }
-            public Timer AlertTimer = new Timer(3000);
+            public Timer AlertTimer = new Timer(5000);
             public bool IsAlive { get; set; }
 
             public HealthRecords (string DN)
             {
                 DNid = DN;
-                AlertTimer.AutoReset = true;
                 AlertTimer.Enabled = true;
+                AlertTimer.Elapsed += Dead;
                 IsAlive = true;
             }
-        }
 
-        private static void HealthCheck(Object source, ElapsedEventArgs e)
-        {
-            
-            Console.WriteLine("Do HealthCheck");
+            private void Dead(Object source, ElapsedEventArgs e)
+            {
+                IsAlive = false;
+            }
         }
-
+        
         class NS_File_Info
         {
             public string Filename { get; set; }
