@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using Amazon.EC2.Model.Internal.MarshallTransformations;
+using Grpc.Core;
+using 
 using Microsoft.SqlServer.Server;
 using Sufs; //Project -> Add Reference -> Project -> select project
 
@@ -24,8 +26,8 @@ namespace NameNodeServer
 
             //Stuff
         }
-
-        public bool HeartBeat(string DNid)
+        
+        public override Task<HBresponse> Heartbeat(HBrequest request, ServerCallContext context)
         {
             // 1. Save DNid to HealthRecord (Done)
             // 2. set timer (Done)
@@ -33,14 +35,16 @@ namespace NameNodeServer
             // 3. check timer (Done)
             // 3.1 If over timer, HealthCheck(DNid) (Done)
 
-            bool ack = true;
-            HealthRecords curHR = new HealthRecords(DNid);
+            HBresponse hbr = new HBresponse();
+            hbr.Acknowledged = true;
+
+            HealthRecords curHR = new HealthRecords(request.DNid);
             // check if it exists yet
-            if (recordList.Any(x => x.DNid == DNid))
+            if (recordList.Any(x => x.DNid == request.DNid))
             {
                 foreach(HealthRecords hr in recordList)
                 {
-                    if (hr.DNid == DNid)
+                    if (hr.DNid == request.DNid)
                     {
                         curHR = hr;
                     }
@@ -54,12 +58,11 @@ namespace NameNodeServer
             curHR.AlertInt.Start();
             curHR.AlertInt.Elapsed += HealthCheck;
 
-            return ack;
+            return Task.FromResult(hbr);
         }
 
         private static void HealthCheck(Object source, ElapsedEventArgs e)
         {
-
             Console.WriteLine("Do HealthCheck");
         }
     }
