@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Sufs;
 
-namespace AwsGroupProj1
+namespace DataNodeImpl
 {
     class DataNodeServer : FileHandling.FileHandlingBase
     {
