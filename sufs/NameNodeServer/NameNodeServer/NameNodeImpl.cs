@@ -75,6 +75,7 @@ namespace NameNodeServer
 
         private static void HealthCheck(Object source, ElapsedEventArgs e)
         {
+            
             Console.WriteLine("Do HealthCheck");
         }
     
