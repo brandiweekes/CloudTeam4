@@ -30,12 +30,18 @@ namespace Sufs {
             "ASgCIkQKDVJlcG9ydFJlcXVlc3QSDAoERE5pZBgBIAEoCRIlCglibG9ja0xp",
             "c3QYAiADKAsyEi5zdWZzLkJsb2NrSURfU2l6ZSImCg5SZXBvcnRSZXNwb25z",
             "ZRIUCgxhY2tub3dsZWRnZWQYASABKAgiGQoJSEJyZXF1ZXN0EgwKBEROaWQY",
-            "ASABKAkiIgoKSEJyZXNwb25zZRIUCgxhY2tub3dsZWRnZWQYASABKAgytQEK",
-            "CE5hbWVOb2RlEjsKCkNyZWF0ZUZpbGUSEy5zdWZzLkNyZWF0ZVJlcXVlc3Qa",
-            "FC5zdWZzLkNyZWF0ZVJlc3BvbnNlIgAwARIwCglIZWFydGJlYXQSDy5zdWZz",
-            "LkhCcmVxdWVzdBoQLnN1ZnMuSEJyZXNwb25zZSIAEjoKC0Jsb2NrUmVwb3J0",
-            "EhMuc3Vmcy5SZXBvcnRSZXF1ZXN0GhQuc3Vmcy5SZXBvcnRSZXNwb25zZSIA",
-            "YgZwcm90bzM="));
+            "ASABKAkiIgoKSEJyZXNwb25zZRIUCgxhY2tub3dsZWRnZWQYASABKAgiHwoL",
+            "UGF0aFJlcXVlc3QSEAoIZGlyX3BhdGgYASABKAkiLAoQTGlzdFBhdGhSZXNw",
+            "b25zZRIYChBkaXJfcGF0aENvbnRlbnRzGAEgAygJIh8KDFBhdGhSZXNwb25z",
+            "ZRIPCgdyZXFfYWNrGAEgASgIMugCCghOYW1lTm9kZRI7CgpDcmVhdGVGaWxl",
+            "EhMuc3Vmcy5DcmVhdGVSZXF1ZXN0GhQuc3Vmcy5DcmVhdGVSZXNwb25zZSIA",
+            "MAESMAoJSGVhcnRiZWF0Eg8uc3Vmcy5IQnJlcXVlc3QaEC5zdWZzLkhCcmVz",
+            "cG9uc2UiABI6CgtCbG9ja1JlcG9ydBITLnN1ZnMuUmVwb3J0UmVxdWVzdBoU",
+            "LnN1ZnMuUmVwb3J0UmVzcG9uc2UiABI8Cg1MaXN0RGlyZWN0b3J5EhEuc3Vm",
+            "cy5QYXRoUmVxdWVzdBoWLnN1ZnMuTGlzdFBhdGhSZXNwb25zZSIAEjcKDEFk",
+            "ZERpcmVjdG9yeRIRLnN1ZnMuUGF0aFJlcXVlc3QaEi5zdWZzLlBhdGhSZXNw",
+            "b25zZSIAEjoKD0RlbGV0ZURpcmVjdG9yeRIRLnN1ZnMuUGF0aFJlcXVlc3Qa",
+            "Ei5zdWZzLlBhdGhSZXNwb25zZSIAYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -45,7 +51,10 @@ namespace Sufs {
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReportRequest), global::Sufs.ReportRequest.Parser, new[]{ "DNid", "BlockList" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReportResponse), global::Sufs.ReportResponse.Parser, new[]{ "Acknowledged" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HBrequest), global::Sufs.HBrequest.Parser, new[]{ "DNid" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HBresponse), global::Sufs.HBresponse.Parser, new[]{ "Acknowledged" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HBresponse), global::Sufs.HBresponse.Parser, new[]{ "Acknowledged" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.PathRequest), global::Sufs.PathRequest.Parser, new[]{ "DirPath" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ListPathResponse), global::Sufs.ListPathResponse.Parser, new[]{ "DirPathContents" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.PathResponse), global::Sufs.PathResponse.Parser, new[]{ "ReqAck" }, null, null, null)
           }));
     }
     #endregion
@@ -1015,6 +1024,349 @@ namespace Sufs {
             break;
           case 8: {
             Acknowledged = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class PathRequest : pb::IMessage<PathRequest> {
+    private static readonly pb::MessageParser<PathRequest> _parser = new pb::MessageParser<PathRequest>(() => new PathRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<PathRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Sufs.NameNodeReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PathRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PathRequest(PathRequest other) : this() {
+      dirPath_ = other.dirPath_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PathRequest Clone() {
+      return new PathRequest(this);
+    }
+
+    /// <summary>Field number for the "dir_path" field.</summary>
+    public const int DirPathFieldNumber = 1;
+    private string dirPath_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string DirPath {
+      get { return dirPath_; }
+      set {
+        dirPath_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as PathRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(PathRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (DirPath != other.DirPath) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (DirPath.Length != 0) hash ^= DirPath.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (DirPath.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(DirPath);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (DirPath.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(DirPath);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(PathRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.DirPath.Length != 0) {
+        DirPath = other.DirPath;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            DirPath = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ListPathResponse : pb::IMessage<ListPathResponse> {
+    private static readonly pb::MessageParser<ListPathResponse> _parser = new pb::MessageParser<ListPathResponse>(() => new ListPathResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ListPathResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Sufs.NameNodeReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ListPathResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ListPathResponse(ListPathResponse other) : this() {
+      dirPathContents_ = other.dirPathContents_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ListPathResponse Clone() {
+      return new ListPathResponse(this);
+    }
+
+    /// <summary>Field number for the "dir_pathContents" field.</summary>
+    public const int DirPathContentsFieldNumber = 1;
+    private static readonly pb::FieldCodec<string> _repeated_dirPathContents_codec
+        = pb::FieldCodec.ForString(10);
+    private readonly pbc::RepeatedField<string> dirPathContents_ = new pbc::RepeatedField<string>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<string> DirPathContents {
+      get { return dirPathContents_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ListPathResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ListPathResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!dirPathContents_.Equals(other.dirPathContents_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= dirPathContents_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      dirPathContents_.WriteTo(output, _repeated_dirPathContents_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += dirPathContents_.CalculateSize(_repeated_dirPathContents_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ListPathResponse other) {
+      if (other == null) {
+        return;
+      }
+      dirPathContents_.Add(other.dirPathContents_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            dirPathContents_.AddEntriesFrom(input, _repeated_dirPathContents_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class PathResponse : pb::IMessage<PathResponse> {
+    private static readonly pb::MessageParser<PathResponse> _parser = new pb::MessageParser<PathResponse>(() => new PathResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<PathResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Sufs.NameNodeReflection.Descriptor.MessageTypes[9]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PathResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PathResponse(PathResponse other) : this() {
+      reqAck_ = other.reqAck_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PathResponse Clone() {
+      return new PathResponse(this);
+    }
+
+    /// <summary>Field number for the "req_ack" field.</summary>
+    public const int ReqAckFieldNumber = 1;
+    private bool reqAck_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool ReqAck {
+      get { return reqAck_; }
+      set {
+        reqAck_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as PathResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(PathResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ReqAck != other.ReqAck) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ReqAck != false) hash ^= ReqAck.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ReqAck != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(ReqAck);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (ReqAck != false) {
+        size += 1 + 1;
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(PathResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ReqAck != false) {
+        ReqAck = other.ReqAck;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            ReqAck = input.ReadBool();
             break;
           }
         }
