@@ -11,10 +11,7 @@
     <PackageReference Include="AWSSDK.SimpleDB" Version="3.3.0.20" />
     <PackageReference Include="Google.Protobuf" Version="3.5.1" />
     <PackageReference Include="Google.Protobuf.Tools" Version="3.5.1" />
-<<<<<<< HEAD
-=======
     <PackageReference Include="Grpc" Version="1.10.0" />
->>>>>>> bc01e6e5c80c9204257cc80cce98e00585b19e33
     <PackageReference Include="Grpc.Core" Version="1.10.0" />
   </ItemGroup>
 
