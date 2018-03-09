@@ -22,30 +22,28 @@ namespace Sufs {
     static DataNodeReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg5EYXRhTm9kZS5wcm90bxIEc3VmcyIyCgxCbG9ja0RldGFpbHMSDwoHYmxv",
-            "Y2tJRBgBIAEoBRIRCglibG9ja1NpemUYAiABKAIiRQoMV3JpdGVSZXF1ZXN0",
-            "EiEKBWJsb2NrGAEgASgLMhIuc3Vmcy5CbG9ja0RldGFpbHMSEgoKZGF0YU5v",
-            "ZGVJRBgCIAMoCSIhCg1Xcml0ZVJlc3BvbnNlEhAKCHJlc3BvbnNlGAEgASgI",
-            "IlsKDUhlYWx0aFJlcXVlc3QSIQoFYmxvY2sYASADKAsyEi5zdWZzLkJsb2Nr",
-            "RGV0YWlscxISCgpkYXRhTm9kZUlEGAIgAygJEhMKC2luc3RydWN0aW9uGAMg",
-            "ASgIIiIKDkhlYWx0aFJlc3BvbnNlEhAKCHJlc3BvbnNlGAEgASgIIkkKEFJl",
-            "cGxpY2F0ZVJlcXVlc3QSIQoFYmxvY2sYASABKAsyEi5zdWZzLkJsb2NrRGV0",
-            "YWlscxISCgpkYXRhTm9kZUlEGAIgAygJIiUKEVJlcGxpY2F0ZVJlc3BvbnNl",
-            "EhAKCHJlc3BvbnNlGAEgASgIMs0BCgxGaWxlSGFuZGxpbmcSOAoJV3JpdGVG",
-            "aWxlEhIuc3Vmcy5Xcml0ZVJlcXVlc3QaEy5zdWZzLldyaXRlUmVzcG9uc2Ui",
-            "ACgBEjwKC0hlYWx0aENoZWNrEhMuc3Vmcy5IZWFsdGhSZXF1ZXN0GhQuc3Vm",
-            "cy5IZWFsdGhSZXNwb25zZSIAKAESRQoOUmVwbGljYXRlQmxvY2sSFi5zdWZz",
-            "LlJlcGxpY2F0ZVJlcXVlc3QaFy5zdWZzLlJlcGxpY2F0ZVJlc3BvbnNlIgAo",
-            "AWIGcHJvdG8z"));
+            "Cg5EYXRhTm9kZS5wcm90bxIEc3VmcyJGCgxXcml0ZVJlcXVlc3QSDwoHYmxv",
+            "Y2tJRBgBIAEoBRIRCglibG9ja1NpemUYAiABKAISEgoKZGF0YU5vZGVJRBgD",
+            "IAMoCSIhCg1Xcml0ZVJlc3BvbnNlEhAKCHJlc3BvbnNlGAEgASgIIkgKDUhl",
+            "YWx0aFJlcXVlc3QSDwoHYmxvY2tJRBgBIAEoBRIRCglibG9ja1NpemUYAiAB",
+            "KAISEwoLaW5zdHJ1Y3Rpb24YAyABKAgiIgoOSGVhbHRoUmVzcG9uc2USEAoI",
+            "cmVzcG9uc2UYASABKAgiSgoQUmVwbGljYXRlUmVxdWVzdBIPCgdibG9ja0lE",
+            "GAEgASgFEhEKCWJsb2NrU2l6ZRgCIAEoAhISCgpkYXRhTm9kZUlEGAMgAygJ",
+            "IiUKEVJlcGxpY2F0ZVJlc3BvbnNlEhAKCHJlc3BvbnNlGAEgASgIMkYKDEZp",
+            "bGVIYW5kbGluZxI2CglXcml0ZUZpbGUSEi5zdWZzLldyaXRlUmVxdWVzdBoT",
+            "LnN1ZnMuV3JpdGVSZXNwb25zZSIAMlIKFERhdGFOb2RlSGVhbHRoQ2VudGVy",
+            "EjoKC0hlYWx0aENoZWNrEhMuc3Vmcy5IZWFsdGhSZXF1ZXN0GhQuc3Vmcy5I",
+            "ZWFsdGhSZXNwb25zZSIAMlEKClBpcGVsaW5pbmcSQwoOUmVwbGljYXRlQmxv",
+            "Y2sSFi5zdWZzLlJlcGxpY2F0ZVJlcXVlc3QaFy5zdWZzLlJlcGxpY2F0ZVJl",
+            "c3BvbnNlIgBiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.BlockDetails), global::Sufs.BlockDetails.Parser, new[]{ "BlockID", "BlockSize" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.WriteRequest), global::Sufs.WriteRequest.Parser, new[]{ "Block", "DataNodeID" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.WriteRequest), global::Sufs.WriteRequest.Parser, new[]{ "BlockID", "BlockSize", "DataNodeID" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.WriteResponse), global::Sufs.WriteResponse.Parser, new[]{ "Response" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HealthRequest), global::Sufs.HealthRequest.Parser, new[]{ "Block", "DataNodeID", "Instruction" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HealthRequest), global::Sufs.HealthRequest.Parser, new[]{ "BlockID", "BlockSize", "Instruction" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HealthResponse), global::Sufs.HealthResponse.Parser, new[]{ "Response" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReplicateRequest), global::Sufs.ReplicateRequest.Parser, new[]{ "Block", "DataNodeID" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReplicateRequest), global::Sufs.ReplicateRequest.Parser, new[]{ "BlockID", "BlockSize", "DataNodeID" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReplicateResponse), global::Sufs.ReplicateResponse.Parser, new[]{ "Response" }, null, null, null)
           }));
     }
@@ -53,10 +51,10 @@ namespace Sufs {
 
   }
   #region Messages
-  public sealed partial class BlockDetails : pb::IMessage<BlockDetails> {
-    private static readonly pb::MessageParser<BlockDetails> _parser = new pb::MessageParser<BlockDetails>(() => new BlockDetails());
+  public sealed partial class WriteRequest : pb::IMessage<WriteRequest> {
+    private static readonly pb::MessageParser<WriteRequest> _parser = new pb::MessageParser<WriteRequest>(() => new WriteRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<BlockDetails> Parser { get { return _parser; } }
+    public static pb::MessageParser<WriteRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -69,21 +67,22 @@ namespace Sufs {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public BlockDetails() {
+    public WriteRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public BlockDetails(BlockDetails other) : this() {
+    public WriteRequest(WriteRequest other) : this() {
       blockID_ = other.blockID_;
       blockSize_ = other.blockSize_;
+      dataNodeID_ = other.dataNodeID_.Clone();
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public BlockDetails Clone() {
-      return new BlockDetails(this);
+    public WriteRequest Clone() {
+      return new WriteRequest(this);
     }
 
     /// <summary>Field number for the "blockID" field.</summary>
@@ -108,144 +107,10 @@ namespace Sufs {
       }
     }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as BlockDetails);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(BlockDetails other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (BlockID != other.BlockID) return false;
-      if (BlockSize != other.BlockSize) return false;
-      return true;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (BlockID != 0) hash ^= BlockID.GetHashCode();
-      if (BlockSize != 0F) hash ^= BlockSize.GetHashCode();
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (BlockID != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(BlockID);
-      }
-      if (BlockSize != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(BlockSize);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (BlockID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BlockID);
-      }
-      if (BlockSize != 0F) {
-        size += 1 + 4;
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(BlockDetails other) {
-      if (other == null) {
-        return;
-      }
-      if (other.BlockID != 0) {
-        BlockID = other.BlockID;
-      }
-      if (other.BlockSize != 0F) {
-        BlockSize = other.BlockSize;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            input.SkipLastField();
-            break;
-          case 8: {
-            BlockID = input.ReadInt32();
-            break;
-          }
-          case 21: {
-            BlockSize = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class WriteRequest : pb::IMessage<WriteRequest> {
-    private static readonly pb::MessageParser<WriteRequest> _parser = new pb::MessageParser<WriteRequest>(() => new WriteRequest());
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<WriteRequest> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Sufs.DataNodeReflection.Descriptor.MessageTypes[1]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public WriteRequest() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public WriteRequest(WriteRequest other) : this() {
-      Block = other.block_ != null ? other.Block.Clone() : null;
-      dataNodeID_ = other.dataNodeID_.Clone();
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public WriteRequest Clone() {
-      return new WriteRequest(this);
-    }
-
-    /// <summary>Field number for the "block" field.</summary>
-    public const int BlockFieldNumber = 1;
-    private global::Sufs.BlockDetails block_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Sufs.BlockDetails Block {
-      get { return block_; }
-      set {
-        block_ = value;
-      }
-    }
-
     /// <summary>Field number for the "dataNodeID" field.</summary>
-    public const int DataNodeIDFieldNumber = 2;
+    public const int DataNodeIDFieldNumber = 3;
     private static readonly pb::FieldCodec<string> _repeated_dataNodeID_codec
-        = pb::FieldCodec.ForString(18);
+        = pb::FieldCodec.ForString(26);
     private readonly pbc::RepeatedField<string> dataNodeID_ = new pbc::RepeatedField<string>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<string> DataNodeID {
@@ -265,7 +130,8 @@ namespace Sufs {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!object.Equals(Block, other.Block)) return false;
+      if (BlockID != other.BlockID) return false;
+      if (BlockSize != other.BlockSize) return false;
       if(!dataNodeID_.Equals(other.dataNodeID_)) return false;
       return true;
     }
@@ -273,7 +139,8 @@ namespace Sufs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (block_ != null) hash ^= Block.GetHashCode();
+      if (BlockID != 0) hash ^= BlockID.GetHashCode();
+      if (BlockSize != 0F) hash ^= BlockSize.GetHashCode();
       hash ^= dataNodeID_.GetHashCode();
       return hash;
     }
@@ -285,9 +152,13 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (block_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Block);
+      if (BlockID != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(BlockID);
+      }
+      if (BlockSize != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(BlockSize);
       }
       dataNodeID_.WriteTo(output, _repeated_dataNodeID_codec);
     }
@@ -295,8 +166,11 @@ namespace Sufs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (block_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Block);
+      if (BlockID != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BlockID);
+      }
+      if (BlockSize != 0F) {
+        size += 1 + 4;
       }
       size += dataNodeID_.CalculateSize(_repeated_dataNodeID_codec);
       return size;
@@ -307,11 +181,11 @@ namespace Sufs {
       if (other == null) {
         return;
       }
-      if (other.block_ != null) {
-        if (block_ == null) {
-          block_ = new global::Sufs.BlockDetails();
-        }
-        Block.MergeFrom(other.Block);
+      if (other.BlockID != 0) {
+        BlockID = other.BlockID;
+      }
+      if (other.BlockSize != 0F) {
+        BlockSize = other.BlockSize;
       }
       dataNodeID_.Add(other.dataNodeID_);
     }
@@ -324,14 +198,15 @@ namespace Sufs {
           default:
             input.SkipLastField();
             break;
-          case 10: {
-            if (block_ == null) {
-              block_ = new global::Sufs.BlockDetails();
-            }
-            input.ReadMessage(block_);
+          case 8: {
+            BlockID = input.ReadInt32();
             break;
           }
-          case 18: {
+          case 21: {
+            BlockSize = input.ReadFloat();
+            break;
+          }
+          case 26: {
             dataNodeID_.AddEntriesFrom(input, _repeated_dataNodeID_codec);
             break;
           }
@@ -348,7 +223,7 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Sufs.DataNodeReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Sufs.DataNodeReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -465,7 +340,7 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Sufs.DataNodeReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Sufs.DataNodeReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -482,8 +357,8 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public HealthRequest(HealthRequest other) : this() {
-      block_ = other.block_.Clone();
-      dataNodeID_ = other.dataNodeID_.Clone();
+      blockID_ = other.blockID_;
+      blockSize_ = other.blockSize_;
       instruction_ = other.instruction_;
     }
 
@@ -492,24 +367,26 @@ namespace Sufs {
       return new HealthRequest(this);
     }
 
-    /// <summary>Field number for the "block" field.</summary>
-    public const int BlockFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Sufs.BlockDetails> _repeated_block_codec
-        = pb::FieldCodec.ForMessage(10, global::Sufs.BlockDetails.Parser);
-    private readonly pbc::RepeatedField<global::Sufs.BlockDetails> block_ = new pbc::RepeatedField<global::Sufs.BlockDetails>();
+    /// <summary>Field number for the "blockID" field.</summary>
+    public const int BlockIDFieldNumber = 1;
+    private int blockID_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Sufs.BlockDetails> Block {
-      get { return block_; }
+    public int BlockID {
+      get { return blockID_; }
+      set {
+        blockID_ = value;
+      }
     }
 
-    /// <summary>Field number for the "dataNodeID" field.</summary>
-    public const int DataNodeIDFieldNumber = 2;
-    private static readonly pb::FieldCodec<string> _repeated_dataNodeID_codec
-        = pb::FieldCodec.ForString(18);
-    private readonly pbc::RepeatedField<string> dataNodeID_ = new pbc::RepeatedField<string>();
+    /// <summary>Field number for the "blockSize" field.</summary>
+    public const int BlockSizeFieldNumber = 2;
+    private float blockSize_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<string> DataNodeID {
-      get { return dataNodeID_; }
+    public float BlockSize {
+      get { return blockSize_; }
+      set {
+        blockSize_ = value;
+      }
     }
 
     /// <summary>Field number for the "instruction" field.</summary>
@@ -536,8 +413,8 @@ namespace Sufs {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!block_.Equals(other.block_)) return false;
-      if(!dataNodeID_.Equals(other.dataNodeID_)) return false;
+      if (BlockID != other.BlockID) return false;
+      if (BlockSize != other.BlockSize) return false;
       if (Instruction != other.Instruction) return false;
       return true;
     }
@@ -545,8 +422,8 @@ namespace Sufs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= block_.GetHashCode();
-      hash ^= dataNodeID_.GetHashCode();
+      if (BlockID != 0) hash ^= BlockID.GetHashCode();
+      if (BlockSize != 0F) hash ^= BlockSize.GetHashCode();
       if (Instruction != false) hash ^= Instruction.GetHashCode();
       return hash;
     }
@@ -558,8 +435,14 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      block_.WriteTo(output, _repeated_block_codec);
-      dataNodeID_.WriteTo(output, _repeated_dataNodeID_codec);
+      if (BlockID != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(BlockID);
+      }
+      if (BlockSize != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(BlockSize);
+      }
       if (Instruction != false) {
         output.WriteRawTag(24);
         output.WriteBool(Instruction);
@@ -569,8 +452,12 @@ namespace Sufs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      size += block_.CalculateSize(_repeated_block_codec);
-      size += dataNodeID_.CalculateSize(_repeated_dataNodeID_codec);
+      if (BlockID != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BlockID);
+      }
+      if (BlockSize != 0F) {
+        size += 1 + 4;
+      }
       if (Instruction != false) {
         size += 1 + 1;
       }
@@ -582,8 +469,12 @@ namespace Sufs {
       if (other == null) {
         return;
       }
-      block_.Add(other.block_);
-      dataNodeID_.Add(other.dataNodeID_);
+      if (other.BlockID != 0) {
+        BlockID = other.BlockID;
+      }
+      if (other.BlockSize != 0F) {
+        BlockSize = other.BlockSize;
+      }
       if (other.Instruction != false) {
         Instruction = other.Instruction;
       }
@@ -597,12 +488,12 @@ namespace Sufs {
           default:
             input.SkipLastField();
             break;
-          case 10: {
-            block_.AddEntriesFrom(input, _repeated_block_codec);
+          case 8: {
+            BlockID = input.ReadInt32();
             break;
           }
-          case 18: {
-            dataNodeID_.AddEntriesFrom(input, _repeated_dataNodeID_codec);
+          case 21: {
+            BlockSize = input.ReadFloat();
             break;
           }
           case 24: {
@@ -622,7 +513,7 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Sufs.DataNodeReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Sufs.DataNodeReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -739,7 +630,7 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Sufs.DataNodeReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Sufs.DataNodeReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -756,7 +647,8 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ReplicateRequest(ReplicateRequest other) : this() {
-      Block = other.block_ != null ? other.Block.Clone() : null;
+      blockID_ = other.blockID_;
+      blockSize_ = other.blockSize_;
       dataNodeID_ = other.dataNodeID_.Clone();
     }
 
@@ -765,21 +657,32 @@ namespace Sufs {
       return new ReplicateRequest(this);
     }
 
-    /// <summary>Field number for the "block" field.</summary>
-    public const int BlockFieldNumber = 1;
-    private global::Sufs.BlockDetails block_;
+    /// <summary>Field number for the "blockID" field.</summary>
+    public const int BlockIDFieldNumber = 1;
+    private int blockID_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Sufs.BlockDetails Block {
-      get { return block_; }
+    public int BlockID {
+      get { return blockID_; }
       set {
-        block_ = value;
+        blockID_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "blockSize" field.</summary>
+    public const int BlockSizeFieldNumber = 2;
+    private float blockSize_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public float BlockSize {
+      get { return blockSize_; }
+      set {
+        blockSize_ = value;
       }
     }
 
     /// <summary>Field number for the "dataNodeID" field.</summary>
-    public const int DataNodeIDFieldNumber = 2;
+    public const int DataNodeIDFieldNumber = 3;
     private static readonly pb::FieldCodec<string> _repeated_dataNodeID_codec
-        = pb::FieldCodec.ForString(18);
+        = pb::FieldCodec.ForString(26);
     private readonly pbc::RepeatedField<string> dataNodeID_ = new pbc::RepeatedField<string>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<string> DataNodeID {
@@ -799,7 +702,8 @@ namespace Sufs {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!object.Equals(Block, other.Block)) return false;
+      if (BlockID != other.BlockID) return false;
+      if (BlockSize != other.BlockSize) return false;
       if(!dataNodeID_.Equals(other.dataNodeID_)) return false;
       return true;
     }
@@ -807,7 +711,8 @@ namespace Sufs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (block_ != null) hash ^= Block.GetHashCode();
+      if (BlockID != 0) hash ^= BlockID.GetHashCode();
+      if (BlockSize != 0F) hash ^= BlockSize.GetHashCode();
       hash ^= dataNodeID_.GetHashCode();
       return hash;
     }
@@ -819,9 +724,13 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (block_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Block);
+      if (BlockID != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(BlockID);
+      }
+      if (BlockSize != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(BlockSize);
       }
       dataNodeID_.WriteTo(output, _repeated_dataNodeID_codec);
     }
@@ -829,8 +738,11 @@ namespace Sufs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (block_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Block);
+      if (BlockID != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BlockID);
+      }
+      if (BlockSize != 0F) {
+        size += 1 + 4;
       }
       size += dataNodeID_.CalculateSize(_repeated_dataNodeID_codec);
       return size;
@@ -841,11 +753,11 @@ namespace Sufs {
       if (other == null) {
         return;
       }
-      if (other.block_ != null) {
-        if (block_ == null) {
-          block_ = new global::Sufs.BlockDetails();
-        }
-        Block.MergeFrom(other.Block);
+      if (other.BlockID != 0) {
+        BlockID = other.BlockID;
+      }
+      if (other.BlockSize != 0F) {
+        BlockSize = other.BlockSize;
       }
       dataNodeID_.Add(other.dataNodeID_);
     }
@@ -858,14 +770,15 @@ namespace Sufs {
           default:
             input.SkipLastField();
             break;
-          case 10: {
-            if (block_ == null) {
-              block_ = new global::Sufs.BlockDetails();
-            }
-            input.ReadMessage(block_);
+          case 8: {
+            BlockID = input.ReadInt32();
             break;
           }
-          case 18: {
+          case 21: {
+            BlockSize = input.ReadFloat();
+            break;
+          }
+          case 26: {
             dataNodeID_.AddEntriesFrom(input, _repeated_dataNodeID_codec);
             break;
           }
@@ -882,7 +795,7 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Sufs.DataNodeReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Sufs.DataNodeReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
