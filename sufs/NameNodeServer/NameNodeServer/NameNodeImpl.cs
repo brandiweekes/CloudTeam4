@@ -39,13 +39,32 @@ namespace NameNodeServer
             return base.CreateFile(request, responseStream, context); //TODO update return
         }
 
+        public override Task<ReportResponse> BlockReport(ReportRequest request, ServerCallContext context)
+        {
+            string DNid = request.DNid;
+            ReportResponse rr = new ReportResponse();
+
+            foreach (BlockID_Size r in request.BlockList)
+            {
+                foreach (KeyValuePair<int, List<string>> kv in BlockMap)
+                {
+                    if (kv.Key == r.BlockID && !kv.Value.Contains(DNid))
+                    {
+                        kv.Value.Add(DNid);
+                    }
+                }
+            }
+            rr.Acknowledged = true;
+            return Task.FromResult(rr);
+        }
+
         public override Task<HBresponse> Heartbeat(HBrequest request, ServerCallContext context)
         {
             // 1. Save DNid to HealthRecord (Done)
             // 2. set timer (Done)
             //     2.1 start timer (Done)
             // 3. check timer (Done)
-            // 3.1 If over timer, HealthCheck(DNid) (Done)
+            //     3.1 If over timer, Dead (Done)
 
             HBresponse hbr = new HBresponse();
             hbr.Acknowledged = true;
