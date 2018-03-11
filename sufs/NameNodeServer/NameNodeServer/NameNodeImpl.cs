@@ -14,20 +14,56 @@ using Sufs; //Project -> Add Reference -> Project -> select project
 
 namespace NameNodeServer
 {
+
     class NameNodeImpl : NameNode.NameNodeBase
     {
-        NS_File_Info file_info;
+
+        //NS_File_Info file_info;
+        //NS_Dir_Info dir_info;
         Dictionary<string, NS_File_Info> NN_namespace_file;
         Dictionary<string, NS_Dir_Info> NN_namespace_dir;
         Dictionary<String, List<int>> FileBlocks; // For client use cases
         Dictionary<int, List<string>> BlockMap;   // For DN use cases
-        private List<HealthRecords> recordList = new List<HealthRecords>();
-        
+        private List<HealthRecords> recordList; // = new List<HealthRecords>();
+
+        public NameNodeImpl()
+        {
+            this.NN_namespace_dir = 
+                new Dictionary<string, NS_Dir_Info> { ["/"] = new NS_Dir_Info() };
+
+            this.NN_namespace_file =
+                new Dictionary<string, NS_File_Info>();
+
+            this.FileBlocks = 
+                new Dictionary<string, List<int>>();
+
+            this.BlockMap = 
+                new Dictionary<int, List<string>>();
+
+            this.recordList = 
+                new List<HealthRecords>();
+        }
+
         //rpc CreateFile (CreateRequest) returns (stream CreateResponse){}
         public override Task CreateFile(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
         {
+
             //will return "Not Implemented"
             return base.CreateFile(request, responseStream, context); //TODO update return
+        }
+
+        /// <summary>
+        /// client requests an absolute path to be requested
+        /// checks whether path exists, and if doesn't will create
+        /// and update directory structure's subdirectories
+        /// </summary>
+        /// <param name="request">client absolute path</param>
+        /// <param name="context">passed from grpc</param>
+        /// <returns>F: dir already exists; T: created path</returns>
+        public override Task<PathResponse> AddDirectory(PathRequest request, ServerCallContext context)
+        {
+            //returning an acknowledgement: f=path already exists; t=path created
+            return Task.FromResult(new PathResponse { ReqAck = mkdir(request.DirPath) });
         }
 
         public override Task<ReportResponse> BlockReport(ReportRequest request, ServerCallContext context)
@@ -98,7 +134,91 @@ namespace NameNodeServer
 
             return Task.FromResult(hbr);
         }
+
+        /// <summary>
+        /// checks each directory of complete path 
+        /// until finds a directory that doesn't exist
+        /// foreach of those directories that doesn't exist:
+        ///     update directory with subdirectory 
+        ///     continue until end of client requested directory
+        /// if complete client path requested already exists, exit
+        /// </summary>
+        /// <param name="cliPath">absolute path requested</param>
+        /// <returns>f: path arleady existed; t: made new</returns>
+        public bool mkdir(string cliPath)
+        {
+            if(fullDirPathExists(cliPath))
+            {
+                //directory already exists
+                return false;
+            }
+            else
+            {
+                string latestDir = findExistingPath(cliPath);
+                string newPath = cliPath.Substring(latestDir.Length);
+                string[] forwardSlash = new String[] { "/" };
+                string[] newDirs = newPath.Split(forwardSlash, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string d in newDirs)
+                {
+                    if(!this.NN_namespace_dir.ContainsKey(latestDir))
+                    {
+                        this.NN_namespace_dir.Add(latestDir, new NS_Dir_Info());
+                    }
+                    this.NN_namespace_dir[latestDir].Add_SubDirectories(d);
+                    latestDir += d + "/";
+                }
+                this.NN_namespace_dir.Add(latestDir, new NS_Dir_Info());
+                return true;
+            }
+        }
         
+        /// <summary>
+        /// starting at root (/), splices client path request into tokens
+        /// checks next directory by each path token 
+        /// to see if exists in current directory list of subdirectories
+        /// if true: concat to current, 
+        /// check that directory subdirectory for next directory
+        /// </summary>
+        /// <param name="cliPath">entire path client requests to be created</param>
+        /// <returns>string of the longest path found in the dictionary</returns>
+        private string findExistingPath(string cliPath)
+        {
+            //root path to start
+            string current = "/";
+
+            //tokenize cliPath using "/" as delimiter
+            string[] forwardSlash = new String[] { "/" };
+            string[] newDirs = cliPath.Split(forwardSlash, StringSplitOptions.RemoveEmptyEntries);
+
+            //index for string array
+            int newDirs_i = 0;
+
+            //nextDir will check if the next directory exists in subdirectory
+            string nextDir = newDirs[newDirs_i] + "/";
+
+            //update current to have the complete path, 
+            //and check if its subdirectory contains the next directory
+            while (NN_namespace_dir[current].Find_SubDirectories(nextDir))
+            {
+                current += nextDir;
+                nextDir = newDirs[newDirs_i++] + "/";
+            }
+         
+            return current;           
+        }
+
+        /// <summary>
+        /// checks complete path requested by client
+        /// </summary>
+        /// <param name="cliPath"></param>
+        /// <returns>t: already exists; f: new dirs found</returns>
+        private bool fullDirPathExists(string cliPath)
+        {
+            return this.NN_namespace_dir.ContainsKey(cliPath);
+                //this.NN_namespace_dir[cliPath] != null)
+            
+        }
+
         class HealthRecords
         {
             public string DNid { get; set; }
@@ -200,12 +320,22 @@ namespace NameNodeServer
 
             public void Add_SubDirectories(string sd)
             {
-               this.subdirectories.Add(sd);
+               this.subdirectories.Add(sd + "/");
+            }
+
+            public bool Find_SubDirectories(string cliDir)
+            {
+                return this.subdirectories.Contains(cliDir);
             }
 
             public void Add_FileNames(string fn)
             {
                 this.fileNames.Add(fn);
+            }
+
+            public bool Find_FileNames(string cliFile)
+            {
+                return this.fileNames.Contains(cliFile);
             }
 
             public override bool Equals(object obj)

@@ -10,135 +10,129 @@ using System.Threading;
 using System.Threading.Tasks;
 using grpc = global::Grpc.Core;
 
-namespace Sufs {
-  public static partial class FileHandling
-  {
-    static readonly string __ServiceName = "sufs.FileHandling";
-
-    static readonly grpc::Marshaller<global::Sufs.WriteRequest> __Marshaller_WriteRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.WriteRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::Sufs.WriteResponse> __Marshaller_WriteResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.WriteResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::Sufs.HealthRequest> __Marshaller_HealthRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.HealthRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::Sufs.HealthResponse> __Marshaller_HealthResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.HealthResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::Sufs.ReplicateRequest> __Marshaller_ReplicateRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReplicateRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::Sufs.ReplicateResponse> __Marshaller_ReplicateResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReplicateResponse.Parser.ParseFrom);
-
-    static readonly grpc::Method<global::Sufs.WriteRequest, global::Sufs.WriteResponse> __Method_WriteFile = new grpc::Method<global::Sufs.WriteRequest, global::Sufs.WriteResponse>(
-        grpc::MethodType.ClientStreaming,
-        __ServiceName,
-        "WriteFile",
-        __Marshaller_WriteRequest,
-        __Marshaller_WriteResponse);
-
-    static readonly grpc::Method<global::Sufs.HealthRequest, global::Sufs.HealthResponse> __Method_HealthCheck = new grpc::Method<global::Sufs.HealthRequest, global::Sufs.HealthResponse>(
-        grpc::MethodType.ClientStreaming,
-        __ServiceName,
-        "HealthCheck",
-        __Marshaller_HealthRequest,
-        __Marshaller_HealthResponse);
-
-    static readonly grpc::Method<global::Sufs.ReplicateRequest, global::Sufs.ReplicateResponse> __Method_ReplicateBlock = new grpc::Method<global::Sufs.ReplicateRequest, global::Sufs.ReplicateResponse>(
-        grpc::MethodType.ClientStreaming,
-        __ServiceName,
-        "ReplicateBlock",
-        __Marshaller_ReplicateRequest,
-        __Marshaller_ReplicateResponse);
-
-    /// <summary>Service descriptor</summary>
-    public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
+namespace Sufs
+{
+    public static partial class FileHandling
     {
-      get { return global::Sufs.DataNodeReflection.Descriptor.Services[0]; }
-    }
+        static readonly string __ServiceName = "sufs.FileHandling";
 
-    /// <summary>Base class for server-side implementations of FileHandling</summary>
-    public abstract partial class FileHandlingBase
-    {
-      public virtual global::System.Threading.Tasks.Task<global::Sufs.WriteResponse> WriteFile(grpc::IAsyncStreamReader<global::Sufs.WriteRequest> requestStream, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
+        static readonly grpc::Marshaller<global::Sufs.WriteRequest> __Marshaller_WriteRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.WriteRequest.Parser.ParseFrom);
+        static readonly grpc::Marshaller<global::Sufs.WriteResponse> __Marshaller_WriteResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.WriteResponse.Parser.ParseFrom);
+        static readonly grpc::Marshaller<global::Sufs.HealthRequest> __Marshaller_HealthRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.HealthRequest.Parser.ParseFrom);
+        static readonly grpc::Marshaller<global::Sufs.HealthResponse> __Marshaller_HealthResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.HealthResponse.Parser.ParseFrom);
+        static readonly grpc::Marshaller<global::Sufs.ReplicateRequest> __Marshaller_ReplicateRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReplicateRequest.Parser.ParseFrom);
+        static readonly grpc::Marshaller<global::Sufs.ReplicateResponse> __Marshaller_ReplicateResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReplicateResponse.Parser.ParseFrom);
 
-      public virtual global::System.Threading.Tasks.Task<global::Sufs.HealthResponse> HealthCheck(grpc::IAsyncStreamReader<global::Sufs.HealthRequest> requestStream, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
+        static readonly grpc::Method<global::Sufs.WriteRequest, global::Sufs.WriteResponse> __Method_WriteFile = new grpc::Method<global::Sufs.WriteRequest, global::Sufs.WriteResponse>(
+            grpc::MethodType.ClientStreaming,
+            __ServiceName,
+            "WriteFile",
+            __Marshaller_WriteRequest,
+            __Marshaller_WriteResponse);
 
-      public virtual global::System.Threading.Tasks.Task<global::Sufs.ReplicateResponse> ReplicateBlock(grpc::IAsyncStreamReader<global::Sufs.ReplicateRequest> requestStream, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
+        static readonly grpc::Method<global::Sufs.HealthRequest, global::Sufs.HealthResponse> __Method_HealthCheck = new grpc::Method<global::Sufs.HealthRequest, global::Sufs.HealthResponse>(
+            grpc::MethodType.ClientStreaming,
+            __ServiceName,
+            "HealthCheck",
+            __Marshaller_HealthRequest,
+            __Marshaller_HealthResponse);
 
-    }
+        static readonly grpc::Method<global::Sufs.ReplicateRequest, global::Sufs.ReplicateResponse> __Method_ReplicateBlock = new grpc::Method<global::Sufs.ReplicateRequest, global::Sufs.ReplicateResponse>(
+            grpc::MethodType.ClientStreaming,
+            __ServiceName,
+            "ReplicateBlock",
+            __Marshaller_ReplicateRequest,
+            __Marshaller_ReplicateResponse);
 
-    /// <summary>Client for FileHandling</summary>
-    public partial class FileHandlingClient : grpc::ClientBase<FileHandlingClient>
-    {
-      /// <summary>Creates a new client for FileHandling</summary>
-      /// <param name="channel">The channel to use to make remote calls.</param>
-      public FileHandlingClient(grpc::Channel channel) : base(channel)
-      {
-      }
-      /// <summary>Creates a new client for FileHandling that uses a custom <c>CallInvoker</c>.</summary>
-      /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
-      public FileHandlingClient(grpc::CallInvoker callInvoker) : base(callInvoker)
-      {
-      }
-      /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
-      protected FileHandlingClient() : base()
-      {
-      }
-      /// <summary>Protected constructor to allow creation of configured clients.</summary>
-      /// <param name="configuration">The client configuration.</param>
-      protected FileHandlingClient(ClientBaseConfiguration configuration) : base(configuration)
-      {
-      }
-
-      public virtual grpc::AsyncClientStreamingCall<global::Sufs.WriteRequest, global::Sufs.WriteResponse> WriteFile(grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
-      {
-        return WriteFile(new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual grpc::AsyncClientStreamingCall<global::Sufs.WriteRequest, global::Sufs.WriteResponse> WriteFile(grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncClientStreamingCall(__Method_WriteFile, null, options);
-      }
-      public virtual grpc::AsyncClientStreamingCall<global::Sufs.HealthRequest, global::Sufs.HealthResponse> HealthCheck(grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
-      {
-        return HealthCheck(new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual grpc::AsyncClientStreamingCall<global::Sufs.HealthRequest, global::Sufs.HealthResponse> HealthCheck(grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncClientStreamingCall(__Method_HealthCheck, null, options);
-      }
-      public virtual grpc::AsyncClientStreamingCall<global::Sufs.ReplicateRequest, global::Sufs.ReplicateResponse> ReplicateBlock(grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
-      {
-        return ReplicateBlock(new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual grpc::AsyncClientStreamingCall<global::Sufs.ReplicateRequest, global::Sufs.ReplicateResponse> ReplicateBlock(grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncClientStreamingCall(__Method_ReplicateBlock, null, options);
-      }
-      /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
-      protected override FileHandlingClient NewInstance(ClientBaseConfiguration configuration)
-      {
-        return new FileHandlingClient(configuration);
-      }
-    }
-
-    /// <summary>Creates service definition that can be registered with a server</summary>
-    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    public static grpc::ServerServiceDefinition BindService(FileHandlingBase serviceImpl)
-    {
-      return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_WriteFile, serviceImpl.WriteFile)
-          .AddMethod(__Method_HealthCheck, serviceImpl.HealthCheck)
-          .AddMethod(__Method_ReplicateBlock, serviceImpl.ReplicateBlock).Build();
-    }
-
-        public partial class HeartBeatClient : grpc::Clientbase<HeartBeatClient>
+        /// <summary>Service descriptor</summary>
+        public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
         {
-            Channel channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
+            get { return global::Sufs.DataNodeReflection.Descriptor.Services[0]; }
+        }
+
+        /// <summary>Base class for server-side implementations of FileHandling</summary>
+        public abstract partial class FileHandlingBase
+        {
+            public virtual global::System.Threading.Tasks.Task<global::Sufs.WriteResponse> WriteFile(grpc::IAsyncStreamReader<global::Sufs.WriteRequest> requestStream, grpc::ServerCallContext context)
+            {
+                throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+            }
+
+            public virtual global::System.Threading.Tasks.Task<global::Sufs.HealthResponse> HealthCheck(grpc::IAsyncStreamReader<global::Sufs.HealthRequest> requestStream, grpc::ServerCallContext context)
+            {
+                throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+            }
+
+            public virtual global::System.Threading.Tasks.Task<global::Sufs.ReplicateResponse> ReplicateBlock(grpc::IAsyncStreamReader<global::Sufs.ReplicateRequest> requestStream, grpc::ServerCallContext context)
+            {
+                throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+            }
 
         }
 
-  }
+        /// <summary>Client for FileHandling</summary>
+        public partial class FileHandlingClient : grpc::ClientBase<FileHandlingClient>
+        {
+            /// <summary>Creates a new client for FileHandling</summary>
+            /// <param name="channel">The channel to use to make remote calls.</param>
+            public FileHandlingClient(grpc::Channel channel) : base(channel)
+            {
+            }
+            /// <summary>Creates a new client for FileHandling that uses a custom <c>CallInvoker</c>.</summary>
+            /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+            public FileHandlingClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+            {
+            }
+            /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+            protected FileHandlingClient() : base()
+            {
+            }
+            /// <summary>Protected constructor to allow creation of configured clients.</summary>
+            /// <param name="configuration">The client configuration.</param>
+            protected FileHandlingClient(ClientBaseConfiguration configuration) : base(configuration)
+            {
+            }
+
+            public virtual grpc::AsyncClientStreamingCall<global::Sufs.WriteRequest, global::Sufs.WriteResponse> WriteFile(grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                return WriteFile(new grpc::CallOptions(headers, deadline, cancellationToken));
+            }
+            public virtual grpc::AsyncClientStreamingCall<global::Sufs.WriteRequest, global::Sufs.WriteResponse> WriteFile(grpc::CallOptions options)
+            {
+                return CallInvoker.AsyncClientStreamingCall(__Method_WriteFile, null, options);
+            }
+            public virtual grpc::AsyncClientStreamingCall<global::Sufs.HealthRequest, global::Sufs.HealthResponse> HealthCheck(grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                return HealthCheck(new grpc::CallOptions(headers, deadline, cancellationToken));
+            }
+            public virtual grpc::AsyncClientStreamingCall<global::Sufs.HealthRequest, global::Sufs.HealthResponse> HealthCheck(grpc::CallOptions options)
+            {
+                return CallInvoker.AsyncClientStreamingCall(__Method_HealthCheck, null, options);
+            }
+            public virtual grpc::AsyncClientStreamingCall<global::Sufs.ReplicateRequest, global::Sufs.ReplicateResponse> ReplicateBlock(grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                return ReplicateBlock(new grpc::CallOptions(headers, deadline, cancellationToken));
+            }
+            public virtual grpc::AsyncClientStreamingCall<global::Sufs.ReplicateRequest, global::Sufs.ReplicateResponse> ReplicateBlock(grpc::CallOptions options)
+            {
+                return CallInvoker.AsyncClientStreamingCall(__Method_ReplicateBlock, null, options);
+            }
+            /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+            protected override FileHandlingClient NewInstance(ClientBaseConfiguration configuration)
+            {
+                return new FileHandlingClient(configuration);
+            }
+        }
+
+        /// <summary>Creates service definition that can be registered with a server</summary>
+        /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        public static grpc::ServerServiceDefinition BindService(FileHandlingBase serviceImpl)
+        {
+            return grpc::ServerServiceDefinition.CreateBuilder()
+                .AddMethod(__Method_WriteFile, serviceImpl.WriteFile)
+                .AddMethod(__Method_HealthCheck, serviceImpl.HealthCheck)
+                .AddMethod(__Method_ReplicateBlock, serviceImpl.ReplicateBlock).Build();
+        }
+    }
 }
 #endregion
