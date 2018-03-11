@@ -42,7 +42,7 @@ namespace NameNodeServer
 
             this.recordList = 
                 new List<HealthRecords>();
-    }
+        }
 
         //rpc CreateFile (CreateRequest) returns (stream CreateResponse){}
         public override Task CreateFile(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
@@ -63,7 +63,41 @@ namespace NameNodeServer
         public override Task<PathResponse> AddDirectory(PathRequest request, ServerCallContext context)
         {
             //returning an acknowledgement: f=path already exists; t=path created
-            return Task.FromResult(new PathResponse { ReqAck = mkdir(request.DirPath) } );
+            return Task.FromResult(new PathResponse { ReqAck = mkdir(request.DirPath) });
+        }
+
+        public override Task<ReportResponse> BlockReport(ReportRequest request, ServerCallContext context)
+        {
+            string DNid = request.DNid;
+            ReportResponse rr = new ReportResponse();
+
+            foreach (BlockID_Size r in request.BlockList)
+            {
+                foreach (KeyValuePair<int, List<string>> kv in BlockMap)
+                {
+                    if (kv.Key == r.BlockID && !kv.Value.Contains(DNid))
+                    {
+                        kv.Value.Add(DNid);
+                    }
+                }
+            }
+            rr.Acknowledged = true;
+            return Task.FromResult(rr);
+        }
+
+        private void RemoveDeadDN(string DNid)
+        {
+            //Triggered
+
+            //Go through block mapp
+            //delete DNid from blockmap
+            foreach (KeyValuePair<int, List<string>> kv in BlockMap)
+            {
+                if (kv.Value.Contains(DNid))
+                {
+                    kv.Value.Remove(DNid);
+                }
+            }
         }
 
         public override Task<HBresponse> Heartbeat(HBrequest request, ServerCallContext context)
@@ -72,7 +106,7 @@ namespace NameNodeServer
             // 2. set timer (Done)
             //     2.1 start timer (Done)
             // 3. check timer (Done)
-            // 3.1 If over timer, HealthCheck(DNid) (Done)
+            //     3.1 If over timer, Dead (Done)
 
             HBresponse hbr = new HBresponse();
             hbr.Acknowledged = true;
@@ -87,6 +121,9 @@ namespace NameNodeServer
                     {
                         curHR = hr;
                         curHR.AlertTimer.Interval = 5000;
+                    }else if (hr.IsAlive == false)
+                    {
+                        RemoveDeadDN(hr.DNid);
                     }
                 }
             }
