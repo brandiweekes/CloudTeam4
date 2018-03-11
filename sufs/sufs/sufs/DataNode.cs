@@ -23,30 +23,39 @@ namespace Sufs {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg5EYXRhTm9kZS5wcm90bxIEc3VmcyIyCgxCbG9ja0RldGFpbHMSDwoHYmxv",
-            "Y2tJRBgBIAEoBRIRCglibG9ja1NpemUYAiABKAIiRQoMV3JpdGVSZXF1ZXN0",
-            "EiEKBWJsb2NrGAEgASgLMhIuc3Vmcy5CbG9ja0RldGFpbHMSEgoKZGF0YU5v",
-            "ZGVJRBgCIAMoCSIhCg1Xcml0ZVJlc3BvbnNlEhAKCHJlc3BvbnNlGAEgASgI",
-            "IlsKDUhlYWx0aFJlcXVlc3QSIQoFYmxvY2sYASADKAsyEi5zdWZzLkJsb2Nr",
-            "RGV0YWlscxISCgpkYXRhTm9kZUlEGAIgAygJEhMKC2luc3RydWN0aW9uGAMg",
-            "ASgIIiIKDkhlYWx0aFJlc3BvbnNlEhAKCHJlc3BvbnNlGAEgASgIIkkKEFJl",
-            "cGxpY2F0ZVJlcXVlc3QSIQoFYmxvY2sYASABKAsyEi5zdWZzLkJsb2NrRGV0",
-            "YWlscxISCgpkYXRhTm9kZUlEGAIgAygJIiUKEVJlcGxpY2F0ZVJlc3BvbnNl",
-            "EhAKCHJlc3BvbnNlGAEgASgIMs0BCgxGaWxlSGFuZGxpbmcSOAoJV3JpdGVG",
-            "aWxlEhIuc3Vmcy5Xcml0ZVJlcXVlc3QaEy5zdWZzLldyaXRlUmVzcG9uc2Ui",
-            "ACgBEjwKC0hlYWx0aENoZWNrEhMuc3Vmcy5IZWFsdGhSZXF1ZXN0GhQuc3Vm",
-            "cy5IZWFsdGhSZXNwb25zZSIAKAESRQoOUmVwbGljYXRlQmxvY2sSFi5zdWZz",
-            "LlJlcGxpY2F0ZVJlcXVlc3QaFy5zdWZzLlJlcGxpY2F0ZVJlc3BvbnNlIgAo",
-            "AWIGcHJvdG8z"));
+            "Y2tJRBgBIAEoBRIRCglibG9ja1NpemUYAiABKAIi5AEKDFdyaXRlUmVxdWVz",
+            "dBIyCgdyZXF1ZXN0GAEgASgLMh8uc3Vmcy5Xcml0ZVJlcXVlc3QuQmxvY2tS",
+            "ZXF1ZXN0SAASKQoFY2h1bmsYAiABKAsyGC5zdWZzLldyaXRlUmVxdWVzdC5D",
+            "aHVua0gAGkUKDEJsb2NrUmVxdWVzdBIhCgVibG9jaxgBIAEoCzISLnN1ZnMu",
+            "QmxvY2tEZXRhaWxzEhIKCmRhdGFOb2RlSUQYAiADKAkaJQoFQ2h1bmsSDAoE",
+            "ZGF0YRgBIAEoDBIOCgZvZmZzZXQYAiABKANCBwoFdmFsdWUiIQoNV3JpdGVS",
+            "ZXNwb25zZRIQCghyZXNwb25zZRgBIAEoCCJbCg1IZWFsdGhSZXF1ZXN0EiEK",
+            "BWJsb2NrGAEgAygLMhIuc3Vmcy5CbG9ja0RldGFpbHMSEgoKZGF0YU5vZGVJ",
+            "RBgCIAMoCRITCgtpbnN0cnVjdGlvbhgDIAEoCCIiCg5IZWFsdGhSZXNwb25z",
+            "ZRIQCghyZXNwb25zZRgBIAEoCCIiCgxEYXRhTm9kZUxpc3QSEgoKZGF0YU5v",
+            "ZGVJRBgBIAMoCSJICgtTaW5nbGVCbG9jaxIPCgdibG9ja0lEGAEgASgFEigK",
+            "DGRhdGFOb2RlTGlzdBgCIAEoCzISLnN1ZnMuRGF0YU5vZGVMaXN0IjEKCUJs",
+            "b2NrTGlzdBIkCglibG9ja0xpc3QYASADKAsyES5zdWZzLlNpbmdsZUJsb2Nr",
+            "IiIKDkRlbGV0ZVJlc3BvbnNlEhAKCHJlc3BvbnNlGAEgASgIMvYBCghEYXRh",
+            "Tm9kZRI4CglXcml0ZUZpbGUSEi5zdWZzLldyaXRlUmVxdWVzdBoTLnN1ZnMu",
+            "V3JpdGVSZXNwb25zZSIAKAESPQoOUmVwbGljYXRlQmxvY2sSEi5zdWZzLldy",
+            "aXRlUmVxdWVzdBoTLnN1ZnMuV3JpdGVSZXNwb25zZSIAKAESNQoKRGVsZXRl",
+            "RmlsZRIPLnN1ZnMuQmxvY2tMaXN0GhQuc3Vmcy5EZWxldGVSZXNwb25zZSIA",
+            "EjoKC0hlYWx0aENoZWNrEhMuc3Vmcy5IZWFsdGhSZXF1ZXN0GhQuc3Vmcy5I",
+            "ZWFsdGhSZXNwb25zZSIAYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.BlockDetails), global::Sufs.BlockDetails.Parser, new[]{ "BlockID", "BlockSize" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.WriteRequest), global::Sufs.WriteRequest.Parser, new[]{ "Block", "DataNodeID" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.WriteRequest), global::Sufs.WriteRequest.Parser, new[]{ "Request", "Chunk" }, new[]{ "Value" }, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.WriteRequest.Types.BlockRequest), global::Sufs.WriteRequest.Types.BlockRequest.Parser, new[]{ "Block", "DataNodeID" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.WriteRequest.Types.Chunk), global::Sufs.WriteRequest.Types.Chunk.Parser, new[]{ "Data", "Offset" }, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.WriteResponse), global::Sufs.WriteResponse.Parser, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HealthRequest), global::Sufs.HealthRequest.Parser, new[]{ "Block", "DataNodeID", "Instruction" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HealthResponse), global::Sufs.HealthResponse.Parser, new[]{ "Response" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReplicateRequest), global::Sufs.ReplicateRequest.Parser, new[]{ "Block", "DataNodeID" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReplicateResponse), global::Sufs.ReplicateResponse.Parser, new[]{ "Response" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.DataNodeList), global::Sufs.DataNodeList.Parser, new[]{ "DataNodeID" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.SingleBlock), global::Sufs.SingleBlock.Parser, new[]{ "BlockID", "DataNodeList" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.BlockList), global::Sufs.BlockList.Parser, new[]{ "BlockList_" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.DeleteResponse), global::Sufs.DeleteResponse.Parser, new[]{ "Response" }, null, null, null)
           }));
     }
     #endregion
@@ -222,8 +231,15 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public WriteRequest(WriteRequest other) : this() {
-      Block = other.block_ != null ? other.Block.Clone() : null;
-      dataNodeID_ = other.dataNodeID_.Clone();
+      switch (other.ValueCase) {
+        case ValueOneofCase.Request:
+          Request = other.Request.Clone();
+          break;
+        case ValueOneofCase.Chunk:
+          Chunk = other.Chunk.Clone();
+          break;
+      }
+
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -231,25 +247,45 @@ namespace Sufs {
       return new WriteRequest(this);
     }
 
-    /// <summary>Field number for the "block" field.</summary>
-    public const int BlockFieldNumber = 1;
-    private global::Sufs.BlockDetails block_;
+    /// <summary>Field number for the "request" field.</summary>
+    public const int RequestFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Sufs.BlockDetails Block {
-      get { return block_; }
+    public global::Sufs.WriteRequest.Types.BlockRequest Request {
+      get { return valueCase_ == ValueOneofCase.Request ? (global::Sufs.WriteRequest.Types.BlockRequest) value_ : null; }
       set {
-        block_ = value;
+        value_ = value;
+        valueCase_ = value == null ? ValueOneofCase.None : ValueOneofCase.Request;
       }
     }
 
-    /// <summary>Field number for the "dataNodeID" field.</summary>
-    public const int DataNodeIDFieldNumber = 2;
-    private static readonly pb::FieldCodec<string> _repeated_dataNodeID_codec
-        = pb::FieldCodec.ForString(18);
-    private readonly pbc::RepeatedField<string> dataNodeID_ = new pbc::RepeatedField<string>();
+    /// <summary>Field number for the "chunk" field.</summary>
+    public const int ChunkFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<string> DataNodeID {
-      get { return dataNodeID_; }
+    public global::Sufs.WriteRequest.Types.Chunk Chunk {
+      get { return valueCase_ == ValueOneofCase.Chunk ? (global::Sufs.WriteRequest.Types.Chunk) value_ : null; }
+      set {
+        value_ = value;
+        valueCase_ = value == null ? ValueOneofCase.None : ValueOneofCase.Chunk;
+      }
+    }
+
+    private object value_;
+    /// <summary>Enum of possible cases for the "value" oneof.</summary>
+    public enum ValueOneofCase {
+      None = 0,
+      Request = 1,
+      Chunk = 2,
+    }
+    private ValueOneofCase valueCase_ = ValueOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ValueOneofCase ValueCase {
+      get { return valueCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearValue() {
+      valueCase_ = ValueOneofCase.None;
+      value_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -265,16 +301,18 @@ namespace Sufs {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!object.Equals(Block, other.Block)) return false;
-      if(!dataNodeID_.Equals(other.dataNodeID_)) return false;
+      if (!object.Equals(Request, other.Request)) return false;
+      if (!object.Equals(Chunk, other.Chunk)) return false;
+      if (ValueCase != other.ValueCase) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (block_ != null) hash ^= Block.GetHashCode();
-      hash ^= dataNodeID_.GetHashCode();
+      if (valueCase_ == ValueOneofCase.Request) hash ^= Request.GetHashCode();
+      if (valueCase_ == ValueOneofCase.Chunk) hash ^= Chunk.GetHashCode();
+      hash ^= (int) valueCase_;
       return hash;
     }
 
@@ -285,20 +323,25 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (block_ != null) {
+      if (valueCase_ == ValueOneofCase.Request) {
         output.WriteRawTag(10);
-        output.WriteMessage(Block);
+        output.WriteMessage(Request);
       }
-      dataNodeID_.WriteTo(output, _repeated_dataNodeID_codec);
+      if (valueCase_ == ValueOneofCase.Chunk) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Chunk);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (block_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Block);
+      if (valueCase_ == ValueOneofCase.Request) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Request);
       }
-      size += dataNodeID_.CalculateSize(_repeated_dataNodeID_codec);
+      if (valueCase_ == ValueOneofCase.Chunk) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Chunk);
+      }
       return size;
     }
 
@@ -307,13 +350,21 @@ namespace Sufs {
       if (other == null) {
         return;
       }
-      if (other.block_ != null) {
-        if (block_ == null) {
-          block_ = new global::Sufs.BlockDetails();
-        }
-        Block.MergeFrom(other.Block);
+      switch (other.ValueCase) {
+        case ValueOneofCase.Request:
+          if (Request == null) {
+            Request = new global::Sufs.WriteRequest.Types.BlockRequest();
+          }
+          Request.MergeFrom(other.Request);
+          break;
+        case ValueOneofCase.Chunk:
+          if (Chunk == null) {
+            Chunk = new global::Sufs.WriteRequest.Types.Chunk();
+          }
+          Chunk.MergeFrom(other.Chunk);
+          break;
       }
-      dataNodeID_.Add(other.dataNodeID_);
+
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -325,19 +376,321 @@ namespace Sufs {
             input.SkipLastField();
             break;
           case 10: {
-            if (block_ == null) {
-              block_ = new global::Sufs.BlockDetails();
+            global::Sufs.WriteRequest.Types.BlockRequest subBuilder = new global::Sufs.WriteRequest.Types.BlockRequest();
+            if (valueCase_ == ValueOneofCase.Request) {
+              subBuilder.MergeFrom(Request);
             }
-            input.ReadMessage(block_);
+            input.ReadMessage(subBuilder);
+            Request = subBuilder;
             break;
           }
           case 18: {
-            dataNodeID_.AddEntriesFrom(input, _repeated_dataNodeID_codec);
+            global::Sufs.WriteRequest.Types.Chunk subBuilder = new global::Sufs.WriteRequest.Types.Chunk();
+            if (valueCase_ == ValueOneofCase.Chunk) {
+              subBuilder.MergeFrom(Chunk);
+            }
+            input.ReadMessage(subBuilder);
+            Chunk = subBuilder;
             break;
           }
         }
       }
     }
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the WriteRequest message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static partial class Types {
+      public sealed partial class BlockRequest : pb::IMessage<BlockRequest> {
+        private static readonly pb::MessageParser<BlockRequest> _parser = new pb::MessageParser<BlockRequest>(() => new BlockRequest());
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<BlockRequest> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::Sufs.WriteRequest.Descriptor.NestedTypes[0]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public BlockRequest() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public BlockRequest(BlockRequest other) : this() {
+          Block = other.block_ != null ? other.Block.Clone() : null;
+          dataNodeID_ = other.dataNodeID_.Clone();
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public BlockRequest Clone() {
+          return new BlockRequest(this);
+        }
+
+        /// <summary>Field number for the "block" field.</summary>
+        public const int BlockFieldNumber = 1;
+        private global::Sufs.BlockDetails block_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::Sufs.BlockDetails Block {
+          get { return block_; }
+          set {
+            block_ = value;
+          }
+        }
+
+        /// <summary>Field number for the "dataNodeID" field.</summary>
+        public const int DataNodeIDFieldNumber = 2;
+        private static readonly pb::FieldCodec<string> _repeated_dataNodeID_codec
+            = pb::FieldCodec.ForString(18);
+        private readonly pbc::RepeatedField<string> dataNodeID_ = new pbc::RepeatedField<string>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public pbc::RepeatedField<string> DataNodeID {
+          get { return dataNodeID_; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other) {
+          return Equals(other as BlockRequest);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(BlockRequest other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if (!object.Equals(Block, other.Block)) return false;
+          if(!dataNodeID_.Equals(other.dataNodeID_)) return false;
+          return true;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (block_ != null) hash ^= Block.GetHashCode();
+          hash ^= dataNodeID_.GetHashCode();
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output) {
+          if (block_ != null) {
+            output.WriteRawTag(10);
+            output.WriteMessage(Block);
+          }
+          dataNodeID_.WriteTo(output, _repeated_dataNodeID_codec);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize() {
+          int size = 0;
+          if (block_ != null) {
+            size += 1 + pb::CodedOutputStream.ComputeMessageSize(Block);
+          }
+          size += dataNodeID_.CalculateSize(_repeated_dataNodeID_codec);
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(BlockRequest other) {
+          if (other == null) {
+            return;
+          }
+          if (other.block_ != null) {
+            if (block_ == null) {
+              block_ = new global::Sufs.BlockDetails();
+            }
+            Block.MergeFrom(other.Block);
+          }
+          dataNodeID_.Add(other.dataNodeID_);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                input.SkipLastField();
+                break;
+              case 10: {
+                if (block_ == null) {
+                  block_ = new global::Sufs.BlockDetails();
+                }
+                input.ReadMessage(block_);
+                break;
+              }
+              case 18: {
+                dataNodeID_.AddEntriesFrom(input, _repeated_dataNodeID_codec);
+                break;
+              }
+            }
+          }
+        }
+
+      }
+
+      public sealed partial class Chunk : pb::IMessage<Chunk> {
+        private static readonly pb::MessageParser<Chunk> _parser = new pb::MessageParser<Chunk>(() => new Chunk());
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<Chunk> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::Sufs.WriteRequest.Descriptor.NestedTypes[1]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public Chunk() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public Chunk(Chunk other) : this() {
+          data_ = other.data_;
+          offset_ = other.offset_;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public Chunk Clone() {
+          return new Chunk(this);
+        }
+
+        /// <summary>Field number for the "data" field.</summary>
+        public const int DataFieldNumber = 1;
+        private pb::ByteString data_ = pb::ByteString.Empty;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public pb::ByteString Data {
+          get { return data_; }
+          set {
+            data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+          }
+        }
+
+        /// <summary>Field number for the "offset" field.</summary>
+        public const int OffsetFieldNumber = 2;
+        private long offset_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public long Offset {
+          get { return offset_; }
+          set {
+            offset_ = value;
+          }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other) {
+          return Equals(other as Chunk);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(Chunk other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if (Data != other.Data) return false;
+          if (Offset != other.Offset) return false;
+          return true;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (Data.Length != 0) hash ^= Data.GetHashCode();
+          if (Offset != 0L) hash ^= Offset.GetHashCode();
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output) {
+          if (Data.Length != 0) {
+            output.WriteRawTag(10);
+            output.WriteBytes(Data);
+          }
+          if (Offset != 0L) {
+            output.WriteRawTag(16);
+            output.WriteInt64(Offset);
+          }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize() {
+          int size = 0;
+          if (Data.Length != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
+          }
+          if (Offset != 0L) {
+            size += 1 + pb::CodedOutputStream.ComputeInt64Size(Offset);
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(Chunk other) {
+          if (other == null) {
+            return;
+          }
+          if (other.Data.Length != 0) {
+            Data = other.Data;
+          }
+          if (other.Offset != 0L) {
+            Offset = other.Offset;
+          }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                input.SkipLastField();
+                break;
+              case 10: {
+                Data = input.ReadBytes();
+                break;
+              }
+              case 16: {
+                Offset = input.ReadInt64();
+                break;
+              }
+            }
+          }
+        }
+
+      }
+
+    }
+    #endregion
 
   }
 
@@ -732,10 +1085,10 @@ namespace Sufs {
 
   }
 
-  public sealed partial class ReplicateRequest : pb::IMessage<ReplicateRequest> {
-    private static readonly pb::MessageParser<ReplicateRequest> _parser = new pb::MessageParser<ReplicateRequest>(() => new ReplicateRequest());
+  public sealed partial class DataNodeList : pb::IMessage<DataNodeList> {
+    private static readonly pb::MessageParser<DataNodeList> _parser = new pb::MessageParser<DataNodeList>(() => new DataNodeList());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ReplicateRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<DataNodeList> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -748,38 +1101,26 @@ namespace Sufs {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReplicateRequest() {
+    public DataNodeList() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReplicateRequest(ReplicateRequest other) : this() {
-      Block = other.block_ != null ? other.Block.Clone() : null;
+    public DataNodeList(DataNodeList other) : this() {
       dataNodeID_ = other.dataNodeID_.Clone();
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReplicateRequest Clone() {
-      return new ReplicateRequest(this);
-    }
-
-    /// <summary>Field number for the "block" field.</summary>
-    public const int BlockFieldNumber = 1;
-    private global::Sufs.BlockDetails block_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Sufs.BlockDetails Block {
-      get { return block_; }
-      set {
-        block_ = value;
-      }
+    public DataNodeList Clone() {
+      return new DataNodeList(this);
     }
 
     /// <summary>Field number for the "dataNodeID" field.</summary>
-    public const int DataNodeIDFieldNumber = 2;
+    public const int DataNodeIDFieldNumber = 1;
     private static readonly pb::FieldCodec<string> _repeated_dataNodeID_codec
-        = pb::FieldCodec.ForString(18);
+        = pb::FieldCodec.ForString(10);
     private readonly pbc::RepeatedField<string> dataNodeID_ = new pbc::RepeatedField<string>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<string> DataNodeID {
@@ -788,18 +1129,17 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ReplicateRequest);
+      return Equals(other as DataNodeList);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ReplicateRequest other) {
+    public bool Equals(DataNodeList other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!object.Equals(Block, other.Block)) return false;
       if(!dataNodeID_.Equals(other.dataNodeID_)) return false;
       return true;
     }
@@ -807,7 +1147,6 @@ namespace Sufs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (block_ != null) hash ^= Block.GetHashCode();
       hash ^= dataNodeID_.GetHashCode();
       return hash;
     }
@@ -819,33 +1158,20 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (block_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Block);
-      }
       dataNodeID_.WriteTo(output, _repeated_dataNodeID_codec);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (block_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Block);
-      }
       size += dataNodeID_.CalculateSize(_repeated_dataNodeID_codec);
       return size;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ReplicateRequest other) {
+    public void MergeFrom(DataNodeList other) {
       if (other == null) {
         return;
-      }
-      if (other.block_ != null) {
-        if (block_ == null) {
-          block_ = new global::Sufs.BlockDetails();
-        }
-        Block.MergeFrom(other.Block);
       }
       dataNodeID_.Add(other.dataNodeID_);
     }
@@ -859,13 +1185,6 @@ namespace Sufs {
             input.SkipLastField();
             break;
           case 10: {
-            if (block_ == null) {
-              block_ = new global::Sufs.BlockDetails();
-            }
-            input.ReadMessage(block_);
-            break;
-          }
-          case 18: {
             dataNodeID_.AddEntriesFrom(input, _repeated_dataNodeID_codec);
             break;
           }
@@ -875,10 +1194,10 @@ namespace Sufs {
 
   }
 
-  public sealed partial class ReplicateResponse : pb::IMessage<ReplicateResponse> {
-    private static readonly pb::MessageParser<ReplicateResponse> _parser = new pb::MessageParser<ReplicateResponse>(() => new ReplicateResponse());
+  public sealed partial class SingleBlock : pb::IMessage<SingleBlock> {
+    private static readonly pb::MessageParser<SingleBlock> _parser = new pb::MessageParser<SingleBlock>(() => new SingleBlock());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ReplicateResponse> Parser { get { return _parser; } }
+    public static pb::MessageParser<SingleBlock> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -891,20 +1210,280 @@ namespace Sufs {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReplicateResponse() {
+    public SingleBlock() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReplicateResponse(ReplicateResponse other) : this() {
+    public SingleBlock(SingleBlock other) : this() {
+      blockID_ = other.blockID_;
+      DataNodeList = other.dataNodeList_ != null ? other.DataNodeList.Clone() : null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SingleBlock Clone() {
+      return new SingleBlock(this);
+    }
+
+    /// <summary>Field number for the "blockID" field.</summary>
+    public const int BlockIDFieldNumber = 1;
+    private int blockID_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int BlockID {
+      get { return blockID_; }
+      set {
+        blockID_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "dataNodeList" field.</summary>
+    public const int DataNodeListFieldNumber = 2;
+    private global::Sufs.DataNodeList dataNodeList_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Sufs.DataNodeList DataNodeList {
+      get { return dataNodeList_; }
+      set {
+        dataNodeList_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SingleBlock);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SingleBlock other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (BlockID != other.BlockID) return false;
+      if (!object.Equals(DataNodeList, other.DataNodeList)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (BlockID != 0) hash ^= BlockID.GetHashCode();
+      if (dataNodeList_ != null) hash ^= DataNodeList.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (BlockID != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(BlockID);
+      }
+      if (dataNodeList_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(DataNodeList);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (BlockID != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BlockID);
+      }
+      if (dataNodeList_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(DataNodeList);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SingleBlock other) {
+      if (other == null) {
+        return;
+      }
+      if (other.BlockID != 0) {
+        BlockID = other.BlockID;
+      }
+      if (other.dataNodeList_ != null) {
+        if (dataNodeList_ == null) {
+          dataNodeList_ = new global::Sufs.DataNodeList();
+        }
+        DataNodeList.MergeFrom(other.DataNodeList);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            BlockID = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            if (dataNodeList_ == null) {
+              dataNodeList_ = new global::Sufs.DataNodeList();
+            }
+            input.ReadMessage(dataNodeList_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class BlockList : pb::IMessage<BlockList> {
+    private static readonly pb::MessageParser<BlockList> _parser = new pb::MessageParser<BlockList>(() => new BlockList());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<BlockList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Sufs.DataNodeReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BlockList() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BlockList(BlockList other) : this() {
+      blockList_ = other.blockList_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BlockList Clone() {
+      return new BlockList(this);
+    }
+
+    /// <summary>Field number for the "blockList" field.</summary>
+    public const int BlockList_FieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Sufs.SingleBlock> _repeated_blockList_codec
+        = pb::FieldCodec.ForMessage(10, global::Sufs.SingleBlock.Parser);
+    private readonly pbc::RepeatedField<global::Sufs.SingleBlock> blockList_ = new pbc::RepeatedField<global::Sufs.SingleBlock>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Sufs.SingleBlock> BlockList_ {
+      get { return blockList_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as BlockList);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(BlockList other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!blockList_.Equals(other.blockList_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= blockList_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      blockList_.WriteTo(output, _repeated_blockList_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += blockList_.CalculateSize(_repeated_blockList_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(BlockList other) {
+      if (other == null) {
+        return;
+      }
+      blockList_.Add(other.blockList_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            blockList_.AddEntriesFrom(input, _repeated_blockList_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class DeleteResponse : pb::IMessage<DeleteResponse> {
+    private static readonly pb::MessageParser<DeleteResponse> _parser = new pb::MessageParser<DeleteResponse>(() => new DeleteResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<DeleteResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Sufs.DataNodeReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DeleteResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DeleteResponse(DeleteResponse other) : this() {
       response_ = other.response_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReplicateResponse Clone() {
-      return new ReplicateResponse(this);
+    public DeleteResponse Clone() {
+      return new DeleteResponse(this);
     }
 
     /// <summary>Field number for the "response" field.</summary>
@@ -920,11 +1499,11 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ReplicateResponse);
+      return Equals(other as DeleteResponse);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ReplicateResponse other) {
+    public bool Equals(DeleteResponse other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -965,7 +1544,7 @@ namespace Sufs {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ReplicateResponse other) {
+    public void MergeFrom(DeleteResponse other) {
       if (other == null) {
         return;
       }

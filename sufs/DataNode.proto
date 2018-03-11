@@ -2,10 +2,11 @@ syntax = "proto3";
 
 package sufs;
 
-service FileHandling {
+service DataNode{
 	rpc WriteFile (stream WriteRequest) returns (WriteResponse) {}
-	rpc HealthCheck(stream HealthRequest) returns (HealthResponse) {}
-	rpc ReplicateBlock(stream ReplicateRequest) returns (ReplicateResponse) {}
+	rpc ReplicateBlock (stream WriteRequest) returns (WriteResponse) {}
+	rpc DeleteFile (BlockList) returns (DeleteResponse) {}
+	rpc HealthCheck (HealthRequest) returns (HealthResponse) {}
 }
 
 message BlockDetails {
@@ -14,8 +15,18 @@ message BlockDetails {
 }
 
 message WriteRequest {
-	BlockDetails block = 1;
-	repeated string dataNodeID = 2;
+	message BlockRequest {
+		BlockDetails block = 1;
+		repeated string dataNodeID = 2;
+	}
+	message Chunk {
+		bytes data = 1;
+		int64 offset = 2;
+	}
+	oneof value {
+		BlockRequest request = 1;
+		Chunk chunk = 2;
+	}	
 }
 
 message WriteResponse {
@@ -32,11 +43,19 @@ message HealthResponse {
 	bool response = 1;
 }
 
-message ReplicateRequest {
-	BlockDetails block = 1;
-	repeated string dataNodeID = 2;
+message DataNodeList {
+	repeated string dataNodeID = 1;
 }
 
-message ReplicateResponse {
+message SingleBlock {
+	int32 blockID = 1;
+	DataNodeList dataNodeList = 2;	
+}
+
+message BlockList {
+	repeated SingleBlock blockList = 1;
+}
+
+message DeleteResponse {
 	bool response = 1;
 }

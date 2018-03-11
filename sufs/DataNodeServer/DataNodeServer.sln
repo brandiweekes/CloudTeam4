@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataNodeServer", "DataNodeServer\DataNodeServer.csproj", "{535C317D-90C8-478A-BFB2-C572E992F330}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataNodeServer", "DataNodeServer\DataNodeServer.csproj", "{575CC1C0-89D5-489F-9AB2-2EFA97DBEA87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{535C317D-90C8-478A-BFB2-C572E992F330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{535C317D-90C8-478A-BFB2-C572E992F330}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{535C317D-90C8-478A-BFB2-C572E992F330}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{535C317D-90C8-478A-BFB2-C572E992F330}.Release|Any CPU.Build.0 = Release|Any CPU
+		{575CC1C0-89D5-489F-9AB2-2EFA97DBEA87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{575CC1C0-89D5-489F-9AB2-2EFA97DBEA87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{575CC1C0-89D5-489F-9AB2-2EFA97DBEA87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{575CC1C0-89D5-489F-9AB2-2EFA97DBEA87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {01300523-50CA-4D01-AB2C-0B5FAD2F259D}
+		SolutionGuid = {70214788-2827-4C6C-88F0-E587A55EAD09}
 	EndGlobalSection
 EndGlobal
