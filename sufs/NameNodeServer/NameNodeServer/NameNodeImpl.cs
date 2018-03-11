@@ -58,6 +58,28 @@ namespace NameNodeServer
             return Task.FromResult(rr);
         }
 
+        private void HealthCheck(string DNid)
+        {
+            //Triggered
+            //Store what was on the DN
+            List<int> BlockIDList = new List<int>();
+            KeyValuePair<string, List<int>> lostDN = new KeyValuePair<string, List<int>>(DNid, BlockIDList);
+
+            //Go through block mapp
+            //delete DNid from blockmap
+            foreach (KeyValuePair<int, List<string>> kv in BlockMap)
+            {
+                if (kv.Value.Contains(DNid))
+                {
+                    lostDN.Value.Add(kv.Key);
+                    kv.Value.Remove(DNid);
+                }
+            }
+            //raise new DN
+            //extract data from other Dn
+            //restore data onto new DN
+        }
+
         public override Task<HBresponse> Heartbeat(HBrequest request, ServerCallContext context)
         {
             // 1. Save DNid to HealthRecord (Done)
@@ -79,6 +101,9 @@ namespace NameNodeServer
                     {
                         curHR = hr;
                         curHR.AlertTimer.Interval = 5000;
+                    }else if (hr.IsAlive == false)
+                    {
+                        HealthCheck(hr.DNid);
                     }
                 }
             }
