@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package sufs;
+
+service NameNode {
+	rpc CreateFile (CreateRequest) returns (stream CreateResponse){}
+	rpc Heartbeat (HBrequest) returns (HBresponse){}
+	rpc BlockReport (ReportRequest) returns (ReportResponse){}
+	rpc ListDirectory(PathRequest) returns (ListPathResponse){}
+	rpc AddDirectory(PathRequest) returns (PathResponse){}
+	rpc DeleteDirectory(PathRequest) returns (PathResponse){}
+}
+
+message CreateRequest {
+	int32 numBlocks = 1;
+	string dir = 2;
+	string fileName = 3;
+}
+
+message CreateResponse {
+	reserved 1;
+	reserved "blockIDList";
+
+	int32 blockID = 2;
+	int32 repFactor = 3;
+	repeated string DNid = 4;
+}
+
+message BlockID_Size {
+  int32 blockID = 1;
+  float blockSize = 2;
+}
+
+message ReportRequest {
+  string DNid = 1;
+  repeated BlockID_Size blockList = 2;
+}
+
+message ReportResponse{
+  bool acknowledged = 1;
+}
+
+message HBrequest{
+  string DNid = 1;
+}
+
+message HBresponse{
+  bool acknowledged = 1;
+}
+
+message PathRequest{
+	string dir_path = 1;
+}
+
+message ListPathResponse{
+	repeated string dir_pathContents = 1;
+}
+
+message PathResponse{
+	bool req_ack = 1;
+}
