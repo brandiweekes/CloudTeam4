@@ -24,7 +24,10 @@ namespace NameNodeServer
         Dictionary<string, NS_Dir_Info> NN_namespace_dir;
         Dictionary<String, List<int>> FileBlocks; // For client use cases
         Dictionary<int, List<string>> BlockMap;   // For DN use cases
+        private List<KeyValuePair<int, string>> missedRepList;
         private List<HealthRecords> recordList; // = new List<HealthRecords>();
+        private Timer repCheckTimer;
+        public const int repFactor = 3;
 
         public NameNodeImpl()
         {
@@ -42,6 +45,13 @@ namespace NameNodeServer
 
             this.recordList = 
                 new List<HealthRecords>();
+
+            this.missedRepList = new List<KeyValuePair<int, string>>();
+
+            this.repCheckTimer = new Timer(60000);
+            this.repCheckTimer.Enabled = true;
+            this.repCheckTimer.AutoReset = true;
+            this.repCheckTimer.Elapsed += repCheck;
         }
 
         //rpc CreateFile (CreateRequest) returns (stream CreateResponse){}
@@ -64,6 +74,18 @@ namespace NameNodeServer
         {
             //returning an acknowledgement: f=path already exists; t=path created
             return Task.FromResult(new PathResponse { ReqAck = mkdir(request.DirPath) });
+        }
+
+        private void repCheck(Object source, ElapsedEventArgs e)
+        {
+            missedRepList.Clear();
+            foreach (KeyValuePair<int, List<string>> kv in BlockMap)
+            {
+                if (kv.Value.Count < 3)
+                {
+                    missedRepList.Add(new KeyValuePair<int, string>(kv.Key, kv.Value[0]));
+                }
+            }
         }
 
         public override Task<ReportResponse> BlockReport(ReportRequest request, ServerCallContext context)
