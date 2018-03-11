@@ -23,15 +23,6 @@ namespace NameNodeServer
         Dictionary<int, List<string>> BlockMap;   // For DN use cases
         private List<HealthRecords> recordList = new List<HealthRecords>();
         
-        public static void Main()
-        {
-            //Stuff
-            
-            //HB call
-
-            //Stuff
-        }
-        
         //rpc CreateFile (CreateRequest) returns (stream CreateResponse){}
         public override Task CreateFile(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
         {
@@ -58,7 +49,7 @@ namespace NameNodeServer
             return Task.FromResult(rr);
         }
 
-        private void HealthCheck(string DNid)
+        private void RemoveDeadDN(string DNid)
         {
             //Triggered
 
@@ -96,7 +87,7 @@ namespace NameNodeServer
                         curHR.AlertTimer.Interval = 5000;
                     }else if (hr.IsAlive == false)
                     {
-                        HealthCheck(hr.DNid);
+                        RemoveDeadDN(hr.DNid);
                     }
                 }
             }
