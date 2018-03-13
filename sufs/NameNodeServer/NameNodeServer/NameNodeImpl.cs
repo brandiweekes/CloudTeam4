@@ -76,6 +76,27 @@ namespace NameNodeServer
             return Task.FromResult(new PathResponse { ReqAck = mkdir(request.DirPath) });
         }
 
+        public override Task<ListPathResponse> ListDirectory(PathRequest request, ServerCallContext context)
+        {
+            ListPathResponse LPR = new ListPathResponse();
+
+            foreach (string dir in NN_namespace_dir.Keys)
+            {
+                LPR.DirPathContents.Add(dir);
+            }
+
+            return Task.FromResult(LPR);
+        }
+        
+        public override Task<PathResponse> DeleteDirectory(PathRequest request, ServerCallContext context)
+        {
+            PathResponse pr = new PathResponse();
+            string target = request.DirPath;
+
+            pr.ReqAck = true;
+            return Task.FromResult(pr);
+        }
+
         private void repCheck(Object source, ElapsedEventArgs e)
         {
             missedRepList.Clear();
@@ -330,8 +351,8 @@ namespace NameNodeServer
 
         class NS_Dir_Info
         {
-            private List<string> subdirectories;
-            private List<string> fileNames;
+            public List<string> subdirectories;
+            public List<string> fileNames;
 
 
             public NS_Dir_Info()
