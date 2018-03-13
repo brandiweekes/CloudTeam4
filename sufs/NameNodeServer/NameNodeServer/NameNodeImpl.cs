@@ -24,7 +24,10 @@ namespace NameNodeServer
         Dictionary<string, NS_Dir_Info> NN_namespace_dir;
         Dictionary<String, List<int>> FileBlocks; // For client use cases
         Dictionary<int, List<string>> BlockMap;   // For DN use cases
+        private List<KeyValuePair<int, string>> missedRepList;
         private List<HealthRecords> recordList; // = new List<HealthRecords>();
+        private Timer repCheckTimer;
+        public const int repFactor = 3;
 
         public NameNodeImpl()
         {
@@ -42,6 +45,13 @@ namespace NameNodeServer
 
             this.recordList = 
                 new List<HealthRecords>();
+
+            this.missedRepList = new List<KeyValuePair<int, string>>();
+
+            this.repCheckTimer = new Timer(60000);
+            this.repCheckTimer.Enabled = true;
+            this.repCheckTimer.AutoReset = true;
+            this.repCheckTimer.Elapsed += repCheck;
         }
 
         //rpc CreateFile (CreateRequest) returns (stream CreateResponse){}
@@ -71,6 +81,39 @@ namespace NameNodeServer
             Task<PathResponse> tPR = Task.FromResult(pr);
             Console.WriteLine("doing Return");
             return tPR;
+        }
+
+        public override Task<ListPathResponse> ListDirectory(PathRequest request, ServerCallContext context)
+        {
+            ListPathResponse LPR = new ListPathResponse();
+
+            foreach (string dir in NN_namespace_dir.Keys)
+            {
+                LPR.DirPathContents.Add(dir);
+            }
+
+            return Task.FromResult(LPR);
+        }
+        
+        public override Task<PathResponse> DeleteDirectory(PathRequest request, ServerCallContext context)
+        {
+            PathResponse pr = new PathResponse();
+            string target = request.DirPath;
+
+            pr.ReqAck = true;
+            return Task.FromResult(pr);
+        }
+
+        private void repCheck(Object source, ElapsedEventArgs e)
+        {
+            missedRepList.Clear();
+            foreach (KeyValuePair<int, List<string>> kv in BlockMap)
+            {
+                if (kv.Value.Count < 3)
+                {
+                    missedRepList.Add(new KeyValuePair<int, string>(kv.Key, kv.Value[0]));
+                }
+            }
         }
 
         public override Task<ReportResponse> BlockReport(ReportRequest request, ServerCallContext context)
@@ -315,8 +358,8 @@ namespace NameNodeServer
 
         class NS_Dir_Info
         {
-            private List<string> subdirectories;
-            private List<string> fileNames;
+            public List<string> subdirectories;
+            public List<string> fileNames;
 
 
             public NS_Dir_Info()
