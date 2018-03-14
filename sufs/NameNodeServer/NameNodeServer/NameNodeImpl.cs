@@ -102,6 +102,18 @@ namespace NameNodeServer
             
         }
 
+        public override Task<PathResponse> DeleteFile(PathRequest request, ServerCallContext context)
+        {
+            //returns "Not Implemented"
+            return base.DeleteFile(request, context);
+        }
+
+        public override Task<ReadRequest> ReadFile(PathRequest request, ServerCallContext context)
+        {
+            //returns "Not Implemented"
+            return base.ReadFile(request, context);
+        }
+
         /// <summary>
         /// client requests an absolute path to be requested
         /// checks whether path exists, and if doesn't will create
