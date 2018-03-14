@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -156,6 +157,10 @@ namespace NameNodeServer
                 {
                     kv.Value.Add(DNid);
                     rr.Acknowledged = true;
+                }else if (!this.BlockMap.ContainsKey(request.BlockID))
+                {
+                    this.BlockMap.Add(request.BlockID, new List<string>());
+                    this.BlockMap[request.BlockID].Add(DNid);
                 }
             }
             return Task.FromResult(rr);
