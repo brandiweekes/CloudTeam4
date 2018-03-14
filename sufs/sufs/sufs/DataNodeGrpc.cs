@@ -17,8 +17,8 @@ namespace Sufs {
 
     static readonly grpc::Marshaller<global::Sufs.WriteRequest> __Marshaller_WriteRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.WriteRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Sufs.WriteResponse> __Marshaller_WriteResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.WriteResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::Sufs.ReadRequest> __Marshaller_ReadRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReadRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::Sufs.ReadResponse> __Marshaller_ReadResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReadResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Sufs.ReadBlockRequest> __Marshaller_ReadBlockRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReadBlockRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Sufs.ReadBlockResponse> __Marshaller_ReadBlockResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReadBlockResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Sufs.DeleteRequest> __Marshaller_DeleteRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.DeleteRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Sufs.DeleteResponse> __Marshaller_DeleteResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.DeleteResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Sufs.HealthRequest> __Marshaller_HealthRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.HealthRequest.Parser.ParseFrom);
@@ -38,12 +38,12 @@ namespace Sufs {
         __Marshaller_WriteRequest,
         __Marshaller_WriteResponse);
 
-    static readonly grpc::Method<global::Sufs.ReadRequest, global::Sufs.ReadResponse> __Method_ReadFile = new grpc::Method<global::Sufs.ReadRequest, global::Sufs.ReadResponse>(
+    static readonly grpc::Method<global::Sufs.ReadBlockRequest, global::Sufs.ReadBlockResponse> __Method_ReadFile = new grpc::Method<global::Sufs.ReadBlockRequest, global::Sufs.ReadBlockResponse>(
         grpc::MethodType.ServerStreaming,
         __ServiceName,
         "ReadFile",
-        __Marshaller_ReadRequest,
-        __Marshaller_ReadResponse);
+        __Marshaller_ReadBlockRequest,
+        __Marshaller_ReadBlockResponse);
 
     static readonly grpc::Method<global::Sufs.DeleteRequest, global::Sufs.DeleteResponse> __Method_DeleteFile = new grpc::Method<global::Sufs.DeleteRequest, global::Sufs.DeleteResponse>(
         grpc::MethodType.Unary,
@@ -78,7 +78,7 @@ namespace Sufs {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task ReadFile(global::Sufs.ReadRequest request, grpc::IServerStreamWriter<global::Sufs.ReadResponse> responseStream, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task ReadFile(global::Sufs.ReadBlockRequest request, grpc::IServerStreamWriter<global::Sufs.ReadBlockResponse> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -134,11 +134,11 @@ namespace Sufs {
       {
         return CallInvoker.AsyncClientStreamingCall(__Method_ReplicateBlock, null, options);
       }
-      public virtual grpc::AsyncServerStreamingCall<global::Sufs.ReadResponse> ReadFile(global::Sufs.ReadRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncServerStreamingCall<global::Sufs.ReadBlockResponse> ReadFile(global::Sufs.ReadBlockRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return ReadFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncServerStreamingCall<global::Sufs.ReadResponse> ReadFile(global::Sufs.ReadRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncServerStreamingCall<global::Sufs.ReadBlockResponse> ReadFile(global::Sufs.ReadBlockRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncServerStreamingCall(__Method_ReadFile, null, options, request);
       }

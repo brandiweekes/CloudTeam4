@@ -5,7 +5,7 @@ package sufs;
 service DataNode{
 	rpc WriteFile (stream WriteRequest) returns (WriteResponse) {}
 	rpc ReplicateBlock (stream WriteRequest) returns (WriteResponse) {}
-	rpc ReadFile (ReadRequest) returns (stream ReadResponse) {}
+	rpc ReadFile (ReadBlockRequest) returns (stream ReadBlockResponse) {}
 	rpc DeleteFile (DeleteRequest) returns (DeleteResponse) {}
 	rpc HealthCheck (HealthRequest) returns (HealthResponse) {}
 }
@@ -26,11 +26,11 @@ message WriteResponse {
 	bool response = 1;
 }
 
-message ReadRequest {
+message ReadBlockRequest {
 	int32 blockID = 1;
 }
 
-message ReadResponse {
+message ReadBlockResponse {
 	bytes data = 1;
 	int32 offset = 2;
 }

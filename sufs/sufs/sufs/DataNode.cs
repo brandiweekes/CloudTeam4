@@ -26,28 +26,29 @@ namespace Sufs {
             "Y2tJRBgBIAEoBRIRCglibG9ja1NpemUYAiABKAIiYwoMV3JpdGVSZXF1ZXN0",
             "EiEKBWJsb2NrGAEgASgLMhIuc3Vmcy5CbG9ja0RldGFpbHMSEgoKZGF0YU5v",
             "ZGVJRBgCIAMoCRIMCgRkYXRhGAMgASgMEg4KBm9mZnNldBgEIAEoBSIhCg1X",
-            "cml0ZVJlc3BvbnNlEhAKCHJlc3BvbnNlGAEgASgIIh4KC1JlYWRSZXF1ZXN0",
-            "Eg8KB2Jsb2NrSUQYASABKAUiLAoMUmVhZFJlc3BvbnNlEgwKBGRhdGEYASAB",
-            "KAwSDgoGb2Zmc2V0GAIgASgFIiAKDURlbGV0ZVJlcXVlc3QSDwoHYmxvY2tJ",
-            "RBgBIAEoBSIiCg5EZWxldGVSZXNwb25zZRIQCghyZXNwb25zZRgBIAEoCCJb",
-            "Cg1IZWFsdGhSZXF1ZXN0EiEKBWJsb2NrGAEgASgLMhIuc3Vmcy5CbG9ja0Rl",
-            "dGFpbHMSEgoKZGF0YU5vZGVJRBgCIAEoCRITCgtpbnN0cnVjdGlvbhgDIAEo",
-            "CCIiCg5IZWFsdGhSZXNwb25zZRIQCghyZXNwb25zZRgBIAEoCDKxAgoIRGF0",
-            "YU5vZGUSOAoJV3JpdGVGaWxlEhIuc3Vmcy5Xcml0ZVJlcXVlc3QaEy5zdWZz",
-            "LldyaXRlUmVzcG9uc2UiACgBEj0KDlJlcGxpY2F0ZUJsb2NrEhIuc3Vmcy5X",
-            "cml0ZVJlcXVlc3QaEy5zdWZzLldyaXRlUmVzcG9uc2UiACgBEjUKCFJlYWRG",
-            "aWxlEhEuc3Vmcy5SZWFkUmVxdWVzdBoSLnN1ZnMuUmVhZFJlc3BvbnNlIgAw",
-            "ARI5CgpEZWxldGVGaWxlEhMuc3Vmcy5EZWxldGVSZXF1ZXN0GhQuc3Vmcy5E",
-            "ZWxldGVSZXNwb25zZSIAEjoKC0hlYWx0aENoZWNrEhMuc3Vmcy5IZWFsdGhS",
-            "ZXF1ZXN0GhQuc3Vmcy5IZWFsdGhSZXNwb25zZSIAYgZwcm90bzM="));
+            "cml0ZVJlc3BvbnNlEhAKCHJlc3BvbnNlGAEgASgIIiMKEFJlYWRCbG9ja1Jl",
+            "cXVlc3QSDwoHYmxvY2tJRBgBIAEoBSIxChFSZWFkQmxvY2tSZXNwb25zZRIM",
+            "CgRkYXRhGAEgASgMEg4KBm9mZnNldBgCIAEoBSIgCg1EZWxldGVSZXF1ZXN0",
+            "Eg8KB2Jsb2NrSUQYASABKAUiIgoORGVsZXRlUmVzcG9uc2USEAoIcmVzcG9u",
+            "c2UYASABKAgiWwoNSGVhbHRoUmVxdWVzdBIhCgVibG9jaxgBIAEoCzISLnN1",
+            "ZnMuQmxvY2tEZXRhaWxzEhIKCmRhdGFOb2RlSUQYAiABKAkSEwoLaW5zdHJ1",
+            "Y3Rpb24YAyABKAgiIgoOSGVhbHRoUmVzcG9uc2USEAoIcmVzcG9uc2UYASAB",
+            "KAgyuwIKCERhdGFOb2RlEjgKCVdyaXRlRmlsZRISLnN1ZnMuV3JpdGVSZXF1",
+            "ZXN0GhMuc3Vmcy5Xcml0ZVJlc3BvbnNlIgAoARI9Cg5SZXBsaWNhdGVCbG9j",
+            "axISLnN1ZnMuV3JpdGVSZXF1ZXN0GhMuc3Vmcy5Xcml0ZVJlc3BvbnNlIgAo",
+            "ARI/CghSZWFkRmlsZRIWLnN1ZnMuUmVhZEJsb2NrUmVxdWVzdBoXLnN1ZnMu",
+            "UmVhZEJsb2NrUmVzcG9uc2UiADABEjkKCkRlbGV0ZUZpbGUSEy5zdWZzLkRl",
+            "bGV0ZVJlcXVlc3QaFC5zdWZzLkRlbGV0ZVJlc3BvbnNlIgASOgoLSGVhbHRo",
+            "Q2hlY2sSEy5zdWZzLkhlYWx0aFJlcXVlc3QaFC5zdWZzLkhlYWx0aFJlc3Bv",
+            "bnNlIgBiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.BlockDetails), global::Sufs.BlockDetails.Parser, new[]{ "BlockID", "BlockSize" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.WriteRequest), global::Sufs.WriteRequest.Parser, new[]{ "Block", "DataNodeID", "Data", "Offset" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.WriteResponse), global::Sufs.WriteResponse.Parser, new[]{ "Response" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReadRequest), global::Sufs.ReadRequest.Parser, new[]{ "BlockID" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReadResponse), global::Sufs.ReadResponse.Parser, new[]{ "Data", "Offset" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReadBlockRequest), global::Sufs.ReadBlockRequest.Parser, new[]{ "BlockID" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReadBlockResponse), global::Sufs.ReadBlockResponse.Parser, new[]{ "Data", "Offset" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.DeleteRequest), global::Sufs.DeleteRequest.Parser, new[]{ "BlockID" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.DeleteResponse), global::Sufs.DeleteResponse.Parser, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HealthRequest), global::Sufs.HealthRequest.Parser, new[]{ "Block", "DataNodeID", "Instruction" }, null, null, null),
@@ -519,10 +520,10 @@ namespace Sufs {
 
   }
 
-  public sealed partial class ReadRequest : pb::IMessage<ReadRequest> {
-    private static readonly pb::MessageParser<ReadRequest> _parser = new pb::MessageParser<ReadRequest>(() => new ReadRequest());
+  public sealed partial class ReadBlockRequest : pb::IMessage<ReadBlockRequest> {
+    private static readonly pb::MessageParser<ReadBlockRequest> _parser = new pb::MessageParser<ReadBlockRequest>(() => new ReadBlockRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ReadRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<ReadBlockRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -535,20 +536,20 @@ namespace Sufs {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadRequest() {
+    public ReadBlockRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadRequest(ReadRequest other) : this() {
+    public ReadBlockRequest(ReadBlockRequest other) : this() {
       blockID_ = other.blockID_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadRequest Clone() {
-      return new ReadRequest(this);
+    public ReadBlockRequest Clone() {
+      return new ReadBlockRequest(this);
     }
 
     /// <summary>Field number for the "blockID" field.</summary>
@@ -564,11 +565,11 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ReadRequest);
+      return Equals(other as ReadBlockRequest);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ReadRequest other) {
+    public bool Equals(ReadBlockRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -609,7 +610,7 @@ namespace Sufs {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ReadRequest other) {
+    public void MergeFrom(ReadBlockRequest other) {
       if (other == null) {
         return;
       }
@@ -636,10 +637,10 @@ namespace Sufs {
 
   }
 
-  public sealed partial class ReadResponse : pb::IMessage<ReadResponse> {
-    private static readonly pb::MessageParser<ReadResponse> _parser = new pb::MessageParser<ReadResponse>(() => new ReadResponse());
+  public sealed partial class ReadBlockResponse : pb::IMessage<ReadBlockResponse> {
+    private static readonly pb::MessageParser<ReadBlockResponse> _parser = new pb::MessageParser<ReadBlockResponse>(() => new ReadBlockResponse());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ReadResponse> Parser { get { return _parser; } }
+    public static pb::MessageParser<ReadBlockResponse> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -652,21 +653,21 @@ namespace Sufs {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadResponse() {
+    public ReadBlockResponse() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadResponse(ReadResponse other) : this() {
+    public ReadBlockResponse(ReadBlockResponse other) : this() {
       data_ = other.data_;
       offset_ = other.offset_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadResponse Clone() {
-      return new ReadResponse(this);
+    public ReadBlockResponse Clone() {
+      return new ReadBlockResponse(this);
     }
 
     /// <summary>Field number for the "data" field.</summary>
@@ -693,11 +694,11 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ReadResponse);
+      return Equals(other as ReadBlockResponse);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ReadResponse other) {
+    public bool Equals(ReadBlockResponse other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -747,7 +748,7 @@ namespace Sufs {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ReadResponse other) {
+    public void MergeFrom(ReadBlockResponse other) {
       if (other == null) {
         return;
       }
