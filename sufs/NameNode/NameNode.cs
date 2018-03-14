@@ -27,32 +27,32 @@ namespace Sufs {
             "VQoOQ3JlYXRlUmVzcG9uc2USDwoHYmxvY2tJRBgCIAEoBRIRCglyZXBGYWN0",
             "b3IYAyABKAUSDAoERE5pZBgEIAMoCUoECAEQAlILYmxvY2tJRExpc3QiMgoM",
             "QmxvY2tJRF9TaXplEg8KB2Jsb2NrSUQYASABKAUSEQoJYmxvY2tTaXplGAIg",
-            "ASgCIkQKDVJlcG9ydFJlcXVlc3QSDAoERE5pZBgBIAEoCRIlCglibG9ja0xp",
-            "c3QYAiADKAsyEi5zdWZzLkJsb2NrSURfU2l6ZSImCg5SZXBvcnRSZXNwb25z",
-            "ZRIUCgxhY2tub3dsZWRnZWQYASABKAgiGQoJSEJyZXF1ZXN0EgwKBEROaWQY",
-            "ASABKAkiIgoKSEJyZXNwb25zZRIUCgxhY2tub3dsZWRnZWQYASABKAgiHwoL",
-            "UGF0aFJlcXVlc3QSEAoIZGlyX3BhdGgYASABKAkiLAoQTGlzdFBhdGhSZXNw",
-            "b25zZRIYChBkaXJfcGF0aENvbnRlbnRzGAEgAygJIh8KDFBhdGhSZXNwb25z",
-            "ZRIPCgdyZXFfYWNrGAEgASgIIjkKC1JlYWRSZXF1ZXN0EioKDWJJRHNfb25f",
-            "RE5pZHMYASADKAsyEy5zdWZzLlJlcG9ydFJlcXVlc3Qy0wMKCE5hbWVOb2Rl",
-            "EjsKCkNyZWF0ZUZpbGUSEy5zdWZzLkNyZWF0ZVJlcXVlc3QaFC5zdWZzLkNy",
-            "ZWF0ZVJlc3BvbnNlIgAwARIwCglIZWFydGJlYXQSDy5zdWZzLkhCcmVxdWVz",
-            "dBoQLnN1ZnMuSEJyZXNwb25zZSIAEjoKC0Jsb2NrUmVwb3J0EhMuc3Vmcy5S",
-            "ZXBvcnRSZXF1ZXN0GhQuc3Vmcy5SZXBvcnRSZXNwb25zZSIAEjwKDUxpc3RE",
-            "aXJlY3RvcnkSES5zdWZzLlBhdGhSZXF1ZXN0GhYuc3Vmcy5MaXN0UGF0aFJl",
-            "c3BvbnNlIgASNwoMQWRkRGlyZWN0b3J5EhEuc3Vmcy5QYXRoUmVxdWVzdBoS",
-            "LnN1ZnMuUGF0aFJlc3BvbnNlIgASOgoPRGVsZXRlRGlyZWN0b3J5EhEuc3Vm",
-            "cy5QYXRoUmVxdWVzdBoSLnN1ZnMuUGF0aFJlc3BvbnNlIgASNQoKRGVsZXRl",
-            "RmlsZRIRLnN1ZnMuUGF0aFJlcXVlc3QaEi5zdWZzLlBhdGhSZXNwb25zZSIA",
-            "EjIKCFJlYWRGaWxlEhEuc3Vmcy5QYXRoUmVxdWVzdBoRLnN1ZnMuUmVhZFJl",
-            "cXVlc3QiAGIGcHJvdG8z"));
+            "ASgCIj8KDVJlcG9ydFJlcXVlc3QSDAoERE5pZBgBIAEoCRIPCgdibG9ja0lE",
+            "GAMgASgFSgQIAhADUglibG9ja0xpc3QiJgoOUmVwb3J0UmVzcG9uc2USFAoM",
+            "YWNrbm93bGVkZ2VkGAEgASgIIhkKCUhCcmVxdWVzdBIMCgRETmlkGAEgASgJ",
+            "IiIKCkhCcmVzcG9uc2USFAoMYWNrbm93bGVkZ2VkGAEgASgIIh8KC1BhdGhS",
+            "ZXF1ZXN0EhAKCGRpcl9wYXRoGAEgASgJIiwKEExpc3RQYXRoUmVzcG9uc2US",
+            "GAoQZGlyX3BhdGhDb250ZW50cxgBIAMoCSIfCgxQYXRoUmVzcG9uc2USDwoH",
+            "cmVxX2FjaxgBIAEoCCI5CgtSZWFkUmVxdWVzdBIqCg1iSURzX29uX0ROaWRz",
+            "GAEgAygLMhMuc3Vmcy5SZXBvcnRSZXF1ZXN0MtMDCghOYW1lTm9kZRI7CgpD",
+            "cmVhdGVGaWxlEhMuc3Vmcy5DcmVhdGVSZXF1ZXN0GhQuc3Vmcy5DcmVhdGVS",
+            "ZXNwb25zZSIAMAESMAoJSGVhcnRiZWF0Eg8uc3Vmcy5IQnJlcXVlc3QaEC5z",
+            "dWZzLkhCcmVzcG9uc2UiABI6CgtCbG9ja1JlcG9ydBITLnN1ZnMuUmVwb3J0",
+            "UmVxdWVzdBoULnN1ZnMuUmVwb3J0UmVzcG9uc2UiABI8Cg1MaXN0RGlyZWN0",
+            "b3J5EhEuc3Vmcy5QYXRoUmVxdWVzdBoWLnN1ZnMuTGlzdFBhdGhSZXNwb25z",
+            "ZSIAEjcKDEFkZERpcmVjdG9yeRIRLnN1ZnMuUGF0aFJlcXVlc3QaEi5zdWZz",
+            "LlBhdGhSZXNwb25zZSIAEjoKD0RlbGV0ZURpcmVjdG9yeRIRLnN1ZnMuUGF0",
+            "aFJlcXVlc3QaEi5zdWZzLlBhdGhSZXNwb25zZSIAEjUKCkRlbGV0ZUZpbGUS",
+            "ES5zdWZzLlBhdGhSZXF1ZXN0GhIuc3Vmcy5QYXRoUmVzcG9uc2UiABIyCghS",
+            "ZWFkRmlsZRIRLnN1ZnMuUGF0aFJlcXVlc3QaES5zdWZzLlJlYWRSZXF1ZXN0",
+            "IgBiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.CreateRequest), global::Sufs.CreateRequest.Parser, new[]{ "NumBlocks", "Dir", "FileName" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.CreateResponse), global::Sufs.CreateResponse.Parser, new[]{ "BlockID", "RepFactor", "DNid" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.BlockID_Size), global::Sufs.BlockID_Size.Parser, new[]{ "BlockID", "BlockSize" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReportRequest), global::Sufs.ReportRequest.Parser, new[]{ "DNid", "BlockList" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReportRequest), global::Sufs.ReportRequest.Parser, new[]{ "DNid", "BlockID" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReportResponse), global::Sufs.ReportResponse.Parser, new[]{ "Acknowledged" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HBrequest), global::Sufs.HBrequest.Parser, new[]{ "DNid" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HBresponse), global::Sufs.HBresponse.Parser, new[]{ "Acknowledged" }, null, null, null),
@@ -574,7 +574,7 @@ namespace Sufs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ReportRequest(ReportRequest other) : this() {
       dNid_ = other.dNid_;
-      blockList_ = other.blockList_.Clone();
+      blockID_ = other.blockID_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -593,14 +593,15 @@ namespace Sufs {
       }
     }
 
-    /// <summary>Field number for the "blockList" field.</summary>
-    public const int BlockListFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::Sufs.BlockID_Size> _repeated_blockList_codec
-        = pb::FieldCodec.ForMessage(18, global::Sufs.BlockID_Size.Parser);
-    private readonly pbc::RepeatedField<global::Sufs.BlockID_Size> blockList_ = new pbc::RepeatedField<global::Sufs.BlockID_Size>();
+    /// <summary>Field number for the "blockID" field.</summary>
+    public const int BlockIDFieldNumber = 3;
+    private int blockID_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Sufs.BlockID_Size> BlockList {
-      get { return blockList_; }
+    public int BlockID {
+      get { return blockID_; }
+      set {
+        blockID_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -617,7 +618,7 @@ namespace Sufs {
         return true;
       }
       if (DNid != other.DNid) return false;
-      if(!blockList_.Equals(other.blockList_)) return false;
+      if (BlockID != other.BlockID) return false;
       return true;
     }
 
@@ -625,7 +626,7 @@ namespace Sufs {
     public override int GetHashCode() {
       int hash = 1;
       if (DNid.Length != 0) hash ^= DNid.GetHashCode();
-      hash ^= blockList_.GetHashCode();
+      if (BlockID != 0) hash ^= BlockID.GetHashCode();
       return hash;
     }
 
@@ -640,7 +641,10 @@ namespace Sufs {
         output.WriteRawTag(10);
         output.WriteString(DNid);
       }
-      blockList_.WriteTo(output, _repeated_blockList_codec);
+      if (BlockID != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(BlockID);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -649,7 +653,9 @@ namespace Sufs {
       if (DNid.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(DNid);
       }
-      size += blockList_.CalculateSize(_repeated_blockList_codec);
+      if (BlockID != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BlockID);
+      }
       return size;
     }
 
@@ -661,7 +667,9 @@ namespace Sufs {
       if (other.DNid.Length != 0) {
         DNid = other.DNid;
       }
-      blockList_.Add(other.blockList_);
+      if (other.BlockID != 0) {
+        BlockID = other.BlockID;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -676,8 +684,8 @@ namespace Sufs {
             DNid = input.ReadString();
             break;
           }
-          case 18: {
-            blockList_.AddEntriesFrom(input, _repeated_blockList_codec);
+          case 24: {
+            BlockID = input.ReadInt32();
             break;
           }
         }

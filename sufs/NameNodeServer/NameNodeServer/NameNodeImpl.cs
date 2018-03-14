@@ -73,8 +73,10 @@ namespace NameNodeServer
         public override Task<PathResponse> AddDirectory(PathRequest request, ServerCallContext context)
         {
             Console.WriteLine("inside AddDirectory");
+
             //returning an acknowledgement: f=path already exists; t=path created
             //return Task.FromResult(new PathResponse { ReqAck = mkdir(request.DirPath) });
+
             Console.WriteLine("Creating PathResponse");
             PathResponse pr = new PathResponse { ReqAck = mkdir(request.DirPath) };
             Console.WriteLine("Creating Task");
