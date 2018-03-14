@@ -24,10 +24,13 @@ namespace NameNodeServer
         Dictionary<string, NS_Dir_Info> NN_namespace_dir;
         Dictionary<String, List<int>> FileBlocks; // For client use cases
         Dictionary<int, List<string>> BlockMap;   // For DN use cases
+        private List<string> DataNode_IDs;
         private List<KeyValuePair<int, string>> missedRepList;
         private List<HealthRecords> recordList; // = new List<HealthRecords>();
         private Timer repCheckTimer;
         public const int repFactor = 3;
+        private int DN_ID_current;
+        private int create_block_id;
 
         public NameNodeImpl()
         {
@@ -43,6 +46,12 @@ namespace NameNodeServer
             this.BlockMap = 
                 new Dictionary<int, List<string>>();
 
+            this.DataNode_IDs = new List<string>();
+
+            this.DN_ID_current = 0;
+
+            this.create_block_id = 1;
+
             this.recordList = 
                 new List<HealthRecords>();
 
@@ -54,12 +63,43 @@ namespace NameNodeServer
             this.repCheckTimer.Elapsed += repCheck;
         }
 
-        //rpc CreateFile (CreateRequest) returns (stream CreateResponse){}
-        public override Task CreateFile(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
+        /// <summary>
+        /// client requests a file created at given directory
+        /// plus requests block ids for file 
+        /// and which DataNode's to write block
+        /// </summary>
+        /// <param name="request">
+        /// contains: path, filename, number of blocks
+        /// </param>
+        /// <param name="responseStream">
+        /// stream returns to client: 
+        /// block id with corresponding DataNode ids
+        /// </param>
+        /// <param name="context">given by grpc</param>
+        /// <returns>response stream block id with DNids</returns>
+        public override async Task CreateFile(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
         {
+            //make directory if doesn't exist
+            bool checkDir = mkdir(request.Dir);
 
-            //will return "Not Implemented"
-            return base.CreateFile(request, responseStream, context); //TODO update return
+            //check client path to make sure it is correct key
+            if(request.Dir[0].Equals('/'))
+            {
+                NN_namespace_dir[request.Dir].Add_FileNames(request.FileName);
+            }
+            else
+            {
+                string correctPath = "/" + request.Dir;
+                NN_namespace_dir[correctPath].Add_FileNames(request.FileName);
+            }
+
+            //populate CreateResponse with BlockID and list of DNids
+            CreateResponse cr = new CreateResponse();           
+            for(int i = 0; i < request.NumBlocks; i++)
+            {   
+                await responseStream.WriteAsync(Add_CreateResponse());
+            }
+            
         }
 
         /// <summary>
@@ -71,7 +111,7 @@ namespace NameNodeServer
         /// <param name="context">passed from grpc</param>
         /// <returns>F: dir already exists; T: created path</returns>
         public override Task<PathResponse> AddDirectory(PathRequest request, ServerCallContext context)
-        {
+        { //TODO: remove debug lines
             Console.WriteLine("inside AddDirectory");
 
             //returning an acknowledgement: f=path already exists; t=path created
@@ -123,16 +163,17 @@ namespace NameNodeServer
             string DNid = request.DNid;
             ReportResponse rr = new ReportResponse();
 
-            foreach (BlockID_Size r in request.BlockList)
-            {
-                foreach (KeyValuePair<int, List<string>> kv in BlockMap)
-                {
-                    if (kv.Key == r.BlockID && !kv.Value.Contains(DNid))
-                    {
-                        kv.Value.Add(DNid);
-                    }
-                }
-            }
+            //TODO: fix BlockList and this section due to updated .proto
+            //foreach (BlockID_Size r in request.BlockList)
+            //{
+            //    foreach (KeyValuePair<int, List<string>> kv in BlockMap)
+            //    {
+            //        if (kv.Key == r.BlockID && !kv.Value.Contains(DNid))
+            //        {
+            //            kv.Value.Add(DNid);
+            //        }
+            //    }
+            //}
             rr.Acknowledged = true;
             return Task.FromResult(rr);
         }
@@ -199,6 +240,11 @@ namespace NameNodeServer
         /// <returns>f: path arleady existed; t: made new</returns>
         public bool mkdir(string cliPath)
         {
+            if(cliPath[0] != '/')
+            {
+                string temp = "/" + cliPath;
+                cliPath = temp;
+            }
             if(fullDirPathExists(cliPath))
             {
                 //directory already exists
@@ -269,6 +315,40 @@ namespace NameNodeServer
             return this.NN_namespace_dir.ContainsKey(cliPath);
                 //this.NN_namespace_dir[cliPath] != null)
             
+        }
+
+        /// <summary>
+        /// populate CreateResponse with BlockID and list of DNids
+        /// used for client rpc CreateFile
+        /// </summary>
+        /// <returns>blockID and list of DNids</returns>
+        private CreateResponse Add_CreateResponse()
+        {
+            //populate CreateResponse with BlockID and list of DNids
+            CreateResponse cr = new CreateResponse();
+            //for (int i = 0; i < cnb; i++)
+            //{
+                for (int j = 0; j < repFactor; j++)
+                {
+                    if (DN_ID_current == DataNode_IDs.Count)
+                    {
+                        DN_ID_current = 0;
+                    }
+                    cr.DNid.Add(DataNode_IDs[DN_ID_current++]);
+                }
+
+                cr.BlockID = create_block_id++;
+            //}
+            return cr;
+        }
+
+        /// <summary>
+        /// adds DNids to namespace list
+        /// </summary>
+        /// <param name="dn">DataNode id</param>
+        public void Add_DNids(string dn)
+        {
+            this.DataNode_IDs.Add(dn);
         }
 
         class HealthRecords

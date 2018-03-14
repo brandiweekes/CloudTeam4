@@ -52,6 +52,17 @@ namespace NameNodeServer
                 Console.WriteLine("directory already exists");
             }
 
+            
+            nn_test.Add_DNids("dn1");
+            nn_test.Add_DNids("dn2");
+            nn_test.Add_DNids("dn3");
+            nn_test.Add_DNids("dn4");
+            
+            ///*test for function
+            // * need to rebuild function to test as below
+            // */
+            //nn_test.Add_CreateResponse("/foo/bar/", "baz.txt", 2);
+
 
             Server server = new Server
             {
