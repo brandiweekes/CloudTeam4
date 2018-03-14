@@ -149,18 +149,15 @@ namespace NameNodeServer
         {
             string DNid = request.DNid;
             ReportResponse rr = new ReportResponse();
-
-            foreach (BlockID_Size r in request.BlockList)
+            
+            foreach (KeyValuePair<int, List<string>> kv in BlockMap)
             {
-                foreach (KeyValuePair<int, List<string>> kv in BlockMap)
+                if (kv.Key == request.BlockID && !kv.Value.Contains(DNid))
                 {
-                    if (kv.Key == r.BlockID && !kv.Value.Contains(DNid))
-                    {
-                        kv.Value.Add(DNid);
-                    }
+                    kv.Value.Add(DNid);
+                    rr.Acknowledged = true;
                 }
             }
-            rr.Acknowledged = true;
             return Task.FromResult(rr);
         }
 
