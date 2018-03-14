@@ -80,9 +80,15 @@ namespace NameNodeServer
         {
             ListPathResponse LPR = new ListPathResponse();
 
-            foreach (string dir in NN_namespace_dir.Keys)
+            foreach (KeyValuePair<string, NS_Dir_Info> dict in NN_namespace_dir)
             {
-                LPR.DirPathContents.Add(dir);
+                if (dict.Key == request.DirPath)
+                {
+                    foreach (string subDir in dict.Value.subdirectories)
+                    {
+                        LPR.DirPathContents.Add(subDir);
+                    }
+                }
             }
 
             return Task.FromResult(LPR);
