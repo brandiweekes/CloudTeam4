@@ -126,6 +126,7 @@ namespace NameNodeServer
                         if (dict.Value.subdirectories[i].Contains(target))
                         {
                             dict.Value.subdirectories.RemoveAt(i);
+                            dict.Value.fileNames.RemoveAt(i);
                         }
                     }
                     pr.ReqAck = true;
