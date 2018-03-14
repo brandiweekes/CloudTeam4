@@ -20,7 +20,7 @@ namespace NameNodeServer
 {
     class Program
     {
-        const int Port = 50051;
+        const int Port = 5000;
 
         public static void Main()
         {
@@ -56,7 +56,7 @@ namespace NameNodeServer
             Server server = new Server
             {
                 Services = { NameNode.BindService(new NameNodeImpl()) },
-                Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
+                Ports = { new ServerPort("0.0.0.0", Port, ServerCredentials.Insecure) }
             };
             server.Start();
 

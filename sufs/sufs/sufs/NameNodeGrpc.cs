@@ -24,6 +24,7 @@ namespace Sufs {
     static readonly grpc::Marshaller<global::Sufs.PathRequest> __Marshaller_PathRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.PathRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Sufs.ListPathResponse> __Marshaller_ListPathResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ListPathResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Sufs.PathResponse> __Marshaller_PathResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.PathResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Sufs.ReadRequest> __Marshaller_ReadRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReadRequest.Parser.ParseFrom);
 
     static readonly grpc::Method<global::Sufs.CreateRequest, global::Sufs.CreateResponse> __Method_CreateFile = new grpc::Method<global::Sufs.CreateRequest, global::Sufs.CreateResponse>(
         grpc::MethodType.ServerStreaming,
@@ -67,6 +68,20 @@ namespace Sufs {
         __Marshaller_PathRequest,
         __Marshaller_PathResponse);
 
+    static readonly grpc::Method<global::Sufs.PathRequest, global::Sufs.PathResponse> __Method_DeleteFile = new grpc::Method<global::Sufs.PathRequest, global::Sufs.PathResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteFile",
+        __Marshaller_PathRequest,
+        __Marshaller_PathResponse);
+
+    static readonly grpc::Method<global::Sufs.PathRequest, global::Sufs.ReadRequest> __Method_ReadFile = new grpc::Method<global::Sufs.PathRequest, global::Sufs.ReadRequest>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ReadFile",
+        __Marshaller_PathRequest,
+        __Marshaller_ReadRequest);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -102,6 +117,16 @@ namespace Sufs {
       }
 
       public virtual global::System.Threading.Tasks.Task<global::Sufs.PathResponse> DeleteDirectory(global::Sufs.PathRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Sufs.PathResponse> DeleteFile(global::Sufs.PathRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Sufs.ReadRequest> ReadFile(global::Sufs.PathRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -219,6 +244,38 @@ namespace Sufs {
       {
         return CallInvoker.AsyncUnaryCall(__Method_DeleteDirectory, null, options, request);
       }
+      public virtual global::Sufs.PathResponse DeleteFile(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DeleteFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Sufs.PathResponse DeleteFile(global::Sufs.PathRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DeleteFile, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Sufs.PathResponse> DeleteFileAsync(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return DeleteFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Sufs.PathResponse> DeleteFileAsync(global::Sufs.PathRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DeleteFile, null, options, request);
+      }
+      public virtual global::Sufs.ReadRequest ReadFile(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return ReadFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Sufs.ReadRequest ReadFile(global::Sufs.PathRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ReadFile, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Sufs.ReadRequest> ReadFileAsync(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return ReadFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Sufs.ReadRequest> ReadFileAsync(global::Sufs.PathRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ReadFile, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override NameNodeClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -236,7 +293,9 @@ namespace Sufs {
           .AddMethod(__Method_BlockReport, serviceImpl.BlockReport)
           .AddMethod(__Method_ListDirectory, serviceImpl.ListDirectory)
           .AddMethod(__Method_AddDirectory, serviceImpl.AddDirectory)
-          .AddMethod(__Method_DeleteDirectory, serviceImpl.DeleteDirectory).Build();
+          .AddMethod(__Method_DeleteDirectory, serviceImpl.DeleteDirectory)
+          .AddMethod(__Method_DeleteFile, serviceImpl.DeleteFile)
+          .AddMethod(__Method_ReadFile, serviceImpl.ReadFile).Build();
     }
 
   }
