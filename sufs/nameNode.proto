@@ -34,8 +34,11 @@ message BlockID_Size {
 }
 
 message ReportRequest {
-  string DNid = 1;
-  repeated BlockID_Size blockList = 2;
+  reserved 2;
+  reserved "blockList";
+
+	string DNid = 1;
+	int32 blockID = 3;
 }
 
 message ReportResponse{
