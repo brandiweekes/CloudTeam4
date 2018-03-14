@@ -33,15 +33,19 @@ namespace Sufs {
             "ASABKAkiIgoKSEJyZXNwb25zZRIUCgxhY2tub3dsZWRnZWQYASABKAgiHwoL",
             "UGF0aFJlcXVlc3QSEAoIZGlyX3BhdGgYASABKAkiLAoQTGlzdFBhdGhSZXNw",
             "b25zZRIYChBkaXJfcGF0aENvbnRlbnRzGAEgAygJIh8KDFBhdGhSZXNwb25z",
-            "ZRIPCgdyZXFfYWNrGAEgASgIMugCCghOYW1lTm9kZRI7CgpDcmVhdGVGaWxl",
-            "EhMuc3Vmcy5DcmVhdGVSZXF1ZXN0GhQuc3Vmcy5DcmVhdGVSZXNwb25zZSIA",
-            "MAESMAoJSGVhcnRiZWF0Eg8uc3Vmcy5IQnJlcXVlc3QaEC5zdWZzLkhCcmVz",
-            "cG9uc2UiABI6CgtCbG9ja1JlcG9ydBITLnN1ZnMuUmVwb3J0UmVxdWVzdBoU",
-            "LnN1ZnMuUmVwb3J0UmVzcG9uc2UiABI8Cg1MaXN0RGlyZWN0b3J5EhEuc3Vm",
-            "cy5QYXRoUmVxdWVzdBoWLnN1ZnMuTGlzdFBhdGhSZXNwb25zZSIAEjcKDEFk",
-            "ZERpcmVjdG9yeRIRLnN1ZnMuUGF0aFJlcXVlc3QaEi5zdWZzLlBhdGhSZXNw",
-            "b25zZSIAEjoKD0RlbGV0ZURpcmVjdG9yeRIRLnN1ZnMuUGF0aFJlcXVlc3Qa",
-            "Ei5zdWZzLlBhdGhSZXNwb25zZSIAYgZwcm90bzM="));
+            "ZRIPCgdyZXFfYWNrGAEgASgIIjkKC1JlYWRSZXF1ZXN0EioKDWJJRHNfb25f",
+            "RE5pZHMYASADKAsyEy5zdWZzLlJlcG9ydFJlcXVlc3Qy0wMKCE5hbWVOb2Rl",
+            "EjsKCkNyZWF0ZUZpbGUSEy5zdWZzLkNyZWF0ZVJlcXVlc3QaFC5zdWZzLkNy",
+            "ZWF0ZVJlc3BvbnNlIgAwARIwCglIZWFydGJlYXQSDy5zdWZzLkhCcmVxdWVz",
+            "dBoQLnN1ZnMuSEJyZXNwb25zZSIAEjoKC0Jsb2NrUmVwb3J0EhMuc3Vmcy5S",
+            "ZXBvcnRSZXF1ZXN0GhQuc3Vmcy5SZXBvcnRSZXNwb25zZSIAEjwKDUxpc3RE",
+            "aXJlY3RvcnkSES5zdWZzLlBhdGhSZXF1ZXN0GhYuc3Vmcy5MaXN0UGF0aFJl",
+            "c3BvbnNlIgASNwoMQWRkRGlyZWN0b3J5EhEuc3Vmcy5QYXRoUmVxdWVzdBoS",
+            "LnN1ZnMuUGF0aFJlc3BvbnNlIgASOgoPRGVsZXRlRGlyZWN0b3J5EhEuc3Vm",
+            "cy5QYXRoUmVxdWVzdBoSLnN1ZnMuUGF0aFJlc3BvbnNlIgASNQoKRGVsZXRl",
+            "RmlsZRIRLnN1ZnMuUGF0aFJlcXVlc3QaEi5zdWZzLlBhdGhSZXNwb25zZSIA",
+            "EjIKCFJlYWRGaWxlEhEuc3Vmcy5QYXRoUmVxdWVzdBoRLnN1ZnMuUmVhZFJl",
+            "cXVlc3QiAGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -54,7 +58,8 @@ namespace Sufs {
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.HBresponse), global::Sufs.HBresponse.Parser, new[]{ "Acknowledged" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.PathRequest), global::Sufs.PathRequest.Parser, new[]{ "DirPath" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ListPathResponse), global::Sufs.ListPathResponse.Parser, new[]{ "DirPathContents" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.PathResponse), global::Sufs.PathResponse.Parser, new[]{ "ReqAck" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.PathResponse), global::Sufs.PathResponse.Parser, new[]{ "ReqAck" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReadRequest), global::Sufs.ReadRequest.Parser, new[]{ "BIDsOnDNids" }, null, null, null)
           }));
     }
     #endregion
@@ -1367,6 +1372,115 @@ namespace Sufs {
             break;
           case 8: {
             ReqAck = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ReadRequest : pb::IMessage<ReadRequest> {
+    private static readonly pb::MessageParser<ReadRequest> _parser = new pb::MessageParser<ReadRequest>(() => new ReadRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ReadRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Sufs.NameNodeReflection.Descriptor.MessageTypes[10]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ReadRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ReadRequest(ReadRequest other) : this() {
+      bIDsOnDNids_ = other.bIDsOnDNids_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ReadRequest Clone() {
+      return new ReadRequest(this);
+    }
+
+    /// <summary>Field number for the "bIDs_on_DNids" field.</summary>
+    public const int BIDsOnDNidsFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Sufs.ReportRequest> _repeated_bIDsOnDNids_codec
+        = pb::FieldCodec.ForMessage(10, global::Sufs.ReportRequest.Parser);
+    private readonly pbc::RepeatedField<global::Sufs.ReportRequest> bIDsOnDNids_ = new pbc::RepeatedField<global::Sufs.ReportRequest>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Sufs.ReportRequest> BIDsOnDNids {
+      get { return bIDsOnDNids_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ReadRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ReadRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!bIDsOnDNids_.Equals(other.bIDsOnDNids_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= bIDsOnDNids_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      bIDsOnDNids_.WriteTo(output, _repeated_bIDsOnDNids_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += bIDsOnDNids_.CalculateSize(_repeated_bIDsOnDNids_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ReadRequest other) {
+      if (other == null) {
+        return;
+      }
+      bIDsOnDNids_.Add(other.bIDsOnDNids_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            bIDsOnDNids_.AddEntriesFrom(input, _repeated_bIDsOnDNids_codec);
             break;
           }
         }
