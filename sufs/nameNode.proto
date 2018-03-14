@@ -9,6 +9,8 @@ service NameNode {
 	rpc ListDirectory(PathRequest) returns (ListPathResponse){}
 	rpc AddDirectory(PathRequest) returns (PathResponse){}
 	rpc DeleteDirectory(PathRequest) returns (PathResponse){}
+	rpc DeleteFile (PathRequest) returns (PathResponse){}
+	rpc ReadFile (PathRequest) returns (ReadRequest){}
 }
 
 message CreateRequest {
@@ -58,4 +60,8 @@ message ListPathResponse{
 
 message PathResponse{
 	bool req_ack = 1;
+}
+
+message ReadRequest{
+	repeated ReportRequest bIDs_on_DNids = 1;
 }

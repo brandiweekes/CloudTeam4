@@ -72,8 +72,15 @@ namespace NameNodeServer
         /// <returns>F: dir already exists; T: created path</returns>
         public override Task<PathResponse> AddDirectory(PathRequest request, ServerCallContext context)
         {
+            Console.WriteLine("inside AddDirectory");
             //returning an acknowledgement: f=path already exists; t=path created
-            return Task.FromResult(new PathResponse { ReqAck = mkdir(request.DirPath) });
+            //return Task.FromResult(new PathResponse { ReqAck = mkdir(request.DirPath) });
+            Console.WriteLine("Creating PathResponse");
+            PathResponse pr = new PathResponse { ReqAck = mkdir(request.DirPath) };
+            Console.WriteLine("Creating Task");
+            Task<PathResponse> tPR = Task.FromResult(pr);
+            Console.WriteLine("doing Return");
+            return tPR;
         }
 
         public override Task<ListPathResponse> ListDirectory(PathRequest request, ServerCallContext context)
