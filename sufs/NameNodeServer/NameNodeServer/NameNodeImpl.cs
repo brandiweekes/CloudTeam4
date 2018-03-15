@@ -85,6 +85,7 @@ namespace NameNodeServer
         /// <returns>response stream block id with DNids</returns>
         public override async Task CreateFile(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
         {
+            Console.WriteLine("client call CreateFile");
             CreateResponse cr = new CreateResponse();
 
             //update NN_namespace_dir (directory maps to list of filenames)
@@ -261,6 +262,7 @@ namespace NameNodeServer
 
         public override Task<ReportResponse> BlockReport(ReportRequest request, ServerCallContext context)
         {
+            Console.WriteLine("BlockReport received from {0}", request.DNid);
             string DNid = request.DNid;
             ReportResponse rr = new ReportResponse();
             
@@ -311,6 +313,7 @@ namespace NameNodeServer
             {
                 foreach(HealthRecords hr in recordList)
                 {
+                    Console.WriteLine("updating HealthRecord for {0}", request.DNid);
                     if (hr.DNid == request.DNid && hr.IsAlive == true)
                     {
                         curHR = hr;
