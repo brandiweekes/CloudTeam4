@@ -52,7 +52,7 @@ namespace NameNodeServer
                 Console.WriteLine("directory already exists");
             }
 
-            nn_test.Add_File("/foo/bar/", "baz.txt");
+            nn_test.Add_File_To_Namespace_Dir("/foo/bar/", "baz.txt");
             Console.WriteLine("added file baz.txt to /foo/bar/");
 
             if(nn_test.File_Deleted("/foo/bar/baz.txt"))
