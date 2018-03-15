@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -89,9 +90,19 @@ namespace NameNodeServer
         {
             ListPathResponse LPR = new ListPathResponse();
 
-            foreach (string dir in NN_namespace_dir.Keys)
+            foreach (KeyValuePair<string, NS_Dir_Info> dict in NN_namespace_dir)
             {
-                LPR.DirPathContents.Add(dir);
+                if (dict.Key == request.DirPath)
+                {
+                    foreach (string subDir in dict.Value.subdirectories)
+                    {
+                        LPR.DirPathContents.Add(subDir);
+                    }
+                    foreach (string fileName in dict.Value.fileNames)
+                    {
+                        LPR.DirPathContents.Add(fileName);
+                    }
+                }
             }
 
             return Task.FromResult(LPR);
@@ -102,6 +113,11 @@ namespace NameNodeServer
             PathResponse pr = new PathResponse();
             string target = request.DirPath;
 
+            //Find all subdir that contains clientPath
+            foreach (KeyValuePair<string, NS_Dir_Info> dict in NN_namespace_dir)
+            {
+                NN_namespace_dir.Remove(dict.Key);
+            }
             pr.ReqAck = true;
             return Task.FromResult(pr);
         }
@@ -122,18 +138,19 @@ namespace NameNodeServer
         {
             string DNid = request.DNid;
             ReportResponse rr = new ReportResponse();
-
-            foreach (BlockID_Size r in request.BlockList)
+            
+            foreach (KeyValuePair<int, List<string>> kv in BlockMap)
             {
-                foreach (KeyValuePair<int, List<string>> kv in BlockMap)
+                if (kv.Key == request.BlockID && !kv.Value.Contains(DNid))
                 {
-                    if (kv.Key == r.BlockID && !kv.Value.Contains(DNid))
-                    {
-                        kv.Value.Add(DNid);
-                    }
+                    kv.Value.Add(DNid);
+                    rr.Acknowledged = true;
+                }else if (!this.BlockMap.ContainsKey(request.BlockID))
+                {
+                    this.BlockMap.Add(request.BlockID, new List<string>());
+                    this.BlockMap[request.BlockID].Add(DNid);
                 }
             }
-            rr.Acknowledged = true;
             return Task.FromResult(rr);
         }
 
