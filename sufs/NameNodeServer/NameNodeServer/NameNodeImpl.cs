@@ -118,11 +118,17 @@ namespace NameNodeServer
                 foreach(var DNid in BlockMap[bID])
                 {
                     //make client
-                    var client = createChannel(DNid, DN_PORT);
+                    //var client = createChannel(DNid, DN_PORT);
+                    Channel channel = new Channel(DNid, DN_PORT, ChannelCredentials.Insecure);
+                    var client = new DataNode.DataNodeClient(channel);
 
                     //rpc call
                     var DeleteResponse = client.DeleteFile(new DeleteRequest { BlockID = bID });
+                    channel.ShutdownAsync().Wait();
                 }
+
+                
+
             }
 
             //update BlockMap to remove the entries of given BlockIDs
@@ -258,7 +264,7 @@ namespace NameNodeServer
             //     2.1 start timer (Done)
             // 3. check timer (Done)
             //     3.1 If over timer, Dead (Done)
-
+            Console.WriteLine("heartbeat from {0}", request.DNid);
             HBresponse hbr = new HBresponse();
             hbr.Acknowledged = true;
 
