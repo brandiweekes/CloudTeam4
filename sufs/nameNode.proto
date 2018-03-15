@@ -70,8 +70,10 @@ message ReadResponse{
 }
 
 message blockRead{
+	reserved 2;
+	reserved "DNList";
 	int32 BlockID = 1;
-	repeated DNidList DNList = 2;
+	repeated string DNread = 3;
 }
 
 message DNidList{
