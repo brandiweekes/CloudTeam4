@@ -17,7 +17,7 @@ namespace NameNodeServer
 
     class NameNodeImpl : NameNode.NameNodeBase
     {
-
+        public const int repFactor = 3;
         //NS_File_Info file_info;
         //NS_Dir_Info dir_info;
         Dictionary<string, NS_File_Info> NN_namespace_file;
@@ -28,7 +28,6 @@ namespace NameNodeServer
         private List<KeyValuePair<int, string>> missedRepList;
         private List<HealthRecords> recordList; // = new List<HealthRecords>();
         private Timer repCheckTimer;
-        public const int repFactor = 3;
         private int DN_ID_current;
         private int create_block_id;
 
@@ -79,19 +78,7 @@ namespace NameNodeServer
         /// <returns>response stream block id with DNids</returns>
         public override async Task CreateFile(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
         {
-            //make directory if doesn't exist
-            bool checkDir = mkdir(request.Dir);
-
-            //check client path to make sure it is correct key
-            if(request.Dir[0].Equals('/'))
-            {
-                NN_namespace_dir[request.Dir].Add_FileNames(request.FileName);
-            }
-            else
-            {
-                string correctPath = "/" + request.Dir;
-                NN_namespace_dir[correctPath].Add_FileNames(request.FileName);
-            }
+            Add_File(request.Dir, request.FileName);
 
             //populate CreateResponse with BlockID and list of DNids
             CreateResponse cr = new CreateResponse();           
@@ -102,10 +89,18 @@ namespace NameNodeServer
             
         }
 
+        /// <summary>
+        /// client requests a file deleted at given directory
+        /// </summary>
+        /// <param name="request">
+        /// contains: 
+        /// DirPath, path and filename ("/foo/bar/baz.txt")</param>
+        /// <param name="context">given from grpc</param>
+        /// <returns>
+        /// t: success; f: !success || file doesn't exist</returns>
         public override Task<PathResponse> DeleteFile(PathRequest request, ServerCallContext context)
         {
-            //returns "Not Implemented"
-            return base.DeleteFile(request, context);
+            return Task.FromResult(new PathResponse { ReqAck = File_Deleted(request.DirPath) });           
         }
 
         public override Task<ReadRequest> ReadFile(PathRequest request, ServerCallContext context)
@@ -361,6 +356,77 @@ namespace NameNodeServer
         public void Add_DNids(string dn)
         {
             this.DataNode_IDs.Add(dn);
+        }
+
+        /// <summary>
+        /// adds file to Namenode Directory 
+        /// </summary>
+        /// <param name="cd">
+        /// client requested path, where to create file</param>
+        /// <param name="cf">
+        /// client requested file to create</param>
+        public void Add_File(string cd, string cf)
+        {
+            //make directory if doesn't exist
+            bool checkDir = mkdir(cd);
+
+            //check client path to make sure it is correct key
+            if (cd[0].Equals('/'))
+            {
+                NN_namespace_dir[cd].Add_FileNames(cf);
+            }
+            else
+            {
+                string correctPath = "/" + cd;
+                NN_namespace_dir[correctPath].Add_FileNames(cf);
+            }
+        }
+
+        /// <summary>
+        /// removes file from NameNode Directory
+        /// </summary>
+        /// <param name="cp">
+        /// client requested path, where to delete file from</param>
+        /// <returns></returns>
+        public bool File_Deleted(string cp)
+        {
+            string keyPath = "/";
+            string fileNameToDelete;
+
+            //TODO: remove this section if newDirs works!
+            //if(cp[0] != '/')
+            //{
+            //    keyPath = "/" + cp;
+            //}
+            //else
+            //{
+            //    keyPath = cp;
+            //}
+
+            //if (keyPath.Last() == '/')
+            //{
+            //    keyPath.TrimEnd('/');
+            //}
+
+            string[] forwardSlash = new String[] { "/" };
+            string[] newDirs = cp.Split(forwardSlash, StringSplitOptions.RemoveEmptyEntries);
+
+            //build string for directory path (key) 
+            for(int i = 0; i < newDirs.Length - 1; i++)
+            {
+                keyPath += newDirs[i] + "/";
+            }
+
+            fileNameToDelete = newDirs[newDirs.Length - 1];
+
+            return(NN_namespace_dir[keyPath].fileNames.Remove(fileNameToDelete));
+        }
+
+        public NameNode.NameNodeClient createChannel(string id, int port)
+        {
+            Channel channel = new Channel(id, port, ChannelCredentials.Insecure);
+            var client = new NameNode.NameNodeClient(channel);
+            return client;
         }
 
         class HealthRecords

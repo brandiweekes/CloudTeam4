@@ -52,7 +52,28 @@ namespace NameNodeServer
                 Console.WriteLine("directory already exists");
             }
 
-            
+            nn_test.Add_File("/foo/bar/", "baz.txt");
+            Console.WriteLine("added file baz.txt to /foo/bar/");
+
+            if(nn_test.File_Deleted("/foo/bar/baz.txt"))
+            {
+                Console.WriteLine("success deleting file");
+            }
+            else
+            {
+                Console.WriteLine("file not deleted or file does not exist");
+            }
+            Console.WriteLine("\n attempting to delete file from above:");
+            if (nn_test.File_Deleted("/foo/bar/baz.txt"))
+            {
+                Console.WriteLine("success deleting file");
+            }
+            else
+            {
+                Console.WriteLine("file not deleted or file does not exist");
+            }
+
+
             nn_test.Add_DNids("dn1");
             nn_test.Add_DNids("dn2");
             nn_test.Add_DNids("dn3");

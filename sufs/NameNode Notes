@@ -1,2 +1,8 @@
-compiling proto command:
+Namenode compiling proto command:
 packages\Grpc.Tools.1.9.x\tools\windows_x86\protoc.exe -I. --csharp_out NameNode --grpc_out NameNode nameNode.proto --plugin=protoc-gen-grpc=packages\Grpc.Tools.1.9.x\tools\windows_x86\grpc_csharp_plugin.exe
+
+DataNode compiling proto command:
+packages\Grpc.Tools.1.9.x\tools\windows_x86\protoc.exe -I. --csharp_out NameNode --grpc_out NameNode DataNode.proto --plugin=protoc-gen-grpc=packages\Grpc.Tools.1.9.x\tools\windows_x86\grpc_csharp_plugin.exe
+
+
+response can be repeated, request cannot
