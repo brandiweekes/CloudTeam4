@@ -98,6 +98,10 @@ namespace NameNodeServer
                     {
                         LPR.DirPathContents.Add(subDir);
                     }
+                    foreach (string fileName in dict.Value.fileNames)
+                    {
+                        LPR.DirPathContents.Add(fileName);
+                    }
                 }
             }
 
@@ -108,30 +112,13 @@ namespace NameNodeServer
         {
             PathResponse pr = new PathResponse();
             string target = request.DirPath;
-            //1)
-            //Split target up, get last dir
-            //*check if this works
 
-            //Check if there are any subDir under target
-            //  if yes, recursive delete
-            //  else delete target
-
-            //2) Find all subdir that contains clientPath
+            //Find all subdir that contains clientPath
             foreach (KeyValuePair<string, NS_Dir_Info> dict in NN_namespace_dir)
             {
-                if (dict.Key.Contains(target))
-                {
-                    for (int i = 0; i < dict.Value.subdirectories.Count; i++)
-                    {
-                        if (dict.Value.subdirectories[i].Contains(target))
-                        {
-                            dict.Value.subdirectories.RemoveAt(i);
-                            dict.Value.fileNames.RemoveAt(i);
-                        }
-                    }
-                    pr.ReqAck = true;
-                }
+                NN_namespace_dir.Remove(dict.Key);
             }
+            pr.ReqAck = true;
             return Task.FromResult(pr);
         }
 
