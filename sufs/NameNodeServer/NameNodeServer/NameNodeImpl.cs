@@ -18,17 +18,19 @@ namespace NameNodeServer
 
     class NameNodeImpl : NameNode.NameNodeBase
     {
-
+        public const int repFactor = 3;
         //NS_File_Info file_info;
         //NS_Dir_Info dir_info;
         Dictionary<string, NS_File_Info> NN_namespace_file;
         Dictionary<string, NS_Dir_Info> NN_namespace_dir;
         Dictionary<String, List<int>> FileBlocks; // For client use cases
         Dictionary<int, List<string>> BlockMap;   // For DN use cases
+        private List<string> DataNode_IDs;
         private List<KeyValuePair<int, string>> missedRepList;
         private List<HealthRecords> recordList; // = new List<HealthRecords>();
         private Timer repCheckTimer;
-        public const int repFactor = 3;
+        private int DN_ID_current;
+        private int create_block_id;
 
         public NameNodeImpl()
         {
@@ -44,6 +46,12 @@ namespace NameNodeServer
             this.BlockMap = 
                 new Dictionary<int, List<string>>();
 
+            this.DataNode_IDs = new List<string>();
+
+            this.DN_ID_current = 0;
+
+            this.create_block_id = 1;
+
             this.recordList = 
                 new List<HealthRecords>();
 
@@ -55,12 +63,51 @@ namespace NameNodeServer
             this.repCheckTimer.Elapsed += repCheck;
         }
 
-        //rpc CreateFile (CreateRequest) returns (stream CreateResponse){}
-        public override Task CreateFile(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
+        /// <summary>
+        /// client requests a file created at given directory
+        /// plus requests block ids for file 
+        /// and which DataNode's to write block
+        /// </summary>
+        /// <param name="request">
+        /// contains: path, filename, number of blocks
+        /// </param>
+        /// <param name="responseStream">
+        /// stream returns to client: 
+        /// block id with corresponding DataNode ids
+        /// </param>
+        /// <param name="context">given by grpc</param>
+        /// <returns>response stream block id with DNids</returns>
+        public override async Task CreateFile(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
         {
+            Add_File(request.Dir, request.FileName);
 
-            //will return "Not Implemented"
-            return base.CreateFile(request, responseStream, context); //TODO update return
+            //populate CreateResponse with BlockID and list of DNids
+            CreateResponse cr = new CreateResponse();           
+            for(int i = 0; i < request.NumBlocks; i++)
+            {   
+                await responseStream.WriteAsync(Add_CreateResponse());
+            }
+            
+        }
+
+        /// <summary>
+        /// client requests a file deleted at given directory
+        /// </summary>
+        /// <param name="request">
+        /// contains: 
+        /// DirPath, path and filename ("/foo/bar/baz.txt")</param>
+        /// <param name="context">given from grpc</param>
+        /// <returns>
+        /// t: success; f: !success || file doesn't exist</returns>
+        public override Task<PathResponse> DeleteFile(PathRequest request, ServerCallContext context)
+        {
+            return Task.FromResult(new PathResponse { ReqAck = File_Deleted(request.DirPath) });           
+        }
+
+        public override Task<ReadRequest> ReadFile(PathRequest request, ServerCallContext context)
+        {
+            //returns "Not Implemented"
+            return base.ReadFile(request, context);
         }
 
         /// <summary>
@@ -72,7 +119,7 @@ namespace NameNodeServer
         /// <param name="context">passed from grpc</param>
         /// <returns>F: dir already exists; T: created path</returns>
         public override Task<PathResponse> AddDirectory(PathRequest request, ServerCallContext context)
-        {
+        { //TODO: remove debug lines
             Console.WriteLine("inside AddDirectory");
 
             //returning an acknowledgement: f=path already exists; t=path created
@@ -216,6 +263,11 @@ namespace NameNodeServer
         /// <returns>f: path arleady existed; t: made new</returns>
         public bool mkdir(string cliPath)
         {
+            if(cliPath[0] != '/')
+            {
+                string temp = "/" + cliPath;
+                cliPath = temp;
+            }
             if(fullDirPathExists(cliPath))
             {
                 //directory already exists
@@ -286,6 +338,111 @@ namespace NameNodeServer
             return this.NN_namespace_dir.ContainsKey(cliPath);
                 //this.NN_namespace_dir[cliPath] != null)
             
+        }
+
+        /// <summary>
+        /// populate CreateResponse with BlockID and list of DNids
+        /// used for client rpc CreateFile
+        /// </summary>
+        /// <returns>blockID and list of DNids</returns>
+        private CreateResponse Add_CreateResponse()
+        {
+            //populate CreateResponse with BlockID and list of DNids
+            CreateResponse cr = new CreateResponse();
+            //for (int i = 0; i < cnb; i++)
+            //{
+                for (int j = 0; j < repFactor; j++)
+                {
+                    if (DN_ID_current == DataNode_IDs.Count)
+                    {
+                        DN_ID_current = 0;
+                    }
+                    cr.DNid.Add(DataNode_IDs[DN_ID_current++]);
+                }
+
+                cr.BlockID = create_block_id++;
+            //}
+            return cr;
+        }
+
+        /// <summary>
+        /// adds DNids to namespace list
+        /// </summary>
+        /// <param name="dn">DataNode id</param>
+        public void Add_DNids(string dn)
+        {
+            this.DataNode_IDs.Add(dn);
+        }
+
+        /// <summary>
+        /// adds file to Namenode Directory 
+        /// </summary>
+        /// <param name="cd">
+        /// client requested path, where to create file</param>
+        /// <param name="cf">
+        /// client requested file to create</param>
+        public void Add_File(string cd, string cf)
+        {
+            //make directory if doesn't exist
+            bool checkDir = mkdir(cd);
+
+            //check client path to make sure it is correct key
+            if (cd[0].Equals('/'))
+            {
+                NN_namespace_dir[cd].Add_FileNames(cf);
+            }
+            else
+            {
+                string correctPath = "/" + cd;
+                NN_namespace_dir[correctPath].Add_FileNames(cf);
+            }
+        }
+
+        /// <summary>
+        /// removes file from NameNode Directory
+        /// </summary>
+        /// <param name="cp">
+        /// client requested path, where to delete file from</param>
+        /// <returns></returns>
+        public bool File_Deleted(string cp)
+        {
+            string keyPath = "/";
+            string fileNameToDelete;
+
+            //TODO: remove this section if newDirs works!
+            //if(cp[0] != '/')
+            //{
+            //    keyPath = "/" + cp;
+            //}
+            //else
+            //{
+            //    keyPath = cp;
+            //}
+
+            //if (keyPath.Last() == '/')
+            //{
+            //    keyPath.TrimEnd('/');
+            //}
+
+            string[] forwardSlash = new String[] { "/" };
+            string[] newDirs = cp.Split(forwardSlash, StringSplitOptions.RemoveEmptyEntries);
+
+            //build string for directory path (key) 
+            for(int i = 0; i < newDirs.Length - 1; i++)
+            {
+                keyPath += newDirs[i] + "/";
+            }
+
+            fileNameToDelete = newDirs[newDirs.Length - 1];
+
+            return(NN_namespace_dir[keyPath].fileNames.Remove(fileNameToDelete));
+        }
+
+        public NameNode.NameNodeClient createChannel(string id, int port)
+        {
+            Channel channel = new Channel(id, port, ChannelCredentials.Insecure);
+            var client = new NameNode.NameNodeClient(channel);
+            return client;
         }
 
         class HealthRecords

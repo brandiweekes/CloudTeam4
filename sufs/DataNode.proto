@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package sufs;
+
+service DataNode{
+	rpc WriteFile (stream WriteRequest) returns (WriteResponse) {}
+	rpc ReplicateBlock (stream WriteRequest) returns (WriteResponse) {}
+	rpc ReadFile (ReadBlockRequest) returns (stream ReadBlockResponse) {}
+	rpc DeleteFile (DeleteRequest) returns (DeleteResponse) {}
+	rpc HealthCheck (HealthRequest) returns (HealthResponse) {}
+}
+
+message BlockDetails {
+	int32 blockID = 1;
+	float blockSize = 2;
+}
+
+message WriteRequest {
+	BlockDetails block = 1;
+	repeated string dataNodeID = 2;
+	bytes data = 3;
+	int32 offset = 4;
+}
+
+message WriteResponse {
+	bool response = 1;
+}
+
+message ReadBlockRequest {
+	int32 blockID = 1;
+}
+
+message ReadBlockResponse {
+	bytes data = 1;
+	int32 offset = 2;
+}
+
+message DeleteRequest {
+	int32 blockID = 1;
+}
+
+message DeleteResponse {
+	bool response = 1;
+}
+
+message HealthRequest {
+	BlockDetails block = 1;
+	string dataNodeID = 2;
+	bool instruction = 3;
+}
+
+message HealthResponse {
+	bool response = 1;
+}
