@@ -122,10 +122,12 @@ namespace NameNodeServer
                 foreach(var DNid in BlockMap[bID])
                 {
                     //make client
-                    var client = createChannel(DNid, DN_PORT);
+                    Channel channel = new Channel(DNid, DN_PORT, ChannelCredentials.Insecure);
+                    var client = new DataNode.DataNodeClient(channel);
 
                     //rpc call
                     var DeleteResponse = client.DeleteFile(new DeleteRequest { BlockID = bID });
+                    channel.ShutdownAsync().Wait();
                 }
             }
 
@@ -243,12 +245,18 @@ namespace NameNodeServer
 
         private void repCheck(Object source, ElapsedEventArgs e)
         {
-            missedRepList.Clear();
             foreach (KeyValuePair<int, List<string>> kv in BlockMap)
             {
                 if (kv.Value.Count < 3)
                 {
-                    missedRepList.Add(new KeyValuePair<int, string>(kv.Key, kv.Value[0]));
+                    Channel channel = new Channel(kv.Value[0], DN_PORT, ChannelCredentials.Insecure);
+                    var client = new DataNode.DataNodeClient(channel);
+
+                    //rpc call
+                    BlockDetails bd = new BlockDetails();
+                    bd.BlockID = kv.Key;
+                    var HealthResponse = client.HealthCheck(new HealthRequest() { Block = bd, DataNodeID = availDNList[DN_ID_current++], Instruction = true});
+                    channel.ShutdownAsync().Wait();
                 }
             }
         }
