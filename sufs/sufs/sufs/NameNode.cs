@@ -34,20 +34,20 @@ namespace Sufs {
             "ZXF1ZXN0EhAKCGRpcl9wYXRoGAEgASgJIiwKEExpc3RQYXRoUmVzcG9uc2US",
             "GAoQZGlyX3BhdGhDb250ZW50cxgBIAMoCSIfCgxQYXRoUmVzcG9uc2USDwoH",
             "cmVxX2FjaxgBIAEoCCI0CgxSZWFkUmVzcG9uc2USJAoLYmxvY2tSZWNvcmQY",
-            "ASADKAsyDy5zdWZzLmJsb2NrUmVhZCI8CglibG9ja1JlYWQSDwoHQmxvY2tJ",
-            "RBgBIAEoBRIeCgZETkxpc3QYAiADKAsyDi5zdWZzLkROaWRMaXN0IhgKCERO",
-            "aWRMaXN0EgwKBEROaWQYASABKAky1AMKCE5hbWVOb2RlEjsKCkNyZWF0ZUZp",
-            "bGUSEy5zdWZzLkNyZWF0ZVJlcXVlc3QaFC5zdWZzLkNyZWF0ZVJlc3BvbnNl",
-            "IgAwARIwCglIZWFydGJlYXQSDy5zdWZzLkhCcmVxdWVzdBoQLnN1ZnMuSEJy",
-            "ZXNwb25zZSIAEjoKC0Jsb2NrUmVwb3J0EhMuc3Vmcy5SZXBvcnRSZXF1ZXN0",
-            "GhQuc3Vmcy5SZXBvcnRSZXNwb25zZSIAEjwKDUxpc3REaXJlY3RvcnkSES5z",
-            "dWZzLlBhdGhSZXF1ZXN0GhYuc3Vmcy5MaXN0UGF0aFJlc3BvbnNlIgASNwoM",
-            "QWRkRGlyZWN0b3J5EhEuc3Vmcy5QYXRoUmVxdWVzdBoSLnN1ZnMuUGF0aFJl",
-            "c3BvbnNlIgASOgoPRGVsZXRlRGlyZWN0b3J5EhEuc3Vmcy5QYXRoUmVxdWVz",
-            "dBoSLnN1ZnMuUGF0aFJlc3BvbnNlIgASNQoKRGVsZXRlRmlsZRIRLnN1ZnMu",
-            "UGF0aFJlcXVlc3QaEi5zdWZzLlBhdGhSZXNwb25zZSIAEjMKCFJlYWRGaWxl",
-            "EhEuc3Vmcy5QYXRoUmVxdWVzdBoSLnN1ZnMuUmVhZFJlc3BvbnNlIgBiBnBy",
-            "b3RvMw=="));
+            "ASADKAsyDy5zdWZzLmJsb2NrUmVhZCI6CglibG9ja1JlYWQSDwoHQmxvY2tJ",
+            "RBgBIAEoBRIOCgZETnJlYWQYAyADKAlKBAgCEANSBkROTGlzdCIYCghETmlk",
+            "TGlzdBIMCgRETmlkGAEgASgJMtQDCghOYW1lTm9kZRI7CgpDcmVhdGVGaWxl",
+            "EhMuc3Vmcy5DcmVhdGVSZXF1ZXN0GhQuc3Vmcy5DcmVhdGVSZXNwb25zZSIA",
+            "MAESMAoJSGVhcnRiZWF0Eg8uc3Vmcy5IQnJlcXVlc3QaEC5zdWZzLkhCcmVz",
+            "cG9uc2UiABI6CgtCbG9ja1JlcG9ydBITLnN1ZnMuUmVwb3J0UmVxdWVzdBoU",
+            "LnN1ZnMuUmVwb3J0UmVzcG9uc2UiABI8Cg1MaXN0RGlyZWN0b3J5EhEuc3Vm",
+            "cy5QYXRoUmVxdWVzdBoWLnN1ZnMuTGlzdFBhdGhSZXNwb25zZSIAEjcKDEFk",
+            "ZERpcmVjdG9yeRIRLnN1ZnMuUGF0aFJlcXVlc3QaEi5zdWZzLlBhdGhSZXNw",
+            "b25zZSIAEjoKD0RlbGV0ZURpcmVjdG9yeRIRLnN1ZnMuUGF0aFJlcXVlc3Qa",
+            "Ei5zdWZzLlBhdGhSZXNwb25zZSIAEjUKCkRlbGV0ZUZpbGUSES5zdWZzLlBh",
+            "dGhSZXF1ZXN0GhIuc3Vmcy5QYXRoUmVzcG9uc2UiABIzCghSZWFkRmlsZRIR",
+            "LnN1ZnMuUGF0aFJlcXVlc3QaEi5zdWZzLlJlYWRSZXNwb25zZSIAYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -62,7 +62,7 @@ namespace Sufs {
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ListPathResponse), global::Sufs.ListPathResponse.Parser, new[]{ "DirPathContents" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.PathResponse), global::Sufs.PathResponse.Parser, new[]{ "ReqAck" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReadResponse), global::Sufs.ReadResponse.Parser, new[]{ "BlockRecord" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.blockRead), global::Sufs.blockRead.Parser, new[]{ "BlockID", "DNList" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.blockRead), global::Sufs.blockRead.Parser, new[]{ "BlockID", "DNread" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.DNidList), global::Sufs.DNidList.Parser, new[]{ "DNid" }, null, null, null)
           }));
     }
@@ -1526,7 +1526,7 @@ namespace Sufs {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public blockRead(blockRead other) : this() {
       blockID_ = other.blockID_;
-      dNList_ = other.dNList_.Clone();
+      dNread_ = other.dNread_.Clone();
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1544,15 +1544,14 @@ namespace Sufs {
         blockID_ = value;
       }
     }
-
-    /// <summary>Field number for the "DNList" field.</summary>
-    public const int DNListFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::Sufs.DNidList> _repeated_dNList_codec
-        = pb::FieldCodec.ForMessage(18, global::Sufs.DNidList.Parser);
-    private readonly pbc::RepeatedField<global::Sufs.DNidList> dNList_ = new pbc::RepeatedField<global::Sufs.DNidList>();
+    /// <summary>Field number for the "DNread" field.</summary>
+    public const int DNreadFieldNumber = 3;
+    private static readonly pb::FieldCodec<string> _repeated_dNread_codec
+        = pb::FieldCodec.ForString(26);
+    private readonly pbc::RepeatedField<string> dNread_ = new pbc::RepeatedField<string>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Sufs.DNidList> DNList {
-      get { return dNList_; }
+    public pbc::RepeatedField<string> DNread {
+      get { return dNread_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1569,7 +1568,7 @@ namespace Sufs {
         return true;
       }
       if (BlockID != other.BlockID) return false;
-      if(!dNList_.Equals(other.dNList_)) return false;
+      if(!dNread_.Equals(other.dNread_)) return false;
       return true;
     }
 
@@ -1577,7 +1576,7 @@ namespace Sufs {
     public override int GetHashCode() {
       int hash = 1;
       if (BlockID != 0) hash ^= BlockID.GetHashCode();
-      hash ^= dNList_.GetHashCode();
+      hash ^= dNread_.GetHashCode();
       return hash;
     }
 
@@ -1592,7 +1591,7 @@ namespace Sufs {
         output.WriteRawTag(8);
         output.WriteInt32(BlockID);
       }
-      dNList_.WriteTo(output, _repeated_dNList_codec);
+      dNread_.WriteTo(output, _repeated_dNread_codec);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1601,7 +1600,7 @@ namespace Sufs {
       if (BlockID != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(BlockID);
       }
-      size += dNList_.CalculateSize(_repeated_dNList_codec);
+      size += dNread_.CalculateSize(_repeated_dNread_codec);
       return size;
     }
 
@@ -1613,7 +1612,7 @@ namespace Sufs {
       if (other.BlockID != 0) {
         BlockID = other.BlockID;
       }
-      dNList_.Add(other.dNList_);
+      dNread_.Add(other.dNread_);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1628,8 +1627,8 @@ namespace Sufs {
             BlockID = input.ReadInt32();
             break;
           }
-          case 18: {
-            dNList_.AddEntriesFrom(input, _repeated_dNList_codec);
+          case 26: {
+            dNread_.AddEntriesFrom(input, _repeated_dNread_codec);
             break;
           }
         }
