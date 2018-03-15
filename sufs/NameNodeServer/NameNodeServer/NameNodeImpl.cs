@@ -31,7 +31,7 @@ namespace NameNodeServer
         Dictionary<string, NS_Dir_Info> NN_namespace_dir;
         Dictionary<String, List<int>> FileBlocks; // For client use cases
         Dictionary<int, List<string>> BlockMap;   // For DN use cases
-        private List<string> DataNode_IDs;
+        private List<string> availDNList;
         private List<KeyValuePair<int, string>> missedRepList;
         private List<HealthRecords> recordList; // = new List<HealthRecords>();
         private Timer repCheckTimer;
@@ -52,7 +52,7 @@ namespace NameNodeServer
             this.BlockMap = 
                 new Dictionary<int, List<string>>();
 
-            this.DataNode_IDs = new List<string>();
+            this.availDNList = new List<string>();
 
             this.DN_ID_current = 0;
 
@@ -308,16 +308,20 @@ namespace NameNodeServer
                     if (hr.DNid == request.DNid && hr.IsAlive == true)
                     {
                         curHR = hr;
-                        curHR.AlertTimer.Interval = 5000;
+                        curHR.AlertTimer.Interval = 8000;
                     }else if (hr.IsAlive == false)
                     {
                         RemoveDeadDN(hr.DNid);
+                        availDNList.Remove(hr.DNid);
+                        //remove from Brandi's new DS
                     }
                 }
             }
             else
             {
                 recordList.Add(curHR);
+                availDNList.Add(curHR.DNid);
+                //Add to brandi's new DS
             }
 
             return await Task.FromResult(hbr);
@@ -424,11 +428,11 @@ namespace NameNodeServer
             
             for (int j = 0; j < REPLICATION_FACTOR; j++)
             {
-                if (DN_ID_current == DataNode_IDs.Count)
+                if (DN_ID_current == availDNList.Count)
                 {
                     DN_ID_current = 0;
                 }
-                cr.DNid.Add(DataNode_IDs[DN_ID_current++]);
+                cr.DNid.Add(availDNList[DN_ID_current++]);
             }
 
             cr.RepFactor = REPLICATION_FACTOR;
@@ -443,7 +447,7 @@ namespace NameNodeServer
         /// <param name="dn">DataNode id</param>
         public void Add_DNids(string dn)
         {
-            this.DataNode_IDs.Add(dn);
+            this.availDNList.Add(dn);
         }
 
         /// <summary>
@@ -490,23 +494,6 @@ namespace NameNodeServer
             string directory = "/";
             string fileName;
             string[] dir_fn = new string[2];
-
-
-            //TODO: remove this section if newDirs works!
-            //if(cp[0] != '/')
-            //{
-            //    keyPath = "/" + cp;
-            //}
-            //else
-            //{
-            //    keyPath = cp;
-            //}
-
-            //if (keyPath.Last() == '/')
-            //{
-            //    keyPath.TrimEnd('/');
-            //}
-
             string[] forwardSlash = new String[] { "/" };
             string[] newDirs = cp.Split(forwardSlash, StringSplitOptions.RemoveEmptyEntries);
 
