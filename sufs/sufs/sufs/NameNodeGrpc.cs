@@ -24,7 +24,7 @@ namespace Sufs {
     static readonly grpc::Marshaller<global::Sufs.PathRequest> __Marshaller_PathRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.PathRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Sufs.ListPathResponse> __Marshaller_ListPathResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ListPathResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Sufs.PathResponse> __Marshaller_PathResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.PathResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::Sufs.ReadRequest> __Marshaller_ReadRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReadRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Sufs.ReadResponse> __Marshaller_ReadResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Sufs.ReadResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::Sufs.CreateRequest, global::Sufs.CreateResponse> __Method_CreateFile = new grpc::Method<global::Sufs.CreateRequest, global::Sufs.CreateResponse>(
         grpc::MethodType.ServerStreaming,
@@ -75,12 +75,12 @@ namespace Sufs {
         __Marshaller_PathRequest,
         __Marshaller_PathResponse);
 
-    static readonly grpc::Method<global::Sufs.PathRequest, global::Sufs.ReadRequest> __Method_ReadFile = new grpc::Method<global::Sufs.PathRequest, global::Sufs.ReadRequest>(
+    static readonly grpc::Method<global::Sufs.PathRequest, global::Sufs.ReadResponse> __Method_ReadFile = new grpc::Method<global::Sufs.PathRequest, global::Sufs.ReadResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "ReadFile",
         __Marshaller_PathRequest,
-        __Marshaller_ReadRequest);
+        __Marshaller_ReadResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -126,7 +126,7 @@ namespace Sufs {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::Sufs.ReadRequest> ReadFile(global::Sufs.PathRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Sufs.ReadResponse> ReadFile(global::Sufs.PathRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -260,19 +260,19 @@ namespace Sufs {
       {
         return CallInvoker.AsyncUnaryCall(__Method_DeleteFile, null, options, request);
       }
-      public virtual global::Sufs.ReadRequest ReadFile(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual global::Sufs.ReadResponse ReadFile(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return ReadFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Sufs.ReadRequest ReadFile(global::Sufs.PathRequest request, grpc::CallOptions options)
+      public virtual global::Sufs.ReadResponse ReadFile(global::Sufs.PathRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_ReadFile, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::Sufs.ReadRequest> ReadFileAsync(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::Sufs.ReadResponse> ReadFileAsync(global::Sufs.PathRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
       {
         return ReadFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::Sufs.ReadRequest> ReadFileAsync(global::Sufs.PathRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::Sufs.ReadResponse> ReadFileAsync(global::Sufs.PathRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_ReadFile, null, options, request);
       }

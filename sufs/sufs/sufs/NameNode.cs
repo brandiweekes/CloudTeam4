@@ -33,19 +33,21 @@ namespace Sufs {
             "IiIKCkhCcmVzcG9uc2USFAoMYWNrbm93bGVkZ2VkGAEgASgIIh8KC1BhdGhS",
             "ZXF1ZXN0EhAKCGRpcl9wYXRoGAEgASgJIiwKEExpc3RQYXRoUmVzcG9uc2US",
             "GAoQZGlyX3BhdGhDb250ZW50cxgBIAMoCSIfCgxQYXRoUmVzcG9uc2USDwoH",
-            "cmVxX2FjaxgBIAEoCCI5CgtSZWFkUmVxdWVzdBIqCg1iSURzX29uX0ROaWRz",
-            "GAEgAygLMhMuc3Vmcy5SZXBvcnRSZXF1ZXN0MtMDCghOYW1lTm9kZRI7CgpD",
-            "cmVhdGVGaWxlEhMuc3Vmcy5DcmVhdGVSZXF1ZXN0GhQuc3Vmcy5DcmVhdGVS",
-            "ZXNwb25zZSIAMAESMAoJSGVhcnRiZWF0Eg8uc3Vmcy5IQnJlcXVlc3QaEC5z",
-            "dWZzLkhCcmVzcG9uc2UiABI6CgtCbG9ja1JlcG9ydBITLnN1ZnMuUmVwb3J0",
-            "UmVxdWVzdBoULnN1ZnMuUmVwb3J0UmVzcG9uc2UiABI8Cg1MaXN0RGlyZWN0",
-            "b3J5EhEuc3Vmcy5QYXRoUmVxdWVzdBoWLnN1ZnMuTGlzdFBhdGhSZXNwb25z",
-            "ZSIAEjcKDEFkZERpcmVjdG9yeRIRLnN1ZnMuUGF0aFJlcXVlc3QaEi5zdWZz",
-            "LlBhdGhSZXNwb25zZSIAEjoKD0RlbGV0ZURpcmVjdG9yeRIRLnN1ZnMuUGF0",
-            "aFJlcXVlc3QaEi5zdWZzLlBhdGhSZXNwb25zZSIAEjUKCkRlbGV0ZUZpbGUS",
-            "ES5zdWZzLlBhdGhSZXF1ZXN0GhIuc3Vmcy5QYXRoUmVzcG9uc2UiABIyCghS",
-            "ZWFkRmlsZRIRLnN1ZnMuUGF0aFJlcXVlc3QaES5zdWZzLlJlYWRSZXF1ZXN0",
-            "IgBiBnByb3RvMw=="));
+            "cmVxX2FjaxgBIAEoCCI0CgxSZWFkUmVzcG9uc2USJAoLYmxvY2tSZWNvcmQY",
+            "ASADKAsyDy5zdWZzLmJsb2NrUmVhZCI6CglibG9ja1JlYWQSDwoHQmxvY2tJ",
+            "RBgBIAEoBRIOCgZETnJlYWQYAyADKAlKBAgCEANSBkROTGlzdCIYCghETmlk",
+            "TGlzdBIMCgRETmlkGAEgASgJMtQDCghOYW1lTm9kZRI7CgpDcmVhdGVGaWxl",
+            "EhMuc3Vmcy5DcmVhdGVSZXF1ZXN0GhQuc3Vmcy5DcmVhdGVSZXNwb25zZSIA",
+            "MAESMAoJSGVhcnRiZWF0Eg8uc3Vmcy5IQnJlcXVlc3QaEC5zdWZzLkhCcmVz",
+            "cG9uc2UiABI6CgtCbG9ja1JlcG9ydBITLnN1ZnMuUmVwb3J0UmVxdWVzdBoU",
+            "LnN1ZnMuUmVwb3J0UmVzcG9uc2UiABI8Cg1MaXN0RGlyZWN0b3J5EhEuc3Vm",
+            "cy5QYXRoUmVxdWVzdBoWLnN1ZnMuTGlzdFBhdGhSZXNwb25zZSIAEjcKDEFk",
+            "ZERpcmVjdG9yeRIRLnN1ZnMuUGF0aFJlcXVlc3QaEi5zdWZzLlBhdGhSZXNw",
+            "b25zZSIAEjoKD0RlbGV0ZURpcmVjdG9yeRIRLnN1ZnMuUGF0aFJlcXVlc3Qa",
+            "Ei5zdWZzLlBhdGhSZXNwb25zZSIAEjUKCkRlbGV0ZUZpbGUSES5zdWZzLlBh",
+            "dGhSZXF1ZXN0GhIuc3Vmcy5QYXRoUmVzcG9uc2UiABIzCghSZWFkRmlsZRIR",
+            "LnN1ZnMuUGF0aFJlcXVlc3QaEi5zdWZzLlJlYWRSZXNwb25zZSIAYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -59,7 +61,9 @@ namespace Sufs {
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.PathRequest), global::Sufs.PathRequest.Parser, new[]{ "DirPath" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ListPathResponse), global::Sufs.ListPathResponse.Parser, new[]{ "DirPathContents" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.PathResponse), global::Sufs.PathResponse.Parser, new[]{ "ReqAck" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReadRequest), global::Sufs.ReadRequest.Parser, new[]{ "BIDsOnDNids" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.ReadResponse), global::Sufs.ReadResponse.Parser, new[]{ "BlockRecord" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.blockRead), global::Sufs.blockRead.Parser, new[]{ "BlockID", "DNread" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Sufs.DNidList), global::Sufs.DNidList.Parser, new[]{ "DNid" }, null, null, null)
           }));
     }
     #endregion
@@ -1388,10 +1392,10 @@ namespace Sufs {
 
   }
 
-  public sealed partial class ReadRequest : pb::IMessage<ReadRequest> {
-    private static readonly pb::MessageParser<ReadRequest> _parser = new pb::MessageParser<ReadRequest>(() => new ReadRequest());
+  public sealed partial class ReadResponse : pb::IMessage<ReadResponse> {
+    private static readonly pb::MessageParser<ReadResponse> _parser = new pb::MessageParser<ReadResponse>(() => new ReadResponse());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ReadRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<ReadResponse> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -1404,53 +1408,53 @@ namespace Sufs {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadRequest() {
+    public ReadResponse() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadRequest(ReadRequest other) : this() {
-      bIDsOnDNids_ = other.bIDsOnDNids_.Clone();
+    public ReadResponse(ReadResponse other) : this() {
+      blockRecord_ = other.blockRecord_.Clone();
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ReadRequest Clone() {
-      return new ReadRequest(this);
+    public ReadResponse Clone() {
+      return new ReadResponse(this);
     }
 
-    /// <summary>Field number for the "bIDs_on_DNids" field.</summary>
-    public const int BIDsOnDNidsFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Sufs.ReportRequest> _repeated_bIDsOnDNids_codec
-        = pb::FieldCodec.ForMessage(10, global::Sufs.ReportRequest.Parser);
-    private readonly pbc::RepeatedField<global::Sufs.ReportRequest> bIDsOnDNids_ = new pbc::RepeatedField<global::Sufs.ReportRequest>();
+    /// <summary>Field number for the "blockRecord" field.</summary>
+    public const int BlockRecordFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Sufs.blockRead> _repeated_blockRecord_codec
+        = pb::FieldCodec.ForMessage(10, global::Sufs.blockRead.Parser);
+    private readonly pbc::RepeatedField<global::Sufs.blockRead> blockRecord_ = new pbc::RepeatedField<global::Sufs.blockRead>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Sufs.ReportRequest> BIDsOnDNids {
-      get { return bIDsOnDNids_; }
+    public pbc::RepeatedField<global::Sufs.blockRead> BlockRecord {
+      get { return blockRecord_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ReadRequest);
+      return Equals(other as ReadResponse);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ReadRequest other) {
+    public bool Equals(ReadResponse other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!bIDsOnDNids_.Equals(other.bIDsOnDNids_)) return false;
+      if(!blockRecord_.Equals(other.blockRecord_)) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= bIDsOnDNids_.GetHashCode();
+      hash ^= blockRecord_.GetHashCode();
       return hash;
     }
 
@@ -1461,22 +1465,22 @@ namespace Sufs {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      bIDsOnDNids_.WriteTo(output, _repeated_bIDsOnDNids_codec);
+      blockRecord_.WriteTo(output, _repeated_blockRecord_codec);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      size += bIDsOnDNids_.CalculateSize(_repeated_bIDsOnDNids_codec);
+      size += blockRecord_.CalculateSize(_repeated_blockRecord_codec);
       return size;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ReadRequest other) {
+    public void MergeFrom(ReadResponse other) {
       if (other == null) {
         return;
       }
-      bIDsOnDNids_.Add(other.bIDsOnDNids_);
+      blockRecord_.Add(other.blockRecord_);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1488,7 +1492,261 @@ namespace Sufs {
             input.SkipLastField();
             break;
           case 10: {
-            bIDsOnDNids_.AddEntriesFrom(input, _repeated_bIDsOnDNids_codec);
+            blockRecord_.AddEntriesFrom(input, _repeated_blockRecord_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class blockRead : pb::IMessage<blockRead> {
+    private static readonly pb::MessageParser<blockRead> _parser = new pb::MessageParser<blockRead>(() => new blockRead());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<blockRead> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Sufs.NameNodeReflection.Descriptor.MessageTypes[11]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public blockRead() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public blockRead(blockRead other) : this() {
+      blockID_ = other.blockID_;
+      dNread_ = other.dNread_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public blockRead Clone() {
+      return new blockRead(this);
+    }
+
+    /// <summary>Field number for the "BlockID" field.</summary>
+    public const int BlockIDFieldNumber = 1;
+    private int blockID_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int BlockID {
+      get { return blockID_; }
+      set {
+        blockID_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "DNread" field.</summary>
+    public const int DNreadFieldNumber = 3;
+    private static readonly pb::FieldCodec<string> _repeated_dNread_codec
+        = pb::FieldCodec.ForString(26);
+    private readonly pbc::RepeatedField<string> dNread_ = new pbc::RepeatedField<string>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<string> DNread {
+      get { return dNread_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as blockRead);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(blockRead other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (BlockID != other.BlockID) return false;
+      if(!dNread_.Equals(other.dNread_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (BlockID != 0) hash ^= BlockID.GetHashCode();
+      hash ^= dNread_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (BlockID != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(BlockID);
+      }
+      dNread_.WriteTo(output, _repeated_dNread_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (BlockID != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BlockID);
+      }
+      size += dNread_.CalculateSize(_repeated_dNread_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(blockRead other) {
+      if (other == null) {
+        return;
+      }
+      if (other.BlockID != 0) {
+        BlockID = other.BlockID;
+      }
+      dNread_.Add(other.dNread_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            BlockID = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            dNread_.AddEntriesFrom(input, _repeated_dNread_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class DNidList : pb::IMessage<DNidList> {
+    private static readonly pb::MessageParser<DNidList> _parser = new pb::MessageParser<DNidList>(() => new DNidList());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<DNidList> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Sufs.NameNodeReflection.Descriptor.MessageTypes[12]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DNidList() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DNidList(DNidList other) : this() {
+      dNid_ = other.dNid_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public DNidList Clone() {
+      return new DNidList(this);
+    }
+
+    /// <summary>Field number for the "DNid" field.</summary>
+    public const int DNidFieldNumber = 1;
+    private string dNid_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string DNid {
+      get { return dNid_; }
+      set {
+        dNid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as DNidList);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(DNidList other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (DNid != other.DNid) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (DNid.Length != 0) hash ^= DNid.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (DNid.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(DNid);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (DNid.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(DNid);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(DNidList other) {
+      if (other == null) {
+        return;
+      }
+      if (other.DNid.Length != 0) {
+        DNid = other.DNid;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            DNid = input.ReadString();
             break;
           }
         }

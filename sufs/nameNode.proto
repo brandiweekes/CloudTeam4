@@ -10,7 +10,7 @@ service NameNode {
 	rpc AddDirectory(PathRequest) returns (PathResponse){}
 	rpc DeleteDirectory(PathRequest) returns (PathResponse){}
 	rpc DeleteFile (PathRequest) returns (PathResponse){}
-	rpc ReadFile (PathRequest) returns (ReadRequest){}
+	rpc ReadFile (PathRequest) returns (ReadResponse){}
 }
 
 message CreateRequest {
@@ -65,6 +65,17 @@ message PathResponse{
 	bool req_ack = 1;
 }
 
-message ReadRequest{
-	repeated ReportRequest bIDs_on_DNids = 1;
+message ReadResponse{
+	repeated blockRead blockRecord = 1;
+}
+
+message blockRead{
+	reserved 2;
+	reserved "DNList";
+	int32 BlockID = 1;
+	repeated string DNread = 3;
+}
+
+message DNidList{
+	string DNid = 1;
 }

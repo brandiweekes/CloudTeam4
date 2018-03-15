@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
@@ -8,9 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using Amazon.EC2.Model.Internal.MarshallTransformations;
+using Amazon.Runtime.Internal;
 using Microsoft.SqlServer.Server;
 using Grpc.Core;
 using Google.Protobuf;
+using Google.Protobuf.Collections;
+using Google.Protobuf.WellKnownTypes;
 using Sufs; //Project -> Add Reference -> Project -> select project
 
 namespace NameNodeServer
@@ -104,10 +108,49 @@ namespace NameNodeServer
             return Task.FromResult(new PathResponse { ReqAck = File_Deleted(request.DirPath) });           
         }
 
-        public override Task<ReadRequest> ReadFile(PathRequest request, ServerCallContext context)
+        public override Task<ReadResponse> ReadFile(PathRequest request, ServerCallContext context)
         {
-            //returns "Not Implemented"
-            return base.ReadFile(request, context);
+            ReadResponse rr = new ReadResponse();
+            string cliPath = request.DirPath;
+            if (cliPath[0] != '/')
+            {
+                string temp = "/" + cliPath;
+                cliPath = temp;
+            }
+
+            string[] forwardSlash = new String[] { "/" };
+            string[] dir = cliPath.Split(forwardSlash, StringSplitOptions.RemoveEmptyEntries);
+            string target = dir[dir.Length - 1];
+            List<int> tempBList = new List<int>();
+            List<List<string>> DNList = new List<List<string>>();
+            List<string> tmp = new List<string>();
+
+            //foreach (var bid in FileBlocks[target])
+            //{
+            //    rr.BlockRecord
+            //}
+
+            foreach (var bid in FileBlocks[target])
+            {
+                tempBList.Add(bid);
+            }
+            foreach (int b in tempBList)
+            {
+                tmp = BlockMap.Where(d => d.Key.Equals(b))
+                    .SelectMany(d => d.Value)
+                    .ToList();
+                DNList.Add(tmp);
+            }
+            for (int i = 0; i < tempBList.Count; i++)
+            {
+                rr.BlockRecord[i].BlockID = tempBList[i];
+                for (int j = 0; j < DNList[i].Count; j++)
+                {
+                    rr.BlockRecord[i].DNread[j] = DNList[i][j];
+                }
+            }
+
+            return Task.FromResult(rr);
         }
 
         /// <summary>
@@ -136,22 +179,17 @@ namespace NameNodeServer
         public override Task<ListPathResponse> ListDirectory(PathRequest request, ServerCallContext context)
         {
             ListPathResponse LPR = new ListPathResponse();
-
-            foreach (KeyValuePair<string, NS_Dir_Info> dict in NN_namespace_dir)
+            if (NN_namespace_dir.ContainsKey(request.DirPath))
             {
-                if (dict.Key == request.DirPath)
+                foreach (var sd in NN_namespace_dir[request.DirPath].subdirectories)
                 {
-                    foreach (string subDir in dict.Value.subdirectories)
-                    {
-                        LPR.DirPathContents.Add(subDir);
-                    }
-                    foreach (string fileName in dict.Value.fileNames)
-                    {
-                        LPR.DirPathContents.Add(fileName);
-                    }
+                    LPR.DirPathContents.Add(sd);
+                }
+                foreach (var fn in NN_namespace_dir[request.DirPath].fileNames)
+                {
+                    LPR.DirPathContents.Add(fn);
                 }
             }
-
             return Task.FromResult(LPR);
         }
         
@@ -216,7 +254,7 @@ namespace NameNodeServer
             }
         }
 
-        public override Task<HBresponse> Heartbeat(HBrequest request, ServerCallContext context)
+        public override async Task<HBresponse> Heartbeat (HBrequest request, ServerCallContext context)
         {
             // 1. Save DNid to HealthRecord (Done)
             // 2. set timer (Done)
@@ -248,7 +286,7 @@ namespace NameNodeServer
                 recordList.Add(curHR);
             }
 
-            return Task.FromResult(hbr);
+            return await Task.FromResult(hbr);
         }
 
         /// <summary>
