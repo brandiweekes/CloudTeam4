@@ -22,10 +22,12 @@ namespace NameNodeServer
 
     class NameNodeImpl : NameNode.NameNodeBase
     {
-        public const int repFactor = 3;
+        private const int REPLICATION_FACTOR = 3;
+        private const int DN_PORT = 50051;
+        
         //NS_File_Info file_info;
         //NS_Dir_Info dir_info;
-        Dictionary<string, NS_File_Info> NN_namespace_file;
+        Dictionary<string, NS_File_Info> NN_namespace_file; //not used, now FileBlocks
         Dictionary<string, NS_Dir_Info> NN_namespace_dir;
         Dictionary<String, List<int>> FileBlocks; // For client use cases
         Dictionary<int, List<string>> BlockMap;   // For DN use cases
@@ -83,12 +85,18 @@ namespace NameNodeServer
         /// <returns>response stream block id with DNids</returns>
         public override async Task CreateFile(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
         {
-            Add_File(request.Dir, request.FileName);
+            CreateResponse cr = new CreateResponse();
 
-            //populate CreateResponse with BlockID and list of DNids
-            CreateResponse cr = new CreateResponse();           
+            //update NN_namespace_dir (directory maps to list of filenames)
+            Add_File_To_Namespace_Dir(request.Dir, request.FileName);
+            //update FileBlocks (filename maps to list of blockIDs)
+            FileBlocks.Add(request.FileName, new List<int>());
+
+            //populate FileBlocks: filename map to list of blockIDs &
+            //populate CreateResponse with BlockID and list of DNids          
             for(int i = 0; i < request.NumBlocks; i++)
-            {   
+            {
+                FileBlocks[request.FileName].Add(create_block_id);
                 await responseStream.WriteAsync(Add_CreateResponse());
             }
             
@@ -105,9 +113,35 @@ namespace NameNodeServer
         /// t: success; f: !success || file doesn't exist</returns>
         public override Task<PathResponse> DeleteFile(PathRequest request, ServerCallContext context)
         {
+            //element 0 = directory, element 1 = filename;
+            string[] dir_fn = Parse_Directory_Filename(request.DirPath);
+
+            //call DN to delete blocks
+            foreach (var bID in FileBlocks[dir_fn[1]])
+            {     
+                foreach(var DNid in BlockMap[bID])
+                {
+                    //make client
+                    var client = createChannel(DNid, DN_PORT);
+
+                    //rpc call
+                    var DeleteResponse = client.DeleteFile(new DeleteRequest { BlockID = bID });
+                }
+            }
+
+            //update BlockMap to remove the entries of given BlockIDs
+            foreach(var bID in FileBlocks[dir_fn[1]])
+            {
+                BlockMap.Remove(bID);
+            }
+
+            //finally, remove file & blockIDs from FileBlocks dict
+            FileBlocks.Remove(dir_fn[1]);
+
+            //removes fileName from NN_namespace_dir and sends bool success
             return Task.FromResult(new PathResponse { ReqAck = File_Deleted(request.DirPath) });           
         }
-
+        
         public override Task<ReadResponse> ReadFile(PathRequest request, ServerCallContext context)
         {
             ReadResponse rr = new ReadResponse();
@@ -387,19 +421,19 @@ namespace NameNodeServer
         {
             //populate CreateResponse with BlockID and list of DNids
             CreateResponse cr = new CreateResponse();
-            //for (int i = 0; i < cnb; i++)
-            //{
-                for (int j = 0; j < repFactor; j++)
+            
+            for (int j = 0; j < REPLICATION_FACTOR; j++)
+            {
+                if (DN_ID_current == DataNode_IDs.Count)
                 {
-                    if (DN_ID_current == DataNode_IDs.Count)
-                    {
-                        DN_ID_current = 0;
-                    }
-                    cr.DNid.Add(DataNode_IDs[DN_ID_current++]);
+                    DN_ID_current = 0;
                 }
+                cr.DNid.Add(DataNode_IDs[DN_ID_current++]);
+            }
 
-                cr.BlockID = create_block_id++;
-            //}
+            cr.RepFactor = REPLICATION_FACTOR;
+            cr.BlockID = create_block_id++;
+            
             return cr;
         }
 
@@ -419,7 +453,7 @@ namespace NameNodeServer
         /// client requested path, where to create file</param>
         /// <param name="cf">
         /// client requested file to create</param>
-        public void Add_File(string cd, string cf)
+        public void Add_File_To_Namespace_Dir(string cd, string cf)
         {
             //make directory if doesn't exist
             bool checkDir = mkdir(cd);
@@ -444,8 +478,19 @@ namespace NameNodeServer
         /// <returns></returns>
         public bool File_Deleted(string cp)
         {
-            string keyPath = "/";
-            string fileNameToDelete;
+            //element 0 = directory, element 1 = filename
+            string[] dir_fn = Parse_Directory_Filename(cp);
+
+            return(NN_namespace_dir[dir_fn[0]].fileNames.Remove(dir_fn[1]));
+        }
+
+
+        public string[] Parse_Directory_Filename(string cp)
+        {
+            string directory = "/";
+            string fileName;
+            string[] dir_fn = new string[2];
+
 
             //TODO: remove this section if newDirs works!
             //if(cp[0] != '/')
@@ -466,20 +511,24 @@ namespace NameNodeServer
             string[] newDirs = cp.Split(forwardSlash, StringSplitOptions.RemoveEmptyEntries);
 
             //build string for directory path (key) 
-            for(int i = 0; i < newDirs.Length - 1; i++)
+            for (int i = 0; i < newDirs.Length - 1; i++)
             {
-                keyPath += newDirs[i] + "/";
+                directory += newDirs[i] + "/";
             }
 
-            fileNameToDelete = newDirs[newDirs.Length - 1];
+            fileName = newDirs[newDirs.Length - 1];
 
-            return(NN_namespace_dir[keyPath].fileNames.Remove(fileNameToDelete));
+            dir_fn[0] = directory;
+            dir_fn[1] = fileName;
+
+            return dir_fn;
         }
 
-        public NameNode.NameNodeClient createChannel(string id, int port)
+
+        public DataNode.DataNodeClient createChannel(string id, int port)
         {
             Channel channel = new Channel(id, port, ChannelCredentials.Insecure);
-            var client = new NameNode.NameNodeClient(channel);
+            var client = new DataNode.DataNodeClient(channel);
             return client;
         }
 

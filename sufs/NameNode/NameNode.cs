@@ -48,6 +48,7 @@ namespace Sufs {
             "dGhSZXF1ZXN0GhIuc3Vmcy5QYXRoUmVzcG9uc2UiABIzCghSZWFkRmlsZRIR",
             "LnN1ZnMuUGF0aFJlcXVlc3QaEi5zdWZzLlJlYWRSZXNwb25zZSIAYgZwcm90",
             "bzM="));
+
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
