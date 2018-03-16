@@ -185,12 +185,7 @@ namespace NameNodeServer
             List<int> tempBList = new List<int>();
             List<List<string>> DNList = new List<List<string>>();
             List<string> tmp = new List<string>();
-
-            //foreach (var bid in FileBlocks[target])
-            //{
-            //    rr.BlockRecord
-            //}
-
+            
             foreach (var bid in FileBlocks[target])
             {
                 tempBList.Add(bid);
