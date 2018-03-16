@@ -74,10 +74,10 @@ namespace NameNodeServer
             }
 
 
-            nn_test.Add_DNids("dn1");
-            nn_test.Add_DNids("dn2");
-            nn_test.Add_DNids("dn3");
-            nn_test.Add_DNids("dn4");
+            nn_test.Add_DNids("172.31.32.209");
+            nn_test.Add_DNids("172.31.35.42");
+            nn_test.Add_DNids("172.31.35.219");
+            nn_test.Add_DNids("172.31.40.19");
 
             ///*test for function
             // * need to rebuild function to test as below

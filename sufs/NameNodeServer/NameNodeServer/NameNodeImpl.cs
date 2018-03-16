@@ -231,6 +231,28 @@ namespace NameNodeServer
 
             Console.WriteLine("Creating PathResponse");
             PathResponse pr = new PathResponse { ReqAck = mkdir(request.DirPath) };
+
+            Add_File_To_Namespace_Dir(request.DirPath, "cloud.txt");
+
+            FileBlocks["cloud.txt"] = new List<int>();
+            Console.WriteLine("after FileBlocks, before blockID assigned, num request = {0}", 3);
+
+            //var responses = features.FindAll((feature) => feature.Exists() && request.Contains(feature.Location));
+
+
+            //populate FileBlocks: filename map to list of blockIDs &
+            //populate CreateResponse with BlockID and list of DNids          
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("FileBlocks[{0}].Add({1})", "cloud.txt", create_block_id);
+                FileBlocks["cloud.txt"].Add(create_block_id);
+
+                var check = Add_CreateResponse();
+                Console.WriteLine(check.BlockID);
+                Console.WriteLine(check.DNid);
+            }
+
+
             Console.WriteLine("Creating Task");
             Task<PathResponse> tPR = Task.FromResult(pr);
             Console.WriteLine("doing Return");
