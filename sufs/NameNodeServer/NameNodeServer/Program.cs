@@ -20,12 +20,12 @@ namespace NameNodeServer
 {
     class Program
     {
-        const int Port = 5000;
+        const int Port = 50051;
 
         public static void Main()
         {
             NameNodeImpl nn_test = new NameNodeImpl();
-            if(nn_test.mkdir("/foo/bar/"))
+            if (nn_test.mkdir("/foo/bar/"))
             {
                 Console.WriteLine("success making path");
             }
@@ -55,7 +55,7 @@ namespace NameNodeServer
             nn_test.Add_File_To_Namespace_Dir("/foo/bar/", "baz.txt");
             Console.WriteLine("added file baz.txt to /foo/bar/");
 
-            if(nn_test.File_Deleted("/foo/bar/baz.txt"))
+            if (nn_test.File_Deleted("/foo/bar/baz.txt"))
             {
                 Console.WriteLine("success deleting file");
             }
@@ -78,7 +78,7 @@ namespace NameNodeServer
             nn_test.Add_DNids("dn2");
             nn_test.Add_DNids("dn3");
             nn_test.Add_DNids("dn4");
-            
+
             ///*test for function
             // * need to rebuild function to test as below
             // */
@@ -99,7 +99,7 @@ namespace NameNodeServer
             server.ShutdownAsync().Wait();
 
 
-            
+
         }
     }
 }
