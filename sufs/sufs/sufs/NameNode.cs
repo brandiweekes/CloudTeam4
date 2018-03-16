@@ -1544,6 +1544,7 @@ namespace Sufs {
         blockID_ = value;
       }
     }
+
     /// <summary>Field number for the "DNread" field.</summary>
     public const int DNreadFieldNumber = 3;
     private static readonly pb::FieldCodec<string> _repeated_dNread_codec

@@ -83,25 +83,46 @@ namespace NameNodeServer
         /// </param>
         /// <param name="context">given by grpc</param>
         /// <returns>response stream block id with DNids</returns>
+
+       
         public override async Task CreateFile(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
         {
             Console.WriteLine("client call CreateFile");
             CreateResponse cr = new CreateResponse();
-
+            Console.WriteLine("before update NN_dir");
             //update NN_namespace_dir (directory maps to list of filenames)
             Add_File_To_Namespace_Dir(request.Dir, request.FileName);
-            //update FileBlocks (filename maps to list of blockIDs)
-            FileBlocks.Add(request.FileName, new List<int>());
 
+            Console.WriteLine("after update NN_dir, before FileBlocks created");
+            //update FileBlocks (filename maps to list of blockIDs)
+            //FileBlocks.Add(request.FileName, new List<int>());
+            FileBlocks[request.FileName] = new List<int>();
+            Console.WriteLine("after FileBlocks, before blockID assigned, num request = {0}", request.NumBlocks);
+
+            //var responses = features.FindAll((feature) => feature.Exists() && request.Contains(feature.Location));
+
+            
             //populate FileBlocks: filename map to list of blockIDs &
             //populate CreateResponse with BlockID and list of DNids          
-            for(int i = 0; i < request.NumBlocks; i++)
+            for (int i = 0; i < request.NumBlocks; i++)
             {
+                Console.WriteLine("FileBlocks[{0}].Add({1})", request.FileName, create_block_id);
                 FileBlocks[request.FileName].Add(create_block_id);
-                await responseStream.WriteAsync(Add_CreateResponse());
+
+                var check = Add_CreateResponse();
+                Console.WriteLine(check.BlockID);
+                Console.WriteLine(check.DNid);
+                Console.WriteLine("Before Await");
+                await responseStream.WriteAsync(check);
+
             }
             
+            Console.WriteLine("After Await");
+
         }
+
+        
+
 
         /// <summary>
         /// client requests a file deleted at given directory
@@ -265,19 +286,38 @@ namespace NameNodeServer
             Console.WriteLine("BlockReport received from {0}", request.DNid);
             string DNid = request.DNid;
             ReportResponse rr = new ReportResponse();
-            
-            foreach (KeyValuePair<int, List<string>> kv in BlockMap)
+
+            if (!this.BlockMap.ContainsKey(request.BlockID))
             {
-                if (kv.Key == request.BlockID && !kv.Value.Contains(DNid))
-                {
-                    kv.Value.Add(DNid);
-                    rr.Acknowledged = true;
-                }else if (!this.BlockMap.ContainsKey(request.BlockID))
-                {
-                    this.BlockMap.Add(request.BlockID, new List<string>());
-                    this.BlockMap[request.BlockID].Add(DNid);
-                }
+                this.BlockMap.Add(request.BlockID, new List<string>());
+                this.BlockMap[request.BlockID].Add(DNid);
+                rr.Acknowledged = true;
             }
+            else if (this.BlockMap.ContainsKey(request.BlockID) && !this.BlockMap[request.BlockID].Contains(DNid)) 
+            {
+
+                this.BlockMap[request.BlockID].Add(DNid);
+                Console.Write("   " + this.BlockMap[request.BlockID].Last());
+                rr.Acknowledged = true;
+            }
+            else
+            {
+                rr.Acknowledged = false;
+            }
+
+            //this.BlockMap.Add("172.31.40.19", new List<string>());
+
+
+            //foreach (KeyValuePair<int, List<string>> kv in BlockMap)
+            //{
+            //    Console.WriteLine("updating BlockMap for BlockID {0}:", kv.Key);
+            //    else if (!this.BlockMap.ContainsKey(request.BlockID))
+            //    {
+            //        this.BlockMap.Add(request.BlockID, new List<string>());
+            //        this.BlockMap[request.BlockID].Add(DNid);
+            //    }
+            //    Console.WriteLine();
+            //}
             return Task.FromResult(rr);
         }
 
@@ -303,7 +343,7 @@ namespace NameNodeServer
             //     2.1 start timer (Done)
             // 3. check timer (Done)
             //     3.1 If over timer, Dead (Done)
-            Console.WriteLine("heartbeat from {0}", request.DNid);
+            //Console.WriteLine("heartbeat from {0}", request.DNid);
             HBresponse hbr = new HBresponse();
             hbr.Acknowledged = true;
 
@@ -313,7 +353,7 @@ namespace NameNodeServer
             {
                 foreach(HealthRecords hr in recordList)
                 {
-                    Console.WriteLine("updating HealthRecord for {0}", request.DNid);
+                    //Console.WriteLine("updating HealthRecord for {0}", hr.DNid);
                     if (hr.DNid == request.DNid && hr.IsAlive == true)
                     {
                         curHR = hr;
@@ -434,13 +474,14 @@ namespace NameNodeServer
         {
             //populate CreateResponse with BlockID and list of DNids
             CreateResponse cr = new CreateResponse();
-            
+
             for (int j = 0; j < REPLICATION_FACTOR; j++)
             {
-                if (DN_ID_current == availDNList.Count)
+                if (DN_ID_current >= availDNList.Count)
                 {
                     DN_ID_current = 0;
                 }
+                
                 cr.DNid.Add(availDNList[DN_ID_current++]);
             }
 
@@ -468,6 +509,7 @@ namespace NameNodeServer
         /// client requested file to create</param>
         public void Add_File_To_Namespace_Dir(string cd, string cf)
         {
+            Console.WriteLine("inside Add file to namespace dir");
             //make directory if doesn't exist
             bool checkDir = mkdir(cd);
 
