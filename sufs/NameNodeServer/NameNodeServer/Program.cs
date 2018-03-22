@@ -74,15 +74,24 @@ namespace NameNodeServer
             }
 
 
-            nn_test.Add_DNids("dn1");
-            nn_test.Add_DNids("dn2");
-            nn_test.Add_DNids("dn3");
-            nn_test.Add_DNids("dn4");
+            //nn_test.Add_DNids("dn1");
+            //nn_test.Add_DNids("dn2");
+            //nn_test.Add_DNids("dn3");
+            //nn_test.Add_DNids("dn4");
+
+            //CreateRequest cr_req = new CreateRequest();
+            //cr_req.Dir = "/baz/foo/bar";
+            //cr_req.FileName = "RandomNumbers";
+            //cr_req.NumBlocks = 2;
+
+
 
             ///*test for function
             // * need to rebuild function to test as below
             // */
             //nn_test.Add_CreateResponse("/foo/bar/", "baz.txt", 2);
+
+            //nn_test.WriteandReplicate(cr_req);
 
 
             Server server = new Server
@@ -91,6 +100,7 @@ namespace NameNodeServer
                 Ports = { new ServerPort("0.0.0.0", Port, ServerCredentials.Insecure) }
             };
             server.Start();
+
 
             Console.WriteLine("NameNode server listening on port " + Port);
             Console.WriteLine("Press any key to stop the server...");

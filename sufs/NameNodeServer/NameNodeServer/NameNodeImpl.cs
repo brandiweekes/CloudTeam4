@@ -83,11 +83,49 @@ namespace NameNodeServer
         /// </param>
         /// <param name="context">given by grpc</param>
         /// <returns>response stream block id with DNids</returns>
+        //public override async Task CreateFile(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
+        //{
+        //    Console.WriteLine("client call CreateFile");
+        //    CreateResponse cr = new CreateResponse();
+        //    Console.WriteLine("before update NN_dir");
+        //    //update NN_namespace_dir (directory maps to list of filenames)
+        //    Add_File_To_Namespace_Dir(request.Dir, request.FileName);
 
-       
+        //    Console.WriteLine("after update NN_dir, before FileBlocks created");
+        //    //update FileBlocks (filename maps to list of blockIDs)
+        //    //FileBlocks.Add(request.FileName, new List<int>());
+        //    FileBlocks[request.FileName] = new List<int>();
+        //    Console.WriteLine("after FileBlocks, before blockID assigned, num request = {0}", request.NumBlocks);
+
+        //    //var responses = features.FindAll((feature) => feature.Exists() && request.Contains(feature.Location));
+
+
+        //    //populate FileBlocks: filename map to list of blockIDs &
+        //    //populate CreateResponse with BlockID and list of DNids          
+        //    for (int i = 0; i < request.NumBlocks; i++)
+        //    {
+        //        Console.WriteLine("FileBlocks[{0}].Add({1})", request.FileName, create_block_id);
+        //        FileBlocks[request.FileName].Add(create_block_id);
+
+        //        var check = Add_CreateResponse();
+        //        Console.WriteLine(check.BlockID);
+        //        Console.WriteLine(check.DNid);
+        //        Console.WriteLine("Before Await");
+        //        await responseStream.WriteAsync(check);
+
+        //    }
+
+        //    Console.WriteLine("After Await");
+
+        //}
+
+
+        //public void WriteandReplicate(CreateRequest request)
+        //(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
         public override async Task CreateFile(CreateRequest request, IServerStreamWriter<CreateResponse> responseStream, ServerCallContext context)
         {
-            Console.WriteLine("client call CreateFile");
+            
+            Console.WriteLine("inside WriteandReplicate (client call CreateFile)");
             CreateResponse cr = new CreateResponse();
             Console.WriteLine("before update NN_dir");
             //update NN_namespace_dir (directory maps to list of filenames)
@@ -100,28 +138,63 @@ namespace NameNodeServer
             Console.WriteLine("after FileBlocks, before blockID assigned, num request = {0}", request.NumBlocks);
 
             //var responses = features.FindAll((feature) => feature.Exists() && request.Contains(feature.Location));
+            List<CreateResponse> createRes_list = new List<CreateResponse>();
 
-            
             //populate FileBlocks: filename map to list of blockIDs &
-            //populate CreateResponse with BlockID and list of DNids          
+            //populate CreateResponse with BlockID and list of DNids   
             for (int i = 0; i < request.NumBlocks; i++)
             {
                 Console.WriteLine("FileBlocks[{0}].Add({1})", request.FileName, create_block_id);
                 FileBlocks[request.FileName].Add(create_block_id);
 
-                var check = Add_CreateResponse();
-                Console.WriteLine(check.BlockID);
-                Console.WriteLine(check.DNid);
-                Console.WriteLine("Before Await");
-                await responseStream.WriteAsync(check);
+                var response = Add_CreateResponse();
+                createRes_list.Add(response);
+                Console.WriteLine(response.BlockID);
+                Console.WriteLine(response.DNid);
+                //Console.WriteLine("Before Await");
+                await responseStream.WriteAsync(response);
+                
+            }
+            ////////////////////Works to here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            //for (int j = 0; j < response.DNid.Count; j++)
+            foreach (var res in createRes_list)
+            {
+                //make client
+                Channel channel = new Channel(res.DNid[0], DN_PORT, ChannelCredentials.Insecure);
+                var client = new DataNode.DataNodeClient(channel);
+                Console.WriteLine("client made");
+                WriteRequest writeRequest = new WriteRequest();
+                writeRequest.Block = new BlockDetails();
+                writeRequest.Block.BlockID = res.BlockID;
+                //for(int d = 0; d < response.DNid.Count; d++)
+                //{
+                writeRequest.DataNodeID.Add(res.DNid);
+                //}
+                
+                string pathToFile = @"C:\Users\Administrator\Desktop\RandomNumbers";
+                //byte[] byteArray = System.IO.File.ReadAllBytes(pathToFile);
+                //Console.WriteLine("byteArray" + byteArray);
+                //writeRequest.Data = Google.Protobuf.ByteString.CopyFrom(byteArray);
+                writeRequest.Data = Google.Protobuf.ByteString.CopyFrom(System.IO.File.ReadAllBytes(pathToFile));
+                Console.WriteLine("writeRequest" + writeRequest);
+                //rpc call
+                using (var call = client.ReplicateBlock())
+                {
+                    Console.WriteLine("inside ReplicateBlock() using");
+                    await call.RequestStream.WriteAsync(writeRequest);
+
+                    await Task.Delay(500);
+                }
+
+                channel.ShutdownAsync().Wait();
+                //}
 
             }
-            
-            Console.WriteLine("After Await");
+
+
 
         }
-
-        
 
 
         /// <summary>
@@ -477,22 +550,27 @@ namespace NameNodeServer
         /// <returns>blockID and list of DNids</returns>
         private CreateResponse Add_CreateResponse()
         {
+            Console.WriteLine("inside CreateREsponse");
             //populate CreateResponse with BlockID and list of DNids
             CreateResponse cr = new CreateResponse();
 
             for (int j = 0; j < REPLICATION_FACTOR; j++)
             {
+                Console.WriteLine("Inside j Loop: {0}", j);
                 if (DN_ID_current >= availDNList.Count)
                 {
                     DN_ID_current = 0;
                 }
+
+                Console.WriteLine("Adding cr.DNid.Add(availDNList[DN_ID_current++]): {0}", DN_ID_current);
                 
                 cr.DNid.Add(availDNList[DN_ID_current++]);
+                Console.WriteLine(" cr.DNid.Add(availDNList[DN_ID_current++]): {0}", cr.DNid);
             }
-
+            Console.WriteLine(" cr.DNid.Add(availDNList[DN_ID_current++]): {0}", cr.DNid);
             cr.RepFactor = REPLICATION_FACTOR;
             cr.BlockID = create_block_id++;
-            
+            Console.WriteLine("returning from CreateResponse");
             return cr;
         }
 
@@ -518,14 +596,20 @@ namespace NameNodeServer
             //make directory if doesn't exist
             bool checkDir = mkdir(cd);
 
+            
             //check client path to make sure it is correct key
-            if (cd[0].Equals('/'))
-            {
+            if (cd[0].Equals('/') && cd[cd.Length - 1].Equals('/'))
+            {               
                 NN_namespace_dir[cd].Add_FileNames(cf);
             }
-            else
+            else if (!cd[0].Equals('/') && cd[cd.Length - 1].Equals('/'))
             {
                 string correctPath = "/" + cd;
+                NN_namespace_dir[correctPath].Add_FileNames(cf);
+            }
+            else if (cd[0].Equals('/') && !cd[cd.Length - 1].Equals('/'))
+            {
+                string correctPath = cd + "/";
                 NN_namespace_dir[correctPath].Add_FileNames(cf);
             }
         }
