@@ -53,6 +53,7 @@ namespace NameNodeServer
                 new Dictionary<int, List<string>>();
 
             this.availDNList = new List<string>();
+            
 
             this.DN_ID_current = 0;
 
@@ -155,42 +156,45 @@ namespace NameNodeServer
                 await responseStream.WriteAsync(response);
                 
             }
-            ////////////////////Works to here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            ////////////////////Below is for client!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-            //for (int j = 0; j < response.DNid.Count; j++)
-            foreach (var res in createRes_list)
-            {
-                //make client
-                Channel channel = new Channel(res.DNid[0], DN_PORT, ChannelCredentials.Insecure);
-                var client = new DataNode.DataNodeClient(channel);
-                Console.WriteLine("client made");
-                WriteRequest writeRequest = new WriteRequest();
-                writeRequest.Block = new BlockDetails();
-                writeRequest.Block.BlockID = res.BlockID;
-                //for(int d = 0; d < response.DNid.Count; d++)
-                //{
-                writeRequest.DataNodeID.Add(res.DNid);
-                //}
+            ////for (int j = 0; j < response.DNid.Count; j++)
+            //foreach (var res in createRes_list)
+            //{
+            //    //make client
+            //    Channel channel = new Channel(res.DNid[0], DN_PORT, ChannelCredentials.Insecure);
+            //    var client = new DataNode.DataNodeClient(channel);
+            //    Console.WriteLine("client made");
+            //    WriteRequest writeRequest = new WriteRequest();
+            //    writeRequest.Block = new BlockDetails();
+            //    writeRequest.Block.BlockID = res.BlockID;
+            //    //for(int d = 0; d < response.DNid.Count; d++)
+            //    //{
+            //    writeRequest.DataNodeID.Add(res.DNid);
+            //    //}
                 
-                string pathToFile = @"C:\Users\Administrator\Desktop\RandomNumbers";
-                //byte[] byteArray = System.IO.File.ReadAllBytes(pathToFile);
-                //Console.WriteLine("byteArray" + byteArray);
-                //writeRequest.Data = Google.Protobuf.ByteString.CopyFrom(byteArray);
-                writeRequest.Data = Google.Protobuf.ByteString.CopyFrom(System.IO.File.ReadAllBytes(pathToFile));
-                Console.WriteLine("writeRequest" + writeRequest);
-                //rpc call
-                using (var call = client.ReplicateBlock())
-                {
-                    Console.WriteLine("inside ReplicateBlock() using");
-                    await call.RequestStream.WriteAsync(writeRequest);
+            //    string pathToFile = @"C:\Users\brandiweekes\Workspace\CPSC5910\NameNode\RandomNumbers";
+            //    //byte[] byteArray = System.IO.File.ReadAllBytes(pathToFile);
+            //    //Console.WriteLine("byteArray" + byteArray);
+            //    //writeRequest.Data = Google.Protobuf.ByteString.CopyFrom(byteArray);
+            //    writeRequest.Data = Google.Protobuf.ByteString.CopyFrom(System.IO.File.ReadAllBytes(pathToFile));
+            //    Console.WriteLine("writeRequest" + writeRequest);
+            //    //rpc call
+            //    using (var call = client.ReplicateBlock())
+            //    {
+            //        Console.WriteLine("inside ReplicateBlock() using");
+            //        //await call.RequestStream.WriteAsync(writeRequest);
 
-                    await Task.Delay(500);
-                }
+            //        //await Task.Delay(500);
+            //        call.RequestStream.WriteAsync(writeRequest);
 
-                channel.ShutdownAsync().Wait();
-                //}
+            //        Task.Delay(500);
+            //    }
 
-            }
+            //    channel.ShutdownAsync().Wait();
+            //    //}
+
+            //}
 
 
 
@@ -224,9 +228,6 @@ namespace NameNodeServer
                     var DeleteResponse = client.DeleteFile(new DeleteRequest { BlockID = bID });
                     channel.ShutdownAsync().Wait();
                 }
-
-                
-
             }
 
             //update BlockMap to remove the entries of given BlockIDs
@@ -235,55 +236,67 @@ namespace NameNodeServer
                 BlockMap.Remove(bID);
             }
 
-            //finally, remove file & blockIDs from FileBlocks dict
+            //remove file & blockIDs from FileBlocks dict
             FileBlocks.Remove(dir_fn[1]);
-
-            //removes fileName from NN_namespace_dir and sends bool success
+            
+            //finally, remove fileName from NN_namespace_dir and send bool success
             return Task.FromResult(new PathResponse { ReqAck = File_Deleted(request.DirPath) });           
         }
         
         public override Task<ReadResponse> ReadFile(PathRequest request, ServerCallContext context)
         {
+            Console.WriteLine("indie ReadFile");
             ReadResponse rr = new ReadResponse();
             string cliPath = request.DirPath;
-            if (cliPath[0] != '/')
-            {
-                string temp = "/" + cliPath;
-                cliPath = temp;
-            }
+            Console.WriteLine("cliPath = " + cliPath);
+            
+            string[] dir_fn = Parse_Directory_Filename(cliPath);
 
-            string[] forwardSlash = new String[] { "/" };
-            string[] dir = cliPath.Split(forwardSlash, StringSplitOptions.RemoveEmptyEntries);
-            string target = dir[dir.Length - 1];
-            List<int> tempBList = new List<int>();
-            List<List<string>> DNList = new List<List<string>>();
-            List<string> tmp = new List<string>();
+            Console.WriteLine("dir_fin: dir = {0}, fn = {1}", dir_fn[0], dir_fn[1]);
+            string dir = dir_fn[0];
+            string fn = dir_fn[1];
 
-            //foreach (var bid in FileBlocks[target])
-            //{
-            //    rr.BlockRecord
-            //}
+            //List<int> tempBList = new List<int>();
+            //List<List<string>> DNList = new List<List<string>>();
+            //List<string> tmp = new List<string>();
 
-            foreach (var bid in FileBlocks[target])
+            //List<blockRead> blockReadList = new List<blockRead>();
+            
+            foreach (var bid in FileBlocks[fn])
             {
-                tempBList.Add(bid);
-            }
-            foreach (int b in tempBList)
-            {
-                tmp = BlockMap.Where(d => d.Key.Equals(b))
-                    .SelectMany(d => d.Value)
-                    .ToList();
-                DNList.Add(tmp);
-            }
-            for (int i = 0; i < tempBList.Count; i++)
-            {
-                rr.BlockRecord[i].BlockID = tempBList[i];
-                for (int j = 0; j < DNList[i].Count; j++)
+                Console.WriteLine("foreach (var bid in FileBlocks[target]): " + bid);
+                blockRead blRead = new blockRead();
+                blRead.BlockID = bid;
+                Console.WriteLine("BlockMap[bid]: " + BlockMap[bid]);
+                foreach(var dnid in BlockMap[bid])
                 {
-                    rr.BlockRecord[i].DNread[j] = DNList[i][j];
+                    Console.WriteLine("blRead.DNread.Add({0});", dnid);
+                    blRead.DNread.Add(dnid);
                 }
+                //blockReadList.Add(blRead);
+                rr.BlockRecord.Add(blRead);
+                Console.WriteLine("rr.BlockRecord.Add(blRead);" + blRead);
             }
+            //foreach (int b in tempBList)
+            //{
+            //    Console.WriteLine("foreach (int b in tempBList): " + b);
+            //    tmp = BlockMap.Where(d => d.Key.Equals(b))
+            //        .SelectMany(d => d.Value)
+            //        .ToList();
+            //    DNList.Add(tmp);
+            //}
+            //for (int i = 0; i < tempBList.Count; i++)
+            //{
+            //    Console.WriteLine("for (int i = 0; i < tempBList.Count; i++)");
+            //    rr.BlockRecord[i].BlockID = tempBList[i];
+            //    for (int j = 0; j < DNList[i].Count; j++)
+            //    {
+            //        rr.BlockRecord[i].DNread[j] = DNList[i][j];
+            //    }
+            //}
+            Console.WriteLine("about to return");
 
+           
             return Task.FromResult(rr);
         }
 
@@ -330,13 +343,42 @@ namespace NameNodeServer
         public override Task<PathResponse> DeleteDirectory(PathRequest request, ServerCallContext context)
         {
             PathResponse pr = new PathResponse();
-            string target = request.DirPath;
+            string cliPath = request.DirPath;
+            string correctPath = cliPath;
 
-            //Find all subdir that contains clientPath
-            foreach (KeyValuePair<string, NS_Dir_Info> dict in NN_namespace_dir)
+            if (cliPath[0].Equals('/') && cliPath[cliPath.Length - 1].Equals('/'))
             {
-                NN_namespace_dir.Remove(dict.Key);
+                correctPath = cliPath;
             }
+            else if (!cliPath[0].Equals('/') && cliPath[cliPath.Length - 1].Equals('/'))
+            {
+                correctPath = "/" + cliPath;
+            }
+            else if (cliPath[0].Equals('/') && !cliPath[cliPath.Length - 1].Equals('/'))
+            {
+                correctPath = cliPath + "/";
+            }
+
+            if (NN_namespace_dir.ContainsKey(correctPath))
+            {
+                NN_namespace_dir.Remove(correctPath);
+            }
+            correctPath.TrimEnd('/');
+            int subdirIndex = correctPath.LastIndexOf('/');
+            string subdir = correctPath.Substring(subdirIndex) + "/";
+            string parentDir = correctPath.Substring(0, subdirIndex);
+
+            if(NN_namespace_dir.ContainsKey(parentDir))
+            {
+                NN_namespace_dir[parentDir].fileNames.Remove(subdir);
+            }
+
+
+            //    //Find all subdir that contains clientPath
+            //foreach (KeyValuePair<string, NS_Dir_Info> dict in NN_namespace_dir)
+            //{
+            //    NN_namespace_dir.Remove(dict.Key);
+            //}
             pr.ReqAck = true;
             return Task.FromResult(pr);
         }
@@ -466,20 +508,32 @@ namespace NameNodeServer
         /// <returns>f: path arleady existed; t: made new</returns>
         public bool mkdir(string cliPath)
         {
-            if(cliPath[0] != '/')
+            string correctPath = "";
+            
+            //check client path to make sure it is correct 
+            if (cliPath[0].Equals('/') && cliPath[cliPath.Length - 1].Equals('/'))
             {
-                string temp = "/" + cliPath;
-                cliPath = temp;
+                correctPath = cliPath;
             }
-            if(fullDirPathExists(cliPath))
+            else if (!cliPath[0].Equals('/') && cliPath[cliPath.Length - 1].Equals('/'))
+            {
+                correctPath = "/" + cliPath;              
+            }
+            else if (cliPath[0].Equals('/') && !cliPath[cliPath.Length - 1].Equals('/'))
+            {
+                correctPath = cliPath + "/";
+            }
+
+
+            if (fullDirPathExists(correctPath))
             {
                 //directory already exists
                 return false;
             }
             else
             {
-                string latestDir = findExistingPath(cliPath);
-                string newPath = cliPath.Substring(latestDir.Length);
+                string latestDir = findExistingPath(correctPath);
+                string newPath = correctPath.Substring(latestDir.Length);
                 string[] forwardSlash = new String[] { "/" };
                 string[] newDirs = newPath.Split(forwardSlash, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string d in newDirs)

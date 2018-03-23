@@ -86,10 +86,10 @@ namespace NameNodeServer
 
 
 
-            ///*test for function
-            // * need to rebuild function to test as below
-            // */
-            //nn_test.Add_CreateResponse("/foo/bar/", "baz.txt", 2);
+            /////*test for function
+            //// * need to rebuild function to test as below
+            //// */
+            ////nn_test.Add_CreateResponse("/foo/bar/", "baz.txt", 2);
 
             //nn_test.WriteandReplicate(cr_req);
 

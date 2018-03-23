@@ -23,7 +23,7 @@ namespace DataNodeServer
         //For client
         readonly NameNode.NameNodeClient client1;
         readonly DataNode.DataNodeClient client2;
-        string NameNodeIPAddress = "54.200.72.18";
+        string NameNodeIPAddress = "35.165.83.120";
 
         //For server
         public DataNodeServerImpl() {}
@@ -32,50 +32,75 @@ namespace DataNodeServer
         public DataNodeServerImpl(NameNode.NameNodeClient client) { this.client1 = client; }
         public DataNodeServerImpl(DataNode.DataNodeClient client) { this.client2 = client; }
        
-        public override Task<WriteResponse> WriteFile(IAsyncStreamReader<WriteRequest> requestStream, ServerCallContext context)
+        public override async Task<WriteResponse> WriteFile(IAsyncStreamReader<WriteRequest> requestStream, ServerCallContext context)
         {
             Console.WriteLine("Write..");
             //create a file and write into it
-            CreateAndWriteFile(requestStream);
+            //CreateAndWriteFile(requestStream);
 
+            Console.WriteLine("inside ReplicateBlock");
+            List<string> DataNodes = new List<string>();
+            //string path = @"C:\Users\brandiweekes\Workspace\CPSC5910\DataNode";
+
+            while (await requestStream.MoveNext())
+            {
+
+                var block = requestStream.Current;
+                Console.WriteLine("block.Data.Length {0}", block.Data.Length);
+                foreach (var dnid in block.DataNodeID)
+                {
+                    Console.WriteLine("dnID {0}", dnid);
+                    DataNodes.Add(dnid);
+                }
+                Console.WriteLine("Datanodes list: {0}", DataNodes);
+                Console.WriteLine("path + block.Block.BlockID: {0}", path + block.Block.BlockID);
+                Console.WriteLine("block.Data.ToByteArray() " + block.Data.ToByteArray());
+                File.WriteAllBytes(path + block.Block.BlockID,
+                        block.Data.ToByteArray());
+            }
+
+
+            Console.WriteLine("about to send blockReport");
             //send block report
             BlockReport(requestStream.Current.Block.BlockID);
 
             //replicate data
-            DataNodeIDList = requestStream.Current.DataNodeID.ToList();
-            if (DataNodeIDList.Count != 0)
-            {
-                string nextDataNode = DataNodeIDList.First();
-                DataNodeIDList.RemoveAt(1);
+            //DataNodeIDList = requestStream.Current.DataNodeID.ToList();
+            //if (DataNodeIDList.Count != 0)
+            //{
+            //    string nextDataNode = DataNodeIDList.First();
+            //    DataNodeIDList.RemoveAt(1);
 
-                Channel channel = new Channel(nextDataNode, 50051, ChannelCredentials.Insecure);
-                var client = new DataNode.DataNodeClient(channel);
-                using(var reply = client.ReplicateBlock())
-                {
-                    WriteRequest wr = new WriteRequest
-                    {
-                        Block = requestStream.Current.Block
-                    };
-                    while (DataNodeIDList.Count != 0)
-                    {
-                        wr.DataNodeID.Add(DataNodeIDList.First());
-                        DataNodeIDList.RemoveAt(1);
-                    }
-                    wr.Data = requestStream.Current.Data;
-                    wr.Offset = requestStream.Current.Offset;
-                    reply.RequestStream.WriteAsync(wr);
-                }
-                channel.ShutdownAsync();
-            }
+            //    Channel channel = new Channel(nextDataNode, 50051, ChannelCredentials.Insecure);
+            //    var client = new DataNode.DataNodeClient(channel);
+            //    using(var reply = client.ReplicateBlock())
+            //    {
+            //        WriteRequest wr = new WriteRequest
+            //        {
+            //            Block = requestStream.Current.Block
+            //        };
+            //        while (DataNodeIDList.Count != 0)
+            //        {
+            //            wr.DataNodeID.Add(DataNodeIDList.First());
+            //            DataNodeIDList.RemoveAt(1);
+            //        }
+            //        wr.Data = requestStream.Current.Data;
+            //        wr.Offset = requestStream.Current.Offset;
+            //        reply.RequestStream.WriteAsync(wr);
+            //    }
+            //    channel.ShutdownAsync();
+            //}
 
-            return Task.FromResult(new WriteResponse { Response = true });
+            //return Task.FromResult(new WriteResponse { Response = true });
+            return new WriteResponse { Response = true };
+
         }
         public override async Task<WriteResponse> ReplicateBlock(IAsyncStreamReader<WriteRequest> requestStream, ServerCallContext context)
         {
             Console.WriteLine("inside ReplicateBlock");
             List<string> DataNodes = new List<string>();
             //string path = @"C:\Users\brandiweekes\Workspace\CPSC5910\DataNode";
-            
+            List<WriteRequest> blockLists = new List<WriteRequest>();
             while (await requestStream.MoveNext())
             {
                 
@@ -91,8 +116,16 @@ namespace DataNodeServer
                 Console.WriteLine("block.Data.ToByteArray() " + block.Data.ToByteArray());
                 File.WriteAllBytes(path + block.Block.BlockID,
                         block.Data.ToByteArray());
+                blockLists.Add(block);
             }
 
+            //send block report
+            foreach(var block in blockLists)
+            {
+                Console.WriteLine("foreach(var block in blockLists)");
+                BlockReport(block.Block.BlockID);
+            }
+            
             return new WriteResponse { Response = true };
 
         }
@@ -136,24 +169,30 @@ namespace DataNodeServer
     //        return Task.FromResult(new WriteResponse{ Response = true });
     //    }
 
-        public override Task ReadFile(ReadBlockRequest request, IServerStreamWriter<ReadBlockResponse> responseStream, ServerCallContext context)
+        public override async Task ReadFile(ReadBlockRequest request, IServerStreamWriter<ReadBlockResponse> responseStream, ServerCallContext context)
         {
             int blockId = request.BlockID;
-            path = path + "\\Block" + blockId + ".txt";
+            string pathToFile = path + blockId;
 
-            byte[] data = new byte[1024];
-            using (var stream = new FileStream(path, FileMode.Open))
-            {
-                if(stream.CanRead)
-                    stream.Read(data, 0, data.Length);
-            }
+            //byte[] data = new byte[1024];
+            //using (var stream = new FileStream(path, FileMode.Open))
+            //{
+            //    if(stream.CanRead)
+            //        stream.Read(data, 0, data.Length);
+            //}
 
-            ByteString bs = ByteString.CopyFrom(data);
+
+            byte[] byteArray = System.IO.File.ReadAllBytes(pathToFile);
+            Console.WriteLine("byteArray" + byteArray.Length + "     " + byteArray);
+           
             ReadBlockResponse RBR = new ReadBlockResponse();
-            RBR.Data = bs;
-            RBR.Offset = 0;
+            RBR.Data = Google.Protobuf.ByteString.CopyFrom(System.IO.File.ReadAllBytes(pathToFile));
+            
+            //ByteString bs = ByteString.CopyFrom(data);
+            //RBR.Data = bs;
+            //RBR.Offset = 0;
 
-            return responseStream.WriteAsync(RBR);
+            await responseStream.WriteAsync(RBR);
         }
 
         public override Task<DeleteResponse> DeleteFile(DeleteRequest request, ServerCallContext context)
@@ -203,7 +242,7 @@ namespace DataNodeServer
             {
                 if (ip.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    return ip.ToString();
+                    return "34.217.62.32";
                 }
             }
             return null;
@@ -232,15 +271,18 @@ namespace DataNodeServer
 
         public void BlockReport(int blockID)
         {
+            Console.WriteLine("inside block report helper function");
             Channel channel = new Channel(NameNodeIPAddress, 50051, ChannelCredentials.Insecure);
             var client = new NameNode.NameNodeClient(channel);
             string myIPAddress = GetMyIPAddress();
-            var reply = client.BlockReportAsync(new ReportRequest { DNid = myIPAddress, BlockID = blockID });
+            var reply = client.BlockReport(new ReportRequest { DNid = "34.217.62.32", BlockID = blockID });
+            Console.WriteLine("BlockReport reply = " + reply.Acknowledged);
             channel.ShutdownAsync();
         }
 
         public void CreateAndWriteFile(IAsyncStreamReader<WriteRequest> requestStream)
         {
+            Console.WriteLine("inside CreateANdWriteFIle");
             //fetch metadata
             int blockId = requestStream.Current.Block.BlockID;
             float blockSize = requestStream.Current.Block.BlockSize;
@@ -248,21 +290,29 @@ namespace DataNodeServer
             try
             {
                 //create file and write data to file
-                path = path + "\\Block" + blockId + ".txt";
+                //path = path + "\\Block" + blockId + ".txt";
 
                 while (requestStream.MoveNext().IsCompleted)
                 {
-                    byte[] data = requestStream.Current.Data.ToByteArray();
-                    int offset = requestStream.Current.Offset;
+                    //string pathToFile = @"C:\Users\brandiweekes\Workspace\CPSC5910\NameNode\RandomNumbers";
+                    //    //byte[] byteArray = System.IO.File.ReadAllBytes(pathToFile);
+                    //    //Console.WriteLine("byteArray" + byteArray);
+                    //    //writeRequest.Data = Google.Protobuf.ByteString.CopyFrom(byteArray);
+                    //    writeRequest.Data = Google.Protobuf.ByteString.CopyFrom(System.IO.File.ReadAllBytes(pathToFile));
 
-                    using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write))
-                    {
-                        if (stream.CanWrite)
-                        {
-                            stream.Write(data, offset, data.Length);
-                            stream.Flush();
-                        }
-                    }
+                    //byte[] data = requestStream.Current.Data.ToByteArray();
+                    //int offset = requestStream.Current.Offset;
+                    Console.WriteLine("writing file {0}", blockId);
+                    File.WriteAllBytes(path + blockId,
+                        requestStream.Current.Data.ToByteArray());
+                    //using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write))
+                    //{
+                    //    if (stream.CanWrite)
+                    //    {
+                    //        stream.Write(data, offset, data.Length);
+                    //        stream.Flush();
+                    //    }
+                    //}
                 }
             }
             catch (IOException e) { Console.WriteLine("Exception: " + e); }
